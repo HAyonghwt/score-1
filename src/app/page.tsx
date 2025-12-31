@@ -339,7 +339,7 @@ export default function HomePage() {
       <footer className="mt-8 text-center">
         <div className="flex gap-2">
           <Link href="/stats" className="flex-1">
-            <Button className="w-full h-12 text-base border border-[#ffc2a0] hover:bg-[#ffb088]" style={{ backgroundColor: '#ffc2a0', color: '#8b4513' }}>
+            <Button className="w-full h-12 text-base border border-[#c4faf8] hover:bg-[#c4faf8]" style={{ backgroundColor: '#c4faf8', color: '#094993ff' }}>
               <BarChart2 className="mr-2 w-5 h-5" />
               나의 통계
             </Button>
