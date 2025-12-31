@@ -108,8 +108,36 @@ export default function HomePage() {
 
   const handleDeleteClick = (e: React.MouseEvent, courseId: string) => {
     e.stopPropagation();
-    setCourseToDelete(courseId);
-    setDeleteDialogOpen(true);
+
+    // 이미 첫 번째 터치된 상태라면 (같은 코스를 두 번째 터치)
+    if (pendingDelete === courseId) {
+      // 타임아웃 클리어
+      if (deleteTimeout) {
+        clearTimeout(deleteTimeout);
+        setDeleteTimeout(null);
+      }
+      // 모달 열기
+      setCourseToDelete(courseId);
+      setDeleteDialogOpen(true);
+      setPendingDelete(null);
+    } else {
+      // 첫 번째 터치
+      // 기존 타임아웃이 있다면 클리어
+      if (deleteTimeout) {
+        clearTimeout(deleteTimeout);
+      }
+
+      // 첫 번째 터치 상태로 설정
+      setPendingDelete(courseId);
+
+      // 3초 후 자동 리셋
+      const timeout = setTimeout(() => {
+        setPendingDelete(null);
+        setDeleteTimeout(null);
+      }, 3000);
+
+      setDeleteTimeout(timeout);
+    }
   };
 
   const handleDeleteConfirm = () => {
@@ -130,6 +158,8 @@ export default function HomePage() {
   const [courseToDelete, setCourseToDelete] = useState<string | null>(null);
   const [editingCourse, setEditingCourse] = useState<Course | null>(null);
   const [editingPars, setEditingPars] = useState<(number | string)[][]>([]);
+  const [pendingDelete, setPendingDelete] = useState<string | null>(null);
+  const [deleteTimeout, setDeleteTimeout] = useState<NodeJS.Timeout | null>(null);
 
   const handleEditCourse = (e: React.MouseEvent, courseId: string) => {
     e.stopPropagation();
@@ -253,6 +283,7 @@ export default function HomePage() {
                     onEdit={handleEditCourse}
                     onDelete={handleDeleteClick}
                     onClick={() => router.push(`/play/${course.id}`)}
+                    isPendingDelete={pendingDelete === course.id}
                   />
                 ))}
               </SortableContext>
@@ -360,12 +391,14 @@ function SortableCourseItem({
   course,
   onEdit,
   onDelete,
-  onClick
+  onClick,
+  isPendingDelete
 }: {
   course: Course;
   onEdit: (e: React.MouseEvent, id: string) => void;
   onDelete: (e: React.MouseEvent, id: string) => void;
   onClick: () => void;
+  isPendingDelete: boolean;
 }) {
   const {
     attributes,
@@ -392,36 +425,39 @@ function SortableCourseItem({
     >
       <CardHeader className="p-3 flex flex-row items-center justify-between gap-2">
         <div className="flex items-center gap-3 flex-grow overflow-hidden">
-          <div
-            {...attributes}
-            {...listeners}
-            className="cursor-grab active:cursor-grabbing p-1 hover:bg-gray-100 rounded touch-none"
-            onClick={(e) => e.stopPropagation()}
+          {/* 수정 아이콘 */}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={(e) => onEdit(e, course.id)}
+            className="w-8 h-8 flex-shrink-0"
           >
-            <GripVertical className="w-5 h-5 text-gray-400" />
-          </div>
+            <Edit className="w-5 h-5 text-muted-foreground" />
+          </Button>
+          {/* 삭제 아이콘 - 첫 번째 터치 시 배경색 변경 */}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={(e) => onDelete(e, course.id)}
+            className={`w-8 h-8 flex-shrink-0 transition-colors ${isPendingDelete ? 'bg-red-100 hover:bg-red-200' : ''
+              }`}
+          >
+            <Trash2 className={`w-5 h-5 ${isPendingDelete ? 'text-red-600' : 'text-destructive'}`} />
+          </Button>
+          {/* 구장명 */}
           <div className="flex-grow overflow-hidden">
             <CardTitle className="text-lg font-semibold truncate stadium-name select-none">{course.name}</CardTitle>
             <CardDescription className="truncate text-base">{course.courses.length}개 코스 ({course.courses.map(c => c.name).join(', ')}코스)</CardDescription>
           </div>
         </div>
-        <div className="flex items-center gap-1">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={(e) => onEdit(e, course.id)}
-            className="w-8 h-8"
-          >
-            <Edit className="w-5 h-5 text-muted-foreground" />
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={(e) => onDelete(e, course.id)}
-            className="w-8 h-8"
-          >
-            <Trash2 className="w-5 h-5 text-destructive" />
-          </Button>
+        {/* 이동 표시 아이콘 - 우측으로 이동 */}
+        <div
+          {...attributes}
+          {...listeners}
+          className="cursor-grab active:cursor-grabbing p-1 hover:bg-gray-100 rounded touch-none flex-shrink-0"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <GripVertical className="w-5 h-5 text-gray-400" />
         </div>
       </CardHeader>
     </Card>
