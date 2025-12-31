@@ -1,0 +1,12 @@
+// 아래는 실제 record 구조를 확인하기 위한 예시 코드입니다.
+// 이 파일을 import 하거나, 콘솔에서 record 구조를 출력해서 allScores, playedCourses, courseName 등 실제 구조를 확인하세요.
+// (실제 exportToCSV 함수 내에 console.log(record) 추가해도 됩니다)
+
+// 예시 코드:
+// exportToCSV 함수 내
+// records.flatMap(record => {
+//   console.log('DEBUG_RECORD', record);
+//   ...
+// });
+
+// 또는 아래처럼 임시로 기록해두고, 구조를 확인 후 알려주세요.

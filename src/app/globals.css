@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.stadium-name {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  cursor: pointer;
+}
+
+
+@layer base {
+  :root, [data-theme="pogok"] {
+    --background: 210 20% 98%;
+    --foreground: 210 10% 23%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 10% 23%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 10% 23%;
+    --primary: 217 71% 52%; /* #2a68dd */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 354 70% 53%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214 32% 91.4%;
+    --input: 214 32% 91.4%;
+    --ring: 217 71% 52%;
+    --radius: 0.5rem; /* 8px */
+  }
+
+  [data-theme="arpia"] {
+    --primary: 122 48% 34%; /* #2e7d32 */
+    --primary-foreground: 0 0% 100%;
+    --ring: 122 48% 34%;
+  }
+
+  [data-theme="course-a"] {
+    --primary: 0 72% 51%;
+    --primary-foreground: 0 0% 100%;
+    --ring: 0 72% 51%;
+    --destructive: 0 72% 51%;
+  }
+  [data-theme="course-b"] {
+    --primary: 217 71% 52%;
+    --primary-foreground: 210 40% 98%;
+    --ring: 217 71% 52%;
+  }
+  [data-theme="course-c"] {
+    --primary: 48 96% 53%;
+    --primary-foreground: 210 10% 23%;
+    --ring: 48 96% 53%;
+  }
+  [data-theme="course-d"] {
+    --primary: 210 15% 85%;
+    --primary-foreground: 210 10% 15%;
+    --ring: 210 10% 15%;
+  }
+  [data-theme="course-e"] {
+    --primary: 28 87% 55%;
+    --primary-foreground: 0 0% 100%;
+    --ring: 28 87% 55%;
+  }
+  [data-theme="course-f"] {
+    --primary: 262 52% 56%;
+    --primary-foreground: 0 0% 100%;
+    --ring: 262 52% 56%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 221 83% 53%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    -webkit-text-size-adjust: 100%; /* Prevent font scaling on mobile */
+  }
+}
+
+[data-theme^="course-"] .table-fixed td {
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+  vertical-align: middle !important;
+  line-height: 1 !important;
+}
+[data-theme^="course-"] .table-fixed td .w-full.h-14 {
+  height: 44px !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-direction: column !important;
+}

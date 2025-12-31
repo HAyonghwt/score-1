@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">파크골프스코어</string>
+    <string name="title_activity_main">파크골프스코어</string>
+    <string name="package_name">app.netlify.easyscore</string>
+    <string name="custom_url_scheme">app.netlify.easyscore</string>
+</resources>

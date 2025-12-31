@@ -1,0 +1,12 @@
+.graph-bar-area {
+  min-height: 32px;
+  height: 32px;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  .graph-bar-area {
+    min-height: 28px;
+    height: 28px;
+  }
+}
