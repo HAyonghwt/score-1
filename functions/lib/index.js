@@ -32,71 +32,120 @@ var __importStar = (this && this.__importStar) || (function () {
         return result;
     };
 })();
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.manualCrawl = exports.crawlParkGolfCompetitions = void 0;
-const functions = __importStar(require("firebase-functions"));
+const functions = __importStar(require("firebase-functions/v1"));
 const admin = __importStar(require("firebase-admin"));
-const axios_1 = __importDefault(require("axios"));
-const cheerio = __importStar(require("cheerio"));
-admin.initializeApp();
-const db = admin.firestore();
-exports.crawlParkGolfCompetitions = functions.pubsub
-    .schedule("every 24 hours")
+let dbRequest = null;
+const getDB = () => {
+    if (!dbRequest) {
+        if (admin.apps.length === 0) {
+            admin.initializeApp();
+        }
+        dbRequest = admin.firestore();
+    }
+    return dbRequest;
+};
+let messagingRequest = null;
+const getMessaging = () => {
+    if (!messagingRequest) {
+        if (admin.apps.length === 0) {
+            admin.initializeApp();
+        }
+        messagingRequest = admin.messaging();
+    }
+    return messagingRequest;
+};
+exports.crawlParkGolfCompetitions = functions
+    .region("us-central1")
+    .pubsub.schedule("0 8 * * *")
+    .timeZone("Asia/Seoul")
     .onRun(async (context) => {
+    console.log("Auto-crawler started at:", new Date().toISOString());
+    await runCrawler();
+    return null;
+});
+exports.manualCrawl = functions
+    .region("us-central1")
+    .https.onRequest(async (req, res) => {
     try {
-        console.log("Starting competition crawler...");
-        const targetUrl = "http://www.kpga7330.com/bbs/board.php?bo_table=contest";
-        const { data: html } = await axios_1.default.get(targetUrl);
-        const $ = cheerio.load(html);
-        const newCompetitions = [];
-        $(".td_subject a").each((i, el) => {
-            const title = $(el).text().trim();
-            const link = $(el).attr("href") || targetUrl;
-            if (title.includes("2026") || title.includes("2025")) {
-                newCompetitions.push({
+        const result = await runCrawler();
+        res.status(200).send(`Crawler triggered manually. Result: ${result}`);
+    }
+    catch (error) {
+        console.error("Manual crawl failed:", error);
+        res.status(500).send("Crawl failed.");
+    }
+});
+async function runCrawler() {
+    const axios = (await Promise.resolve().then(() => __importStar(require("axios")))).default;
+    const cheerio = (await Promise.resolve().then(() => __importStar(require("cheerio"))));
+    const db = getDB();
+    const messaging = getMessaging();
+    const targetUrl = "http://www.kpgath.com/game/game01.html";
+    let newCompetitionsCount = 0;
+    try {
+        const { data } = await axios.get(targetUrl);
+        const $ = cheerio.load(data);
+        const competitions = [];
+        $("table.tbl_board tbody tr").each((index, element) => {
+            const title = $(element).find("td.subject a").text().trim();
+            const dateRaw = $(element).find("td.date").text().trim();
+            const linkSuffix = $(element).find("td.subject a").attr("href");
+            const link = linkSuffix ? `http://www.kpgath.com${linkSuffix}` : targetUrl;
+            if (title && dateRaw) {
+                competitions.push({
                     title,
-                    location: "상세내용 참조",
-                    applyStartDate: new Date().toISOString().split('T')[0],
-                    applyEndDate: new Date().toISOString().split('T')[0],
-                    eventDate: new Date().toISOString().split('T')[0],
-                    sourceUrl: link,
-                    content: "게시판 상세 내용을 확인해주세요.",
-                    status: "upcoming",
-                    createdAt: new Date().toISOString(),
+                    dateRaw,
+                    link,
                 });
             }
         });
-        console.log(`Found ${newCompetitions.length} items. Checking for new ones...`);
-        for (const comp of newCompetitions) {
-            const snapshot = await db.collection("competitions")
+        console.log(`Found ${competitions.length} items on the page.`);
+        for (const comp of competitions) {
+            const existingDocs = await db
+                .collection("competitions")
                 .where("title", "==", comp.title)
+                .limit(1)
                 .get();
-            if (snapshot.empty) {
-                const docRef = await db.collection("competitions").add(comp);
-                console.log(`Added new competition: ${comp.title}`);
+            if (!existingDocs.empty) {
+                console.log(`Skipping duplicate: ${comp.title}`);
+                continue;
+            }
+            const newDoc = {
+                title: comp.title,
+                location: "전국 (자동수집)",
+                startDate: comp.dateRaw,
+                endDate: comp.dateRaw,
+                applicationPeriod: "별도 공지 확인",
+                organizer: "대한파크골프협회",
+                contact: "",
+                link: comp.link,
+                status: "접수중",
+                createdAt: admin.firestore.FieldValue.serverTimestamp(),
+            };
+            await db.collection("competitions").add(newDoc);
+            newCompetitionsCount++;
+            try {
                 const message = {
                     notification: {
-                        title: "🆕 새로운 파크골프 대회 소식!",
-                        body: `${comp.title}\n지금 모집 정보를 확인해보세요!`,
+                        title: "🏆 새 파크골프 대회 소식!",
+                        body: `${comp.title} 정보가 업데이트 되었습니다.`,
                     },
                     topic: "competitions",
                 };
-                await admin.messaging().send(message);
-                console.log("Notification sent successfully");
+                await messaging.send(message);
+                console.log(`Notification sent for: ${comp.title}`);
+            }
+            catch (fcmError) {
+                console.error("FCM Send Error:", fcmError);
             }
         }
-        return null;
+        return `Crawling Setup Complete. Processed ${competitions.length} items. Added ${newCompetitionsCount} new.`;
     }
     catch (error) {
-        console.error("Crawler Error:", error);
-        return null;
+        console.error("Crawling Error:", error);
+        return "Crawling failed, check logs.";
     }
-});
-exports.manualCrawl = functions.https.onRequest(async (req, res) => {
-    await exports.crawlParkGolfCompetitions.run({});
-    res.send("Crawler triggered manually.");
-});
+}
 //# sourceMappingURL=index.js.map

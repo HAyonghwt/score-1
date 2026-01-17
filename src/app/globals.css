@@ -11,14 +11,17 @@
 
 
 @layer base {
-  :root, [data-theme="pogok"] {
+
+  :root,
+  [data-theme="pogok"] {
     --background: 210 20% 98%;
     --foreground: 210 10% 23%;
     --card: 0 0% 100%;
     --card-foreground: 210 10% 23%;
     --popover: 0 0% 100%;
     --popover-foreground: 210 10% 23%;
-    --primary: 217 71% 52%; /* #2a68dd */
+    --primary: 217 71% 52%;
+    /* #2a68dd */
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -31,11 +34,13 @@
     --border: 214 32% 91.4%;
     --input: 214 32% 91.4%;
     --ring: 217 71% 52%;
-    --radius: 0.5rem; /* 8px */
+    --radius: 0.5rem;
+    /* 8px */
   }
 
   [data-theme="arpia"] {
-    --primary: 122 48% 34%; /* #2e7d32 */
+    --primary: 122 48% 34%;
+    /* #2e7d32 */
     --primary-foreground: 0 0% 100%;
     --ring: 122 48% 34%;
   }
@@ -46,26 +51,31 @@
     --ring: 0 72% 51%;
     --destructive: 0 72% 51%;
   }
+
   [data-theme="course-b"] {
     --primary: 217 71% 52%;
     --primary-foreground: 210 40% 98%;
     --ring: 217 71% 52%;
   }
+
   [data-theme="course-c"] {
     --primary: 48 96% 53%;
     --primary-foreground: 210 10% 23%;
     --ring: 48 96% 53%;
   }
+
   [data-theme="course-d"] {
     --primary: 210 15% 85%;
     --primary-foreground: 210 10% 15%;
     --ring: 210 10% 15%;
   }
+
   [data-theme="course-e"] {
     --primary: 28 87% 55%;
     --primary-foreground: 0 0% 100%;
     --ring: 28 87% 55%;
   }
+
   [data-theme="course-f"] {
     --primary: 262 52% 56%;
     --primary-foreground: 0 0% 100%;
@@ -99,9 +109,29 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
-    -webkit-text-size-adjust: 100%; /* Prevent font scaling on mobile */
+    -webkit-text-size-adjust: 100%;
+    /* Prevent font scaling on mobile */
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+    -webkit-touch-callout: none;
+    /* Disable long press context menu on iOS */
+  }
+
+  /* Allow text selection in inputs and textareas */
+  input,
+  textarea,
+  [contenteditable] {
+    -webkit-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    -webkit-touch-callout: default;
   }
 }
 
@@ -111,6 +141,7 @@
   vertical-align: middle !important;
   line-height: 1 !important;
 }
+
 [data-theme^="course-"] .table-fixed td .w-full.h-14 {
   height: 44px !important;
   min-height: 0 !important;
