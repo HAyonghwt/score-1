@@ -48,7 +48,7 @@ if (typeof window !== 'undefined') {
       }
       [data-theme^="course-"] .container {
         background: #fff;
-        border-radius: 28px;
+        border-radius: 12px;
         box-shadow: 0 4px 32px 0 rgba(30, 41, 59, 0.10);
         padding: 18px 8px 12px 8px;
         margin: 0 auto;
@@ -57,14 +57,14 @@ if (typeof window !== 'undefined') {
       }
       [data-theme^="course-"] header {
         background: transparent;
-        border-radius: 20px 20px 0 0;
+        border-radius: 12px 12px 0 0;
         box-shadow: none;
         padding: 0 0 12px 0;
         margin-bottom: 0.5rem;
       }
       [data-theme^="course-"] .flex.w-full.mb-2.gap-1, [data-theme^="course-"] .flex.w-full.mb-2 {
         background: #f3f4f8;
-        border-radius: 16px;
+        border-radius: 8px;
         padding: 4px 4px 0 4px;
         margin-bottom: 18px;
         box-shadow: 0 2px 8px 0 rgba(30,41,59,0.04);
@@ -74,174 +74,97 @@ if (typeof window !== 'undefined') {
         color: #fff !important;
         box-shadow: 0 2px 8px 0 rgba(30,41,59,0.10);
         font-weight: 700;
-        border-radius: 14px 14px 0 0 !important;
+        border-radius: 4px 4px 0 0 !important;
         border: none !important;
       }
-      [data-theme^="course-"] .table-fixed th, [data-theme^="course-"] .table-fixed td {
+      /* 강조 스타일 고정 */
+      [data-theme^="course-"] .table-fixed td button.w-full.h-14.is-next-hole {
+        background-color: #ffffff !important;
+        border: 2px solid #cfd8dc !important;
+        box-shadow: 0 0 6px rgba(0,0,0,0.08) !important;
+        opacity: 1 !important;
+        z-index: 5;
+        position: relative;
+        border-radius: 4px !important;
+      }
+
+      /* 탭 및 기타 UI 스타일 복원 */
+      [data-theme^="course-"] .tab-scroll { overflow-x: auto; white-space: nowrap; -ms-overflow-style: none; scrollbar-width: none; margin-bottom: 4px; display: flex; }
+      [data-theme^="course-"] .tab-scroll::-webkit-scrollbar { display: none; }
+      [data-theme^="course-"] .tab-btn { border: none !important; outline: none !important; box-shadow: none !important; background: #f3f4f8; color: #adb5bd; font-weight: 600; border-radius: 4px 4px 0 0; margin-right: 2px; transition: background 0.2s, color 0.2s; flex: 1 1 0; min-width: 0; padding: 0.5em 0.2em; font-size: 1.1rem; height: 38px; display: flex; align-items: center; justify-content: center; }
+      [data-theme^="course-"] .tab-btn.selected { background: var(--theme-color,#2563eb); color: #fff; font-weight: 700; }
+      [data-theme="course-c"] .tab-btn.selected { color: #222 !important; }
+      [data-theme="course-d"] .tab-btn.selected { background: #e9ecef !important; color: #222 !important; }
+
+      [data-theme^="course-"] .animate-spin { animation: spin 1s linear infinite; }
+      @keyframes spin { 100% { transform: rotate(360deg); } }
+      
+      [data-theme^="course-"] .no-scrollbar::-webkit-scrollbar { display: none; }
+      [data-theme^="course-"] .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+      [data-theme^="course-"] .table-fixed th:first-child { border-top-left-radius: 8px !important; }
+      [data-theme^="course-"] .table-fixed th:last-child { border-top-right-radius: 8px !important; }
+      
+      [data-theme^="course-"] .table-fixed td.hole-cell {
+        background: var(--theme-color, #2563eb) !important;
+        color: #fff !important;
+        font-weight: 700;
+        text-align: center;
+        border-radius: 0 !important;
+        vertical-align: middle !important;
+        line-height: 1.2;
+        height: 48px;
+        min-width: 36px;
+        display: table-cell;
+      }
+      [data-theme^="course-"] .table-fixed th,
+      [data-theme^="course-"] .table-fixed td {
         font-size: 17px;
         padding: 0.7em 0.2em;
-        border: none;
+        border: none !important;
       }
       [data-theme^="course-"] .table-fixed th {
         background: var(--theme-color, #2563eb) !important;
         color: #fff !important;
         font-weight: 700;
-        letter-spacing: 0.5px;
         border-radius: 0 !important;
+      }
+      [data-theme="course-c"] .table-fixed th {
+        background: var(--theme-color, #fbc02d) !important;
+        color: #222 !important;
+      }
+      [data-theme="course-d"] .table-fixed th {
+        background: #e9ecef !important;
+        color: #222 !important;
+      }
+      [data-theme="course-c"] .table-fixed td.hole-cell {
+        background: var(--theme-color, #fbc02d) !important;
+        color: #222 !important;
+      }
+      [data-theme="course-d"] .table-fixed td.hole-cell {
+        background: #e9ecef !important;
+        color: #222 !important;
       }
       [data-theme^="course-"] .table-fixed td {
         background: #f7f8fa !important;
-        border-radius: 12px !important;
-        transition: background 0.2s;
       }
-      [data-theme^="course-"] .table-fixed td .w-full.h-14 {
+      [data-theme^="course-"] .bg-card {
+        background-color: #f7f8fa !important;
+      }
+      
+      /* 입력 버튼 기본 스타일 */
+      [data-theme^="course-"] .table-fixed td button.w-full.h-14 {
         background: #fff;
-        border: 2px solid #e5e7eb;
-        border-radius: 12px;
-        font-size: 2rem;
+        border: 2px solid #e5e7eb !important;
+        border-radius: 4px !important;
+        font-size: 1.8rem;
         font-weight: 700;
         color: #222;
-        box-shadow: 0 1px 4px 0 rgba(30,41,59,0.04);
-        transition: border 0.2s, box-shadow 0.2s;
-        min-height: 48px;
-        min-width: 48px;
-        margin: 0.1em auto;
         display: flex;
         align-items: center;
         justify-content: center;
-      }
-      [data-theme^="course-"] .table-fixed td .w-full.h-14:focus, [data-theme^="course-"] .table-fixed td .w-full.h-14:active {
-        border: 2px solid var(--theme-color, #2563eb);
-        box-shadow: 0 0 0 3px var(--theme-shadow-color, rgba(30,136,229,0.10));
-      }
-      [data-theme^="course-"] .table-fixed td .text-3xl {
-        font-size: 2.1rem;
-        font-weight: 700;
-        color: #222;
-      }
-      [data-theme^="course-"] .table-fixed td .text-lg {
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin-top: 2px;
-      }
-      [data-theme^="course-"] .table-fixed tr {
-        border-bottom: none !important;
-      }
-      [data-theme^="course-"] .table-fixed tr.bg-muted {
-        background: #f3f4f8 !important;
-      }
-      [data-theme^="course-"] .table-fixed tr.bg-muted td {
-        background: #f3f4f8 !important;
-        font-weight: 700;
-        color: #222;
-      }
-      [data-theme^="course-"] .table-fixed tr.bg-muted td.text-muted-foreground {
-        color: #adb5bd !important;
-      }
-      [data-theme^="course-"] .table-fixed tr.bg-muted td.text-primary {
-        color: var(--theme-color, #2563eb) !important;
-      }
-      [data-theme^="course-"] .table-fixed tr.bg-muted td.text-destructive {
-        color: #e53935 !important;
-      }
-      [data-theme^="course-"] .table-fixed td img {
-        max-height: 36px;
-        border-radius: 8px;
-        box-shadow: 0 1px 4px 0 rgba(30,41,59,0.08);
-      }
-      [data-theme^="course-"] .action-button, [data-theme^="course-"] .h-12, [data-theme^="course-"] .w-full.h-12 {
-        border-radius: 14px !important;
-        font-size: 1.1rem;
-        font-weight: 700;
-        box-shadow: 0 2px 8px 0 rgba(30,41,59,0.08);
-        min-height: 48px;
-        margin-top: 0.2em;
-      }
-      [data-theme^="course-"] .h-12.bg-emerald-600 { background: linear-gradient(90deg,#43e97b 0%,#38f9d7 100%) !important; color: #fff !important; border: none; }
-      [data-theme^="course-"] .h-12.bg-destructive { background: linear-gradient(90deg,#e53935 0%,#e35d5b 100%) !important; color: #fff !important; border: none; }
-      [data-theme^="course-"] .h-12.bg-primary { background: linear-gradient(90deg,var(--theme-color, #2563eb) 0%,#2563eb 100%) !important; color: #fff !important; border: none; }
-      [data-theme^="course-"] .h-12.bg-gray-500 { background: #adb5bd !important; color: #fff !important; border: none; }
-      [data-theme^="course-"] .h-12.bg-orange-500 { background: linear-gradient(90deg,#fb8c00 0%,#ffb300 100%) !important; color: #fff !important; border: none; }
-      [data-theme^="course-"] .h-12.bg-gray-700 { background: #222 !important; color: #fff !important; border: none; }
-      [data-theme^="course-"] .h-12.bg-gray-800 { background: #333 !important; color: #fff !important; border: none; }
-      [data-theme^="course-"] .h-12.bg-gray-100 { background: #f3f4f8 !important; color: #222 !important; border: none; }
-      [data-theme^="course-"] .w-full.h-12.bg-[#FEE500] { background: #fee500 !important; color: #222 !important; border: none; }
-      [data-theme^="course-"] .fixed.z-50 { border-radius: 24px 24px 0 0 !important; box-shadow: 0 -2px 24px 0 rgba(30,41,59,0.10); }
-      [data-theme^="course-"] .fixed.z-50.top-0 { border-radius: 0 0 24px 24px !important; }
-      [data-theme^="course-"] .fixed.inset-0.z-50 { background: rgba(30,41,59,0.18) !important; backdrop-filter: blur(2.5px); }
-      [data-theme^="course-"] .bg-card, [data-theme^="course-"] .bg-card.text-card-foreground { background: #fff !important; color: #222 !important; border-radius: 24px !important; box-shadow: 0 4px 32px 0 rgba(30,41,59,0.10); }
-      [data-theme^="course-"] .shadow-xl { box-shadow: 0 8px 32px 0 rgba(30,41,59,0.12) !important; }
-      [data-theme^="course-"] .rounded-2xl { border-radius: 24px !important; }
-      [data-theme^="course-"] .rounded-lg { border-radius: 16px !important; }
-      [data-theme^="course-"] .rounded-md { border-radius: 12px !important; }
-      [data-theme^="course-"] .rounded-t-lg { border-top-left-radius: 16px !important; border-top-right-radius: 16px !important; }
-      [data-theme^="course-"] .rounded-bl-lg { border-bottom-left-radius: 16px !important; }
-      [data-theme^="course-"] .rounded-tr-lg { border-top-right-radius: 16px !important; }
-      [data-theme^="course-"] .mx-auto { margin-left: auto !important; margin-right: auto !important; }
-      [data-theme^="course-"] .font-bold { font-weight: 700 !important; }
-      [data-theme^="course-"] .font-semibold { font-weight: 600 !important; }
-      [data-theme^="course-"] .text-xl { font-size: 1.3rem !important; }
-      [data-theme^="course-"] .text-2xl { font-size: 1.6rem !important; }
-      [data-theme^="course-"] .text-3xl { font-size: 2.1rem !important; }
-      [data-theme^="course-"] .text-lg { font-size: 1.1rem !important; }
-      [data-theme^="course-"] .text-base { font-size: 1rem !important; }
-      [data-theme^="course-"] .text-muted-foreground { color: #adb5bd !important; }
-      [data-theme^="course-"] .text-primary { color: var(--theme-color, #2563eb) !important; }
-      [data-theme^="course-"] .text-destructive { color: #e53935 !important; }
-      [data-theme^="course-"] .transition-opacity { transition: opacity 0.2s; }
-      [data-theme^="course-"] .animate-spin { animation: spin 1s linear infinite; }
-      @keyframes spin { 100% { transform: rotate(360deg); } }
-      /* 스크롤바 숨김 */
-      [data-theme^="course-"] .no-scrollbar::-webkit-scrollbar { display: none; }
-      [data-theme^="course-"] .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-      [data-theme^="course-"] .table-fixed th:first-child { border-top-left-radius: 16px !important; }
-      [data-theme^="course-"] .table-fixed th:last-child { border-top-right-radius: 16px !important; }
-      [data-theme^="course-"] .table-fixed th.hole-header { text-align: center !important; vertical-align: middle !important; padding-left: 0 !important; padding-right: 0 !important; }
-      [data-theme^="course-"] .table-fixed td.hole-cell { background: var(--theme-color,#2563eb) !important; color: #fff !important; font-weight: 700; text-align: center; border-radius: 0 !important; vertical-align: middle !important; line-height: 1.2; height: 48px; min-width: 36px; display: table-cell; }
-      [data-theme="course-d"] .table-fixed td.hole-cell { background: #fff !important; color: #222 !important; border-radius: 0 !important; }
-      [data-theme^="course-"] .tab-btn { border: none !important; outline: none !important; box-shadow: none !important; background: #f3f4f8; color: #adb5bd; font-weight: 600; border-radius: 12px 12px 0 0; margin-right: 2px; transition: background 0.2s, color 0.2s; flex: 1 1 0; min-width: 0; padding: 0.5em 0.2em; font-size: 1.1rem; height: 38px; display: flex; align-items: center; justify-content: center; }
-      [data-theme^="course-"] .tab-btn.selected { background: var(--theme-color,#2563eb); color: #fff; font-weight: 700; }
-      [data-theme="course-d"] .tab-btn.selected { background: #fff; color: #222; }
-      [data-theme^="course-"] .tab-scroll { overflow-x: auto; white-space: nowrap; -ms-overflow-style: none; scrollbar-width: none; margin-bottom: 4px; display: flex; }
-      [data-theme^="course-"] .tab-scroll::-webkit-scrollbar { display: none; }
-      [data-theme^="course-"] .table-fixed td input, [data-theme^="course-"] .table-fixed td button.w-full.h-14 { border: 2px solid #e5e7eb !important; background: #fff !important; border-radius: 12px !important; color: #222 !important; box-shadow: none !important; }
-      [data-theme^="course-"] .table-fixed td input:focus, [data-theme^="course-"] .table-fixed td button.w-full.h-14:focus { border: 2px solid #cfd8dc !important; box-shadow: 0 0 0 2px #e5e7eb !important; }
-      [data-theme="course-d"] .table-fixed th, [data-theme="course-d"] .table-fixed td { color: #222 !important; }
-      /* 점수 입력칸(Par, 점수 입력 셀) 라운딩 제거 및 테두리 추가 */
-      [data-theme^="course-"] .table-fixed td,
-      [data-theme^="course-"] .table-fixed td input,
-      [data-theme^="course-"] .table-fixed td button.w-full.h-14 {
-        border-radius: 0 !important;
-        border: 1px solid #e5e7eb !important;
-        background: #f7f8fa !important;
-      }
-      [data-theme^="course-"] .table-fixed th {
-        border-radius: 0 !important;
-      }
-      [data-theme^="course-"] .table-fixed td.hole-cell {
-        border-radius: 0 !important;
-      }
-      [data-theme^="course-"] .table-fixed td {
-        border: none !important;
-        border-radius: 0 !important;
-        background: #f7f8fa !important;
-      }
-      [data-theme^="course-"] .table-fixed td.par-cell,
-      [data-theme^="course-"] .table-fixed td.score-cell {
-        border: 1px solid #ececec !important;
-        border-radius: 0 !important;
-        background: #f7f8fa !important;
-      }
-      [data-theme^="course-"] .table-fixed td input,
-      [data-theme^="course-"] .table-fixed td button.w-full.h-14 {
-        border: 1.5px solid #ececec !important;
-        border-radius: 12px !important;
-      }
-      [data-theme^="course-"] .table-fixed th,
-      [data-theme^="course-"] .table-fixed td.hole-cell,
-      [data-theme^="course-"] .table-fixed tr.bg-muted td {
-        border: none !important;
-        border-radius: 0 !important;
+        margin: 0.1em auto;
+        transition: border 0.2s, box-shadow 0.2s;
       }
     `;
     document.head.appendChild(style);
@@ -254,7 +177,7 @@ function getThemeColor(courseName: string) {
     case 'a': return '#e53935';
     case 'b': return '#1e88e5';
     case 'c': return '#fbc02d';
-    case 'd': return '#fff';
+    case 'd': return '#e9ecef';
     case 'e': return '#fb8c00';
     case 'f': return '#8e24aa';
     default: return '#2563eb';
@@ -318,7 +241,7 @@ export default function ClientPlayDetail() {
   const [playerInputOrder, setPlayerInputOrder] = useState<{ hole: number, player: number }[][]>([[], [], [], []]); // 각 플레이어별 입력 순서
   const [playerCurrentStep, setPlayerCurrentStep] = useState<number[]>([0, 0, 0, 0]); // 각 플레이어별 현재 입력 인덱스
 
-  // [상태 동기화: playerStartHole이 바뀔 때 항상 playerInputOrder, playerCurrentStep도 맞춰준다]
+  // [상태 동기화: playerStartHole이 바뀔 때 필요한 경우만 order 생성]
   useEffect(() => {
     setPlayerInputOrder(prev => prev.map((order, idx) => {
       if (playerStartHole[idx] !== null && (order.length === 0 || (order[0]?.hole !== playerStartHole[idx]))) {
@@ -326,12 +249,7 @@ export default function ClientPlayDetail() {
       }
       return order;
     }));
-    setPlayerCurrentStep(prev => prev.map((step, idx) => {
-      if (playerStartHole[idx] !== null && step !== 0) {
-        return 0;
-      }
-      return step;
-    }));
+    // 여기서 step을 0으로 강제 초기화하는 로직이 handleSaveScore와 충돌하여 삭제/수정함
   }, [playerStartHole]);
 
   // 수정 모드 state 추가
@@ -466,107 +384,116 @@ export default function ClientPlayDetail() {
     setIsEditing(false);
   }
 
-  // handleCellClick 보완
+  // handleCellClick 보완: 깜빡임 제거
   const handleCellClick = (holeIndex: number, playerIndex: number, e?: React.MouseEvent) => {
-    // 항상 먼저 모달 상태 완전 초기화
-    resetNumberPadState();
-    setTimeout(() => {
-      const status = getCellStatus(holeIndex, playerIndex);
-      if (status === 'open') {
-        setIsEditing(false);
-        if (playerStartHole[playerIndex] === null) {
-          const newStartHole = [...playerStartHole];
-          newStartHole[playerIndex] = holeIndex;
-          setPlayerStartHole(newStartHole);
-          const newOrder = [...playerInputOrder];
-          newOrder[playerIndex] = makePlayerInputOrder(holeIndex, playerIndex);
-          setPlayerInputOrder(newOrder);
-          const newStep = [...playerCurrentStep];
-          newStep[playerIndex] = 0;
-          setPlayerCurrentStep(newStep);
-        }
+    const status = getCellStatus(holeIndex, playerIndex);
+    const isDouble = e && e.detail === 2;
+
+    if (status === 'open') {
+      setIsEditing(false);
+      // 아직 시작하지 않은 플레이어라면 시작 홀 설정
+      if (playerStartHole[playerIndex] === null) {
+        const newStartHole = [...playerStartHole];
+        newStartHole[playerIndex] = holeIndex;
+        setPlayerStartHole(newStartHole);
+        const newOrder = [...playerInputOrder];
+        newOrder[playerIndex] = makePlayerInputOrder(holeIndex, playerIndex);
+        setPlayerInputOrder(newOrder);
+        const newStep = [...playerCurrentStep];
+        newStep[playerIndex] = 0;
+        setPlayerCurrentStep(newStep);
+      }
+      setSelectedCell({ holeIndex, playerIndex });
+      setTempScore(scores[holeIndex]?.[playerIndex] || '');
+      setIsNumberPadOpen(true);
+    } else if (status === 'locked') {
+      if (isDouble) {
+        setIsEditing(true); // 수정 모드 진입
         setSelectedCell({ holeIndex, playerIndex });
         setTempScore(scores[holeIndex]?.[playerIndex] || '');
         setIsNumberPadOpen(true);
-      } else if (status === 'locked') {
-        if (e && e.detail === 2) {
-          setIsEditing(true); // 수정 모드 진입
-          setSelectedCell({ holeIndex, playerIndex });
-          setTempScore(scores[holeIndex]?.[playerIndex] || '');
-          setIsNumberPadOpen(true);
-        } else {
-          toast({ title: '수정 불가', description: '이미 입력된 칸입니다. 더블터치(더블클릭)로만 수정할 수 있습니다.', duration: 2000 });
-        }
-      } else if (status === 'disabled') {
-        if (e && e.detail === 2) {
-          setIsEditing(true); // 비활성화 칸도 더블클릭 시 수정 모드 진입
-          setSelectedCell({ holeIndex, playerIndex });
-          setTempScore(scores[holeIndex]?.[playerIndex] || '');
-          setIsNumberPadOpen(true);
+      } else {
+        toast({ title: '수정 불가', description: '이미 입력된 칸입니다. 더블터치(더블클릭)로만 수정할 수 있습니다.', duration: 2000 });
+      }
+    } else if (status === 'disabled') {
+      if (isDouble) {
+        setIsEditing(true); // 비활성화 칸도 더블클릭 시 수정 모드 진입
+        setSelectedCell({ holeIndex, playerIndex });
+        setTempScore(scores[holeIndex]?.[playerIndex] || '');
+        setIsNumberPadOpen(true);
+      } else {
+        const currentStep = playerCurrentStep[playerIndex];
+        const order = playerInputOrder[playerIndex];
+        const targetStepIdx = order.findIndex(o => o.hole === holeIndex);
+
+        // 현재 차례인 홀의 인덱스 확인
+        const currentHoleOrderIdx = order[currentStep]?.hole;
+        const currentScore = scores[currentHoleOrderIdx]?.[playerIndex];
+        const isCurrentHoleFilled = currentScore && currentScore.trim() !== '';
+
+        // 점수가 입력되었는데 아직 저장되지 않은 상태에서 '바로 다음 홀'을 터치한 경우만 특별 안내
+        if (targetStepIdx === currentStep + 1 && isCurrentHoleFilled) {
+          toast({ title: '저장 필요', description: '이전 홀 점수를 먼저 저장하세요.', duration: 2000 });
         } else {
           toast({ title: '입력 순서 아님', description: '아직 입력할 차례가 아닙니다. 더블클릭으로 강제 수정이 가능합니다.', duration: 2000 });
         }
-      } else {
-        toast({ title: '입력 순서 아님', description: '아직 입력할 차례가 아닙니다.', duration: 2000 });
       }
-    }, 50);
+    } else {
+      toast({ title: '입력 순서 아님', description: '아직 입력할 차례가 아닙니다.', duration: 2000 });
+    }
   };
 
-  // handleSaveScore 개선: 여러 셀(여러 명) 동시 처리, 각 플레이어별로 독립적으로 상태 관리
+  // handleSaveScore 개선: 원자적 업데이트로 깜빡임 방지 및 순서 로직 강화
   const handleSaveScore = () => {
+    const wasEditingStatus = isEditing; // 기존 수정 모드 여부 저장
     setIsEditing(false);
     resetNumberPadState();
 
-    // 현재 입력된 모든 셀(플레이어별로 이번 차례에 입력된 폼) 처리
-    let updated = false;
+    const newStartHole = [...playerStartHole];
+    const newOrder = [...playerInputOrder];
     const newStep = [...playerCurrentStep];
+    let updated = false;
+
     for (let playerIdx = 0; playerIdx < 4; playerIdx++) {
-      // [임시 수정] 입력 순서가 시작되지 않은 플레이어는 이번에 입력된 셀의 holeIndex로 playerStartHole을 세팅
-      if (playerStartHole[playerIdx] === null) {
-        // 현재 입력된 셀 찾기
+      // 1. 시작홀이 지정되지 않은 경우 초기화
+      if (newStartHole[playerIdx] === null) {
         const inputHoleIdx = scores.findIndex(row => row[playerIdx] && row[playerIdx].trim() !== '');
         if (inputHoleIdx !== -1) {
-          const newStartHole = [...playerStartHole];
           newStartHole[playerIdx] = inputHoleIdx;
-          setPlayerStartHole(newStartHole);
-          const newOrder = [...playerInputOrder];
           newOrder[playerIdx] = makePlayerInputOrder(inputHoleIdx, playerIdx);
-          setPlayerInputOrder(newOrder);
-          const newStep = [...playerCurrentStep];
           newStep[playerIdx] = 0;
-          setPlayerCurrentStep(newStep);
+          updated = true;
         }
       }
-      // 입력 순서가 시작된 플레이어만
-      if (playerStartHole[playerIdx] !== null && playerInputOrder[playerIdx].length > 0) {
-        const order = playerInputOrder[playerIdx];
-        const step = playerCurrentStep[playerIdx];
-        // 이번 차례에 점수가 입력된 셀(폼)만 다음 차례로 진행
-        if (step < order.length) {
-          const { hole } = order[step];
-          // 점수가 입력된 경우에만 진행
+
+      // 2. 이미 시작되었거나 방금 시작된 플레이어의 단계 진행 (빈 칸을 찾을 때까지 전진)
+      if (newStartHole[playerIdx] !== null) {
+        let currentStep = newStep[playerIdx];
+        const currentOrder = newOrder[playerIdx];
+
+        while (currentOrder.length > 0 && currentStep < currentOrder.length) {
+          const { hole } = currentOrder[currentStep];
           if (scores[hole]?.[playerIdx] && scores[hole][playerIdx].trim() !== '') {
-            if (step < order.length - 1) {
-              newStep[playerIdx] = step + 1;
-              updated = true;
-            } else {
-              // 마지막 홀: 본인만 잠김, 나머지는 상태 유지
-              newStep[playerIdx] = step + 1; // 마지막도 +1로 처리해서 잠김
-              updated = true;
-            }
+            currentStep++;
+            newStep[playerIdx] = currentStep;
+            updated = true;
+          } else {
+            break;
           }
         }
       }
     }
+
     if (updated) {
+      setPlayerStartHole(newStartHole);
+      setPlayerInputOrder(newOrder);
       setPlayerCurrentStep(newStep);
-      if (isEditing) {
-        toast({ title: '수정 완료', description: '점수가 정상적으로 수정되었습니다.', duration: 1200 });
+
+      if (wasEditingStatus) {
+        toast({ title: '수정 완료', description: '점수가 변경되었습니다.', duration: 1200 });
       }
-    } else {
-      if (!isEditing) {
-        toast({ title: '입력 없음', description: '이번 차례에 입력된 점수가 없습니다.', duration: 2000 });
-      }
+    } else if (!wasEditingStatus) {
+      toast({ title: '저장 완료', description: '입력된 내용이 없습니다.', duration: 1500 });
     }
   };
 
@@ -857,9 +784,6 @@ export default function ClientPlayDetail() {
     );
   }
 
-  if (course) {
-    console.log('course.courses:', course.courses);
-  }
 
   const theme = `course-${(course.courses[activeCourseIndex]?.name || 'a').toLowerCase()}`;
   const themeColor = getThemeColor(course.courses[activeCourseIndex]?.name);
@@ -894,33 +818,18 @@ export default function ClientPlayDetail() {
         </div>
       </header>
 
-      {course.courses.length > 4 ? (
-        <div className="tab-scroll flex w-full mb-2 gap-1">
-          {course.courses.map((c, idx) => (
-            <button
-              key={c.name}
-              className={`tab-btn${activeCourseIndex === idx ? ' selected' : ''}`}
-              onClick={() => setActiveCourseIndex(idx)}
-              style={activeCourseIndex === idx ? { background: getThemeColor(c.name), color: isWhiteTheme && idx === 3 ? '#222' : '#fff' } : {}}
-            >
-              {c.name} 코스
-            </button>
-          ))}
-        </div>
-      ) : (
-        <div className="tab-scroll flex w-full mb-2 gap-1">
-          {course.courses.map((c, idx) => (
-            <button
-              key={c.name}
-              className={`tab-btn${activeCourseIndex === idx ? ' selected' : ''}`}
-              onClick={() => setActiveCourseIndex(idx)}
-              style={activeCourseIndex === idx ? { background: getThemeColor(c.name), color: isWhiteTheme && idx === 3 ? '#222' : '#fff' } : {}}
-            >
-              {c.name} 코스
-            </button>
-          ))}
-        </div>
-      )}
+      <div className="tab-scroll flex w-full mb-2 gap-1">
+        {course.courses.map((c, idx) => (
+          <button
+            key={c.name}
+            className={`tab-btn${activeCourseIndex === idx ? ' selected' : ''}`}
+            onClick={() => setActiveCourseIndex(idx)}
+            style={activeCourseIndex === idx ? { background: getThemeColor(c.name), color: (idx === 2 || (isWhiteTheme && idx === 3)) ? '#222' : '#fff' } : {}}
+          >
+            {c.name} 코스
+          </button>
+        ))}
+      </div>
 
       <div className="flex-grow">
         {course.courses.map((subCourse, courseIdx) => {
@@ -984,8 +893,8 @@ export default function ClientPlayDetail() {
                                 <button type="button"
                                   onClick={(e) => handleCellClick(holeIndex, playerIndex, e)}
                                   onDoubleClick={(e) => handleCellClick(holeIndex, playerIndex, e)}
-                                  className={`w-full h-14 text-center rounded-none border border-1 focus:outline-none p-0 m-0 transition-opacity ${getCellStatus(holeIndex, playerIndex) === 'locked' ? 'text-muted-foreground' : ''}`}
-                                  style={{ margin: 0, padding: 0, borderRadius: 0, borderWidth: 1 }}
+                                  className={`w-full h-14 text-center rounded-none border border-1 focus:outline-none p-0 m-0 transition-opacity ${getCellStatus(holeIndex, playerIndex) === 'locked' ? 'text-muted-foreground' : ''} ${getCellStatus(holeIndex, playerIndex) === 'open' && playerStartHole[playerIndex] !== null ? 'is-next-hole' : ''}`}
+                                  style={{ margin: 0, padding: 0, borderRadius: 4, borderWidth: 1.5 }}
                                 >
                                   <div style={{
                                     display: 'flex',
@@ -996,7 +905,7 @@ export default function ClientPlayDetail() {
                                     lineHeight: 1.2,
                                   }}>
                                     <span style={{
-                                      fontSize: '2.1rem',
+                                      fontSize: '1.8rem',
                                       fontWeight: 700,
                                       color: '#222',
                                       marginBottom: '0px',
@@ -1011,7 +920,7 @@ export default function ClientPlayDetail() {
                                         fontSize: '0.95rem',
                                         fontWeight: 600,
                                         color: diff > 0 ? '#e53935' : diff < 0 ? '#2563eb' : '#adb5bd',
-                                        marginTop: '-2px',
+                                        marginTop: '-5px',
                                       }}>
                                         {diff === 0 ? 'E' : diff > 0 ? `+${diff}` : `${diff}`}
                                       </span>
@@ -1025,10 +934,10 @@ export default function ClientPlayDetail() {
                         </TableRow>
                       );
                     })}
-                    <TableRow className="bg-muted hover:bg-muted h-16">
+                    <TableRow className="bg-muted hover:bg-muted" style={{ height: '64px' }}>
                       <TableCell colSpan={2} className="text-center font-bold text-lg p-1 rounded-none align-middle" style={{ borderRadius: 0, height: '64px', verticalAlign: 'middle' }} >합계</TableCell>
                       {totalScoresByCourse(currentScores).map((total, pIdx) => (
-                        <TableCell key={pIdx} className="text-center font-bold text-2xl p-1 rounded-none align-middle" style={{ borderRadius: 0, height: '64px', verticalAlign: 'middle' }} >{total || ''}</TableCell>
+                        <TableCell key={pIdx} className="text-center font-bold p-1 rounded-none align-middle" style={{ borderRadius: 0, height: '64px', verticalAlign: 'middle', fontSize: '1.8rem', color: '#222' }} >{total || ''}</TableCell>
                       ))}
                     </TableRow>
                     {!isCapturing && (

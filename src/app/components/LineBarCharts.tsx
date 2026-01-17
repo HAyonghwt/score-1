@@ -34,7 +34,25 @@ export default function LineBarCharts({ monthlyData, byCourseData, recentRoundsD
           }}
           options={{
             responsive: true,
-            plugins: { legend: { display: false } },
+            interaction: {
+              mode: 'index',
+              intersect: false,
+            },
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                displayColors: false,
+                padding: 10,
+                bodyFont: { size: 14, weight: 'bold' },
+                titleFont: { size: 13 }
+              }
+            },
+            elements: {
+              point: {
+                hitRadius: 20, // 터치 인식 범위 확대
+                hoverRadius: 6
+              }
+            }
           }}
         />
       </div>
@@ -55,7 +73,18 @@ export default function LineBarCharts({ monthlyData, byCourseData, recentRoundsD
           }}
           options={{
             responsive: true,
-            plugins: { legend: { display: false } },
+            interaction: {
+              mode: 'index',
+              intersect: false,
+            },
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                displayColors: false,
+                padding: 10,
+                bodyFont: { size: 14, weight: 'bold' }
+              }
+            },
           }}
         />
       </div>
@@ -76,7 +105,18 @@ export default function LineBarCharts({ monthlyData, byCourseData, recentRoundsD
           }}
           options={{
             responsive: true,
-            plugins: { legend: { display: false } },
+            interaction: {
+              mode: 'index',
+              intersect: false,
+            },
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                displayColors: false,
+                padding: 10,
+                bodyFont: { size: 14, weight: 'bold' }
+              }
+            },
           }}
         />
       </div>
