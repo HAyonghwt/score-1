@@ -221,7 +221,7 @@ export default function HomePage() {
 
   return (
     <div className="container mx-auto p-4 max-w-lg min-h-screen bg-background">
-      <header className="text-center my-8">
+      <header className="text-center mt-8 mb-4">
         <div className="flex items-center justify-center gap-1.5">
           <GolfFlagIcon className="w-8 h-8" />
           <h1 className="text-2xl font-bold whitespace-nowrap select-none cursor-default">

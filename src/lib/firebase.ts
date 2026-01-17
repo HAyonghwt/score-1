@@ -1,7 +1,7 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getMessaging, Messaging } from "firebase/messaging";
-import { getAnalytics, isSupported } from "firebase/analytics";
+import { getMessaging, Messaging, isSupported as isMessagingSupported } from "firebase/messaging";
+import { getAnalytics, isSupported as isAnalyticsSupported } from "firebase/analytics";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCk9ha_dN1LE9_3tQwME_yHxwBwwGOHlaU",
@@ -19,12 +19,22 @@ const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // Messaging and Analytics for client-side only
+// Messaging and Analytics for client-side only
 let messaging: Messaging | null = null;
 if (typeof window !== "undefined") {
-  isSupported().then((supported) => {
+  isAnalyticsSupported().then((supported) => {
     if (supported) {
       getAnalytics(app);
-      messaging = getMessaging(app);
+    }
+  });
+
+  isMessagingSupported().then((supported) => {
+    if (supported) {
+      try {
+        messaging = getMessaging(app);
+      } catch (e) {
+        console.error("Firebase Messaging initialization failed", e);
+      }
     }
   });
 }
