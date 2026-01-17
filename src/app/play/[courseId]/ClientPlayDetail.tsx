@@ -893,8 +893,8 @@ export default function ClientPlayDetail() {
                                 <button type="button"
                                   onClick={(e) => handleCellClick(holeIndex, playerIndex, e)}
                                   onDoubleClick={(e) => handleCellClick(holeIndex, playerIndex, e)}
-                                  className={`w-full h-14 text-center rounded-none border border-1 focus:outline-none p-0 m-0 transition-opacity ${getCellStatus(holeIndex, playerIndex) === 'locked' ? 'text-muted-foreground' : ''} ${getCellStatus(holeIndex, playerIndex) === 'open' && playerStartHole[playerIndex] !== null ? 'is-next-hole' : ''}`}
-                                  style={{ margin: 0, padding: 0, borderRadius: 4, borderWidth: 1.5 }}
+                                  className={`w-full text-center rounded-none border border-1 focus:outline-none p-0 m-0 transition-opacity ${getCellStatus(holeIndex, playerIndex) === 'locked' ? 'text-muted-foreground' : ''} ${getCellStatus(holeIndex, playerIndex) === 'open' && playerStartHole[playerIndex] !== null ? 'is-next-hole' : ''}`}
+                                  style={{ margin: 0, padding: 0, borderRadius: 4, borderWidth: 1.5, height: '56px', minHeight: '56px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                                 >
                                   <div style={{
                                     display: 'flex',
@@ -902,14 +902,18 @@ export default function ClientPlayDetail() {
                                     alignItems: 'center',
                                     justifyContent: 'center',
                                     height: '100%',
-                                    lineHeight: 1.2,
+                                    width: '100%',
+                                    lineHeight: 1,
+                                    position: 'relative',
+                                    gap: '4px',
                                   }}>
                                     <span style={{
                                       fontSize: '1.8rem',
                                       fontWeight: 700,
                                       color: '#222',
-                                      marginBottom: '0px',
-                                      lineHeight: 1.1,
+                                      lineHeight: 1,
+                                      display: 'block',
+                                      marginTop: '-8px',
                                     }}>
                                       {(isNumberPadOpen && selectedCell && selectedCell.holeIndex === holeIndex && selectedCell.playerIndex === playerIndex)
                                         ? tempScore || ''
@@ -920,7 +924,9 @@ export default function ClientPlayDetail() {
                                         fontSize: '0.95rem',
                                         fontWeight: 600,
                                         color: diff > 0 ? '#e53935' : diff < 0 ? '#2563eb' : '#adb5bd',
-                                        marginTop: '-5px',
+                                        display: 'block',
+                                        lineHeight: 1,
+                                        marginBottom: '-8px',
                                       }}>
                                         {diff === 0 ? 'E' : diff > 0 ? `+${diff}` : `${diff}`}
                                       </span>
