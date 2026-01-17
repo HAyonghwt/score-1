@@ -261,12 +261,12 @@ export default function HomePage() {
         </div>
         <Link href="/competitions">
           <Button
-            className="w-full h-12 text-lg font-bold shadow-sm border-none mt-4"
-            style={{ backgroundColor: '#eaecf9', color: '#2a68dd' }}
+            className="w-full h-12 text-lg font-bold shadow-sm border-none mt-4 hover:opacity-90 transition-opacity"
+            style={{ backgroundColor: '#e0f3fa', color: '#0277bd' }}
           >
             <Trophy className="mr-2 w-5 h-5" />
             파크골프 대회 소식
-            <Badge className="ml-2 bg-[#2a68dd] text-white border-none animate-pulse text-xs">New</Badge>
+            <Badge className="ml-2 text-white border-none animate-pulse text-xs" style={{ backgroundColor: '#0288d1' }}>New</Badge>
           </Button>
         </Link>
       </header>
@@ -304,7 +304,7 @@ export default function HomePage() {
           </Card>
         )}
         <Link href="/add-course">
-          <Button className="w-full h-12 text-base mt-4 bg-blue-100 text-blue-700 border border-blue-100 hover:bg-blue-200">
+          <Button className="w-full h-12 text-base mt-4 shadow-sm border-none hover:opacity-90 transition-opacity" style={{ backgroundColor: '#c3edfd', color: '#01579b' }}>
             <PlusCircle className="mr-2 w-5 h-5" />
             새 구장 추가
           </Button>
@@ -378,13 +378,13 @@ export default function HomePage() {
       <footer className="mt-8 text-center">
         <div className="flex gap-2">
           <Link href="/stats" className="flex-1">
-            <Button className="w-full h-12 text-base border border-[#c4faf8] hover:bg-[#c4faf8]" style={{ backgroundColor: '#c4faf8', color: '#094993ff' }}>
+            <Button className="w-full h-12 text-base border-none hover:opacity-90 transition-opacity" style={{ backgroundColor: '#FFDBCC', color: '#8F4D30' }}>
               <BarChart2 className="mr-2 w-5 h-5" />
               나의 통계
             </Button>
           </Link>
           <Link href="/records" className="flex-1">
-            <Button className="w-full h-12 text-base">
+            <Button className="w-full h-12 text-base border-none hover:opacity-90 transition-opacity" style={{ backgroundColor: '#FCB9AA', color: '#803525' }}>
               <History className="mr-2" />
               기록 보기
             </Button>
