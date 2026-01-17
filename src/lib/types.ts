@@ -19,3 +19,16 @@ export interface GameRecord {
   signatures: (string | null)[][];
   playedCourses: SubCourse[];
 }
+
+export interface Competition {
+  id: string;
+  title: string;
+  location: string;
+  applyStartDate: string;
+  applyEndDate: string;
+  eventDate: string;
+  sourceUrl: string;
+  content?: string;
+  status: 'active' | 'closed' | 'upcoming';
+  createdAt: string;
+}

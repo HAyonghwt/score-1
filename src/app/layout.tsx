@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   description: '간편한 골프 스코어 기록',
 };
 
+import NotificationManager from '@/components/NotificationManager';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -22,6 +24,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#0a8754" />
       </head>
       <body className="font-body antialiased">
+        <NotificationManager />
         {children}
         <Toaster />
       </body>

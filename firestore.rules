@@ -1,0 +1,19 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // 1. 대회 정보 컬렉션 (competitions)
+    // 읽기는 모두 허용, 쓰기는 2026년 2월 16일까지 허용 (개발 및 자동 수집용)
+    match /competitions/{competitionId} {
+      allow read: if true;
+      allow write: if request.time < timestamp.date(2026, 2, 16);
+    }
+
+    // 2. 기타 컬렉션 (기존 앱 기능 호환성 유지)
+    // 다른 기능들이 존재할 수 있으므로, 일단 2026년 2월 16일까지 모든 읽기/쓰기 허용
+    match /{document=**} {
+      allow read, write: if request.time < timestamp.date(2026, 2, 16);
+    }
+  }
+}

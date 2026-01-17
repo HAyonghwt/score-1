@@ -6,11 +6,12 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { PlusCircle, History, Trash2, Edit, Pencil, BarChart2, GripVertical } from 'lucide-react';
+import { PlusCircle, History, Trash2, Edit, Pencil, BarChart2, GripVertical, Trophy } from 'lucide-react';
 import type { Course } from '@/lib/types';
 import { Dialog, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogTrigger, DialogDescription } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Badge } from '@/components/ui/badge';
 
 // DND Kit imports
 import {
@@ -258,9 +259,16 @@ export default function HomePage() {
             </DialogContent>
           </Dialog>
         </div>
-        <div className="mt-2 text-base text-gray-500 font-normal">
-          구장을 등록하고 스코어를 관리하세요
-        </div>
+        <Link href="/competitions">
+          <Button
+            className="w-full h-12 text-lg font-bold shadow-sm border-none mt-4"
+            style={{ backgroundColor: '#eaecf9', color: '#2a68dd' }}
+          >
+            <Trophy className="mr-2 w-5 h-5" />
+            파크골프 대회 소식
+            <Badge className="ml-2 bg-[#2a68dd] text-white border-none animate-pulse text-xs">New</Badge>
+          </Button>
+        </Link>
       </header>
 
       <main className="space-y-4">
