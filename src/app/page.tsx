@@ -378,13 +378,13 @@ export default function HomePage() {
       <footer className="mt-8 text-center">
         <div className="flex gap-2">
           <Link href="/stats" className="flex-1">
-            <Button className="w-full h-12 text-base border-none hover:opacity-90 transition-opacity" style={{ backgroundColor: '#FFDBCC', color: '#8F4D30' }}>
+            <Button className="w-full h-12 text-base border-none hover:opacity-90 transition-opacity" style={{ backgroundColor: '#b4f3f5', color: '#00838f' }}>
               <BarChart2 className="mr-2 w-5 h-5" />
               나의 통계
             </Button>
           </Link>
           <Link href="/records" className="flex-1">
-            <Button className="w-full h-12 text-base border-none hover:opacity-90 transition-opacity" style={{ backgroundColor: '#FCB9AA', color: '#803525' }}>
+            <Button className="w-full h-12 text-base border-none hover:opacity-90 transition-opacity" style={{ backgroundColor: '#a7c2fd', color: '#1565c0' }}>
               <History className="mr-2" />
               기록 보기
             </Button>
