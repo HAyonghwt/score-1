@@ -562,16 +562,43 @@ export default function ClientPlayDetail() {
         const captureArea = document.getElementById(elementId);
 
         if (captureArea) {
-          const timestampEl = document.createElement('div');
-          timestampEl.innerText = timestamp;
-          Object.assign(timestampEl.style, {
-            position: 'absolute', top: '8px', right: '8px', fontSize: '10px',
-            color: 'black', backgroundColor: 'rgba(255, 255, 255, 0.7)',
-            padding: '2px 4px', borderRadius: '4px', zIndex: '10'
+          // 헤더 생성
+          const headerEl = document.createElement('div');
+          const formattedDate = now.toLocaleDateString('ko-KR', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            weekday: 'short'
+          });
+          const formattedTime = now.toLocaleTimeString('ko-KR', {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+          });
+
+          headerEl.innerHTML = `
+            <div style="font-size: 18px; font-weight: bold; color: #1a1a1a; margin-bottom: 4px;">
+              ${course.name} - ${course.courses[i].name} 코스
+            </div>
+            <div style="font-size: 13px; color: #666;">
+              ${formattedDate} ${formattedTime}
+            </div>
+          `;
+          Object.assign(headerEl.style, {
+            position: 'absolute',
+            top: '0',
+            left: '0',
+            right: '0',
+            backgroundColor: '#f8f9fa',
+            padding: '12px 16px',
+            borderBottom: '2px solid #dee2e6',
+            zIndex: '10',
+            textAlign: 'center'
           });
 
           captureArea.style.position = 'relative';
-          captureArea.appendChild(timestampEl);
+          captureArea.style.paddingTop = '80px'; // 헤더 공간 확보
+          captureArea.insertBefore(headerEl, captureArea.firstChild);
 
           try {
             const canvas = await html2canvas(captureArea, { scale: 2, useCORS: true });
@@ -583,8 +610,9 @@ export default function ClientPlayDetail() {
             console.error('Canvas 생성 오류:', error);
             toast({ title: "이미지 생성 실패", description: `${course.courses[i].name} 코스 이미지 생성에 실패했습니다.`, variant: "destructive", duration: 2000 });
           } finally {
-            captureArea.removeChild(timestampEl);
+            captureArea.removeChild(headerEl);
             captureArea.style.position = '';
+            captureArea.style.paddingTop = '';
           }
         }
       }
