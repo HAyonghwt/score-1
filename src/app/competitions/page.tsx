@@ -155,15 +155,15 @@ export default function CompetitionsPage() {
     };
 
     return (
-        <div className="container mx-auto p-4 max-w-lg min-h-screen bg-background">
+        <div className="container mx-auto px-3 py-4 max-w-lg min-h-screen bg-background">
             <header className="flex items-center justify-between my-6">
-                <div className="flex items-center gap-4">
-                    <Button variant="ghost" size="icon" onClick={() => router.push('/')} className="w-12 h-12">
-                        <ArrowLeft className="w-8 h-8" />
+                <div className="flex items-center gap-2">
+                    <Button variant="ghost" size="icon" onClick={() => router.push('/')} className="w-9 h-9 flex-shrink-0">
+                        <ArrowLeft className="w-6 h-6" />
                     </Button>
-                    <h1 className="text-3xl font-bold">대회 소식</h1>
+                    <h1 className="text-3xl font-bold whitespace-nowrap">대회 소식</h1>
                 </div>
-                <div className="flex items-center gap-2 bg-secondary/50 px-3 py-2 rounded-full border border-border">
+                <div className="flex items-center gap-1.5 bg-secondary/50 px-2 py-1.5 rounded-full border border-border flex-shrink-0 scale-90 origin-right">
                     {notificationsEnabled ? <Bell className="w-4 h-4 text-primary" /> : <BellOff className="w-4 h-4 text-muted-foreground" />}
                     <Switch
                         id="notifications"
