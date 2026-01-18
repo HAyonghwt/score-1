@@ -56,8 +56,12 @@ export default function CompetitionsPage() {
                     const subscribe = httpsCallable(functions, 'subscribeToTopic');
                     await subscribe({ token, topic: 'competitions' });
                 }
-            } catch (error) {
-                console.error("Subscription error:", error);
+            } catch (error: any) {
+                console.error("Subscription error details:", {
+                    code: error.code,
+                    message: error.message,
+                    details: error.details
+                });
             }
         } else {
             try {
@@ -68,8 +72,12 @@ export default function CompetitionsPage() {
                     const unsubscribe = httpsCallable(functions, 'unsubscribeFromTopic');
                     await unsubscribe({ token, topic: 'competitions' });
                 }
-            } catch (error) {
-                console.error("Unsubscription error:", error);
+            } catch (error: any) {
+                console.error("Unsubscription error details:", {
+                    code: error.code,
+                    message: error.message,
+                    details: error.details
+                });
             }
         }
 

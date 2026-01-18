@@ -33,29 +33,14 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.manualCrawl = exports.crawlParkGolfCompetitions = void 0;
+exports.unsubscribeFromTopic = exports.subscribeToTopic = exports.manualCrawl = exports.crawlParkGolfCompetitions = void 0;
 const functions = __importStar(require("firebase-functions/v1"));
 const admin = __importStar(require("firebase-admin"));
-let dbRequest = null;
-const getDB = () => {
-    if (!dbRequest) {
-        if (admin.apps.length === 0) {
-            admin.initializeApp();
-        }
-        dbRequest = admin.firestore();
-    }
-    return dbRequest;
-};
-let messagingRequest = null;
-const getMessaging = () => {
-    if (!messagingRequest) {
-        if (admin.apps.length === 0) {
-            admin.initializeApp();
-        }
-        messagingRequest = admin.messaging();
-    }
-    return messagingRequest;
-};
+if (admin.apps.length === 0) {
+    admin.initializeApp();
+}
+const db = admin.firestore();
+const messaging = admin.messaging();
 function normalizeTitle(title) {
     return title
         .replace(/\s/g, "")
@@ -87,6 +72,44 @@ exports.manualCrawl = functions
         res.status(500).send("Crawl failed.");
     }
 });
+exports.subscribeToTopic = functions
+    .region("us-central1")
+    .https.onCall(async (data, context) => {
+    const { token, topic } = data || {};
+    if (!token || !topic) {
+        console.error("Missing token or topic:", { token: !!token, topic: !!topic });
+        throw new functions.https.HttpsError("invalid-argument", "Token and topic are required.");
+    }
+    try {
+        console.log(`Subscribing token (...${token.slice(-5)}) to topic: ${topic}`);
+        const response = await messaging.subscribeToTopic(token, topic);
+        console.log("Subscription success:", response);
+        return { success: true, message: `Subscribed to ${topic}`, response };
+    }
+    catch (error) {
+        console.error("Subscription failed:", error);
+        throw new functions.https.HttpsError("internal", error.message || "Failed to subscribe.");
+    }
+});
+exports.unsubscribeFromTopic = functions
+    .region("us-central1")
+    .https.onCall(async (data, context) => {
+    const { token, topic } = data || {};
+    if (!token || !topic) {
+        console.error("Missing token or topic:", { token: !!token, topic: !!topic });
+        throw new functions.https.HttpsError("invalid-argument", "Token and topic are required.");
+    }
+    try {
+        console.log(`Unsubscribing token (...${token.slice(-5)}) from topic: ${topic}`);
+        const response = await messaging.unsubscribeFromTopic(token, topic);
+        console.log("Unsubscription success:", response);
+        return { success: true, message: `Unsubscribed from ${topic}`, response };
+    }
+    catch (error) {
+        console.error("Unsubscription failed:", error);
+        throw new functions.https.HttpsError("internal", error.message || "Failed to unsubscribe.");
+    }
+});
 const NAVER_CLIENT_ID = "RiNxEzvX2HzMhEycPUmP";
 const NAVER_CLIENT_SECRET = "8T3Bm3g78G";
 const GOOGLE_API_KEY = "AQ.Ab8RN6KDHFmYk8cIQ5lbVUKiRihIAUby74FKvhsvni5gLaVT6A";
@@ -94,8 +117,6 @@ const GOOGLE_CX = "94054eb4630194d53";
 async function runCrawler() {
     const axios = (await Promise.resolve().then(() => __importStar(require("axios")))).default;
     const cheerio = (await Promise.resolve().then(() => __importStar(require("cheerio"))));
-    const db = getDB();
-    const messaging = getMessaging();
     const minWriteDate = new Date("2025-11-01");
     let newCompetitionsCount = 0;
     const allCollectedCompetitions = [];

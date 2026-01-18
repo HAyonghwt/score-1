@@ -28,8 +28,12 @@ export default function NotificationManager() {
                         console.log('FCM Subscription synced (ON)');
                     }
                 }
-            } catch (error) {
-                console.warn('FCM sync subscription failed:', error);
+            } catch (error: any) {
+                console.warn('FCM sync subscription failed details:', {
+                    code: error.code,
+                    message: error.message,
+                    details: error.details
+                });
             }
         };
 

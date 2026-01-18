@@ -1,29 +1,14 @@
 import * as functions from "firebase-functions/v1";
 import * as admin from "firebase-admin";
 
-// Lazy initialization of Firestore
-let dbRequest: admin.firestore.Firestore | null = null;
-const getDB = (): admin.firestore.Firestore => {
-    if (!dbRequest) {
-        if (admin.apps.length === 0) {
-            admin.initializeApp();
-        }
-        dbRequest = admin.firestore();
-    }
-    return dbRequest;
-};
+// Initialize Admin SDK once
+if (admin.apps.length === 0) {
+    admin.initializeApp();
+}
 
-// Lazy initialization of Messaging
-let messagingRequest: admin.messaging.Messaging | null = null;
-const getMessaging = (): admin.messaging.Messaging => {
-    if (!messagingRequest) {
-        if (admin.apps.length === 0) {
-            admin.initializeApp();
-        }
-        messagingRequest = admin.messaging();
-    }
-    return messagingRequest;
-};
+const db = admin.firestore();
+const messaging = admin.messaging();
+// Removed lazy getters getDB() and getMessaging() to avoid confusion
 
 // --- Utils: 제목 정규화 (유사성 판단용) ---
 function normalizeTitle(title: string): string {
@@ -66,32 +51,38 @@ export const manualCrawl = functions
 export const subscribeToTopic = functions
     .region("us-central1")
     .https.onCall(async (data, context) => {
-        const { token, topic } = data;
+        const { token, topic } = data || {};
         if (!token || !topic) {
+            console.error("Missing token or topic:", { token: !!token, topic: !!topic });
             throw new functions.https.HttpsError("invalid-argument", "Token and topic are required.");
         }
         try {
-            await getMessaging().subscribeToTopic(token, topic);
-            return { success: true, message: `Subscribed to ${topic}` };
-        } catch (error) {
+            console.log(`Subscribing token (...${token.slice(-5)}) to topic: ${topic}`);
+            const response = await messaging.subscribeToTopic(token, topic);
+            console.log("Subscription success:", response);
+            return { success: true, message: `Subscribed to ${topic}`, response };
+        } catch (error: any) {
             console.error("Subscription failed:", error);
-            throw new functions.https.HttpsError("internal", "Failed to subscribe.");
+            throw new functions.https.HttpsError("internal", error.message || "Failed to subscribe.");
         }
     });
 
 export const unsubscribeFromTopic = functions
     .region("us-central1")
     .https.onCall(async (data, context) => {
-        const { token, topic } = data;
+        const { token, topic } = data || {};
         if (!token || !topic) {
+            console.error("Missing token or topic:", { token: !!token, topic: !!topic });
             throw new functions.https.HttpsError("invalid-argument", "Token and topic are required.");
         }
         try {
-            await getMessaging().unsubscribeFromTopic(token, topic);
-            return { success: true, message: `Unsubscribed from ${topic}` };
-        } catch (error) {
+            console.log(`Unsubscribing token (...${token.slice(-5)}) from topic: ${topic}`);
+            const response = await messaging.unsubscribeFromTopic(token, topic);
+            console.log("Unsubscription success:", response);
+            return { success: true, message: `Unsubscribed from ${topic}`, response };
+        } catch (error: any) {
             console.error("Unsubscription failed:", error);
-            throw new functions.https.HttpsError("internal", "Failed to unsubscribe.");
+            throw new functions.https.HttpsError("internal", error.message || "Failed to unsubscribe.");
         }
     });
 
@@ -105,8 +96,7 @@ const GOOGLE_CX = "94054eb4630194d53";
 async function runCrawler() {
     const axios = (await import("axios")).default;
     const cheerio = (await import("cheerio"));
-    const db = getDB();
-    const messaging = getMessaging();
+    // Using top-level db and messaging
     const minWriteDate = new Date("2025-11-01");
 
     let newCompetitionsCount = 0;
