@@ -2,6 +2,7 @@ import { initializeApp, getApps, getApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getMessaging, Messaging, isSupported as isMessagingSupported } from "firebase/messaging";
 import { getAnalytics, isSupported as isAnalyticsSupported } from "firebase/analytics";
+import { getFunctions } from "firebase/functions";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCk9ha_dN1LE9_3tQwME_yHxwBwwGOHlaU",
@@ -17,6 +18,7 @@ const firebaseConfig = {
 // Initialize Firebase (SSR-safe)
 const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const functions = getFunctions(app, "us-central1");
 
 // Messaging and Analytics for client-side only
 // Messaging and Analytics for client-side only
@@ -39,4 +41,4 @@ if (typeof window !== "undefined") {
   });
 }
 
-export { app, db, messaging };
+export { app, db, messaging, functions };

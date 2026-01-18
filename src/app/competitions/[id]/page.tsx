@@ -11,6 +11,14 @@ import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, MapPin, Calendar, ExternalLink, Share2, Info } from 'lucide-react';
 import { format } from 'date-fns';
 
+// Helper function to safely parse dates (handles both ISO strings and Firebase Timestamps)
+const safeDate = (dateVal: any) => {
+    if (!dateVal) return new Date();
+    if (dateVal.toDate && typeof dateVal.toDate === 'function') return dateVal.toDate();
+    const parsed = new Date(dateVal);
+    return isNaN(parsed.getTime()) ? new Date() : parsed;
+};
+
 export default function CompetitionDetailPage() {
     const [competition, setCompetition] = useState<Competition | null>(null);
     const [loading, setLoading] = useState(true);
@@ -24,7 +32,12 @@ export default function CompetitionDetailPage() {
                 const docRef = doc(db, 'competitions', id);
                 const docSnap = await getDoc(docRef);
                 if (docSnap.exists()) {
-                    setCompetition({ id: docSnap.id, ...docSnap.data() } as Competition);
+                    const data = docSnap.data();
+                    setCompetition({
+                        id: docSnap.id,
+                        ...data,
+                        sourceUrl: data.sourceUrl || data.link // Handle mismatch
+                    } as Competition);
                 }
             } catch (error) {
                 console.error("Error fetching competition detail:", error);
@@ -41,7 +54,7 @@ export default function CompetitionDetailPage() {
             try {
                 await navigator.share({
                     title: competition.title,
-                    text: `[파크골프 대회 소식] ${competition.title}\n장소: ${competition.location}\n대회일: ${format(new Date(competition.eventDate), 'yyyy-MM-dd')}`,
+                    text: `[파크골프 대회 소식] ${competition.title}\n장소: ${competition.location}\n대회일: ${competition.eventDate ? format(safeDate(competition.eventDate), 'yyyy-MM-dd') : '상세정보 확인'}`,
                     url: window.location.href,
                 });
             } catch (err) {
@@ -110,7 +123,7 @@ export default function CompetitionDetailPage() {
                                 <Calendar className="w-7 h-7 text-primary mt-1" />
                                 <div>
                                     <div className="text-base text-gray-500 font-semibold">대회일</div>
-                                    <div className="text-xl font-bold">{format(new Date(competition.eventDate), 'yyyy년 MM월 dd일')}</div>
+                                    <div className="text-xl font-bold">{competition.eventDate ? format(safeDate(competition.eventDate), 'yyyy년 MM월 dd일') : '상세 페이지 확인'}</div>
                                 </div>
                             </div>
                             <div className="flex items-start gap-3">
@@ -118,7 +131,10 @@ export default function CompetitionDetailPage() {
                                 <div>
                                     <div className="text-base text-gray-500 font-semibold">모집 기간</div>
                                     <div className="text-xl font-bold">
-                                        {format(new Date(competition.applyStartDate), 'MM/dd')} ~ {format(new Date(competition.applyEndDate), 'MM/dd')}
+                                        {competition.applyStartDate && competition.applyEndDate ?
+                                            `${format(safeDate(competition.applyStartDate), 'MM/dd')} ~ ${format(safeDate(competition.applyEndDate), 'MM/dd')}`
+                                            : '상세 페이지 확인'
+                                        }
                                     </div>
                                 </div>
                             </div>

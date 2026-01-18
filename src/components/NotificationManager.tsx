@@ -2,8 +2,9 @@
 
 import { useEffect } from 'react';
 import { getToken, onMessage } from 'firebase/messaging';
-import { messaging } from '@/lib/firebase';
+import { messaging, functions } from '@/lib/firebase';
 import { useToast } from '@/hooks/use-toast';
+import { httpsCallable } from 'firebase/functions';
 
 export default function NotificationManager() {
     const { toast } = useToast();
@@ -11,34 +12,38 @@ export default function NotificationManager() {
     useEffect(() => {
         if (typeof window === 'undefined' || !messaging) return;
 
-        const requestPermission = async () => {
+        const syncSubscription = async () => {
             try {
-                const permission = await Notification.requestPermission();
-                if (permission === 'granted' && messaging) {
-                    console.log('Notification permission granted.');
+                // Default to true if not set
+                const notificationsEnabled = localStorage.getItem('notifications_enabled') !== 'false';
 
-                    try {
-                        // ⚠️ 중요: 아래 vapidKey는 예시입니다. Firebase Console -> Project Settings -> Cloud Messaging -> Web configuration에서 생성한 실제 키로 교체해야 합니다.
+                if (notificationsEnabled) {
+                    const permission = await Notification.requestPermission();
+                    if (permission === 'granted' && messaging) {
                         const vapidKey = 'BBoxO-8bhPjPtaCBWHMWOlVY7QsQH2gK2MQgyUom8Rr9sWsnYyb_i5twpQ5jMX-GytW5UVzbxW1cGpl_bjo6Erk';
-
-
                         const token = await getToken(messaging, { vapidKey });
-                        console.log('FCM Token:', token);
-                    } catch (error) {
-                        console.warn('FCM 토큰 발급 실패 (VAPID Key 문제일 가능성이 높음):', error);
+
+                        const subscribe = httpsCallable(functions, 'subscribeToTopic');
+                        await subscribe({ token, topic: 'competitions' });
+                        console.log('FCM Subscription synced (ON)');
                     }
                 }
             } catch (error) {
-                console.error('An error occurred while retrieving token:', error);
+                console.warn('FCM sync subscription failed:', error);
             }
         };
 
-        requestPermission();
+        syncSubscription();
 
         // Handle foreground messages
         const unsubscribe = onMessage(messaging, (payload) => {
             console.log('Foreground message received:', payload);
-            if (payload.notification) {
+
+            // Check if notifications are enabled in localStorage
+            // Default to true if not set
+            const notificationsEnabled = localStorage.getItem('notifications_enabled') !== 'false';
+
+            if (payload.notification && notificationsEnabled) {
                 toast({
                     title: payload.notification.title,
                     description: payload.notification.body,
