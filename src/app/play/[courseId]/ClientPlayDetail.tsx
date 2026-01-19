@@ -220,6 +220,10 @@ export default function ClientPlayDetail() {
       localStorage.setItem('lastActiveCourseId', courseId);
       localStorage.setItem('lastActiveTime', Date.now().toString());
     }
+    // Cleanup: Clear lastActiveCourseId when leaving this page to prevent HomePage auto-redirect
+    return () => {
+      localStorage.removeItem('lastActiveCourseId');
+    };
   }, [isClient, courseId]);
 
   const handleBackClick = () => {
