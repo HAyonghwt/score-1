@@ -50,6 +50,7 @@
     --primary-foreground: 0 0% 100%;
     --ring: 0 72% 51%;
     --destructive: 0 72% 51%;
+    --theme-bg: #FEEBF2;
   }
 
   [data-theme="course-b"] {
@@ -141,11 +142,9 @@
 }
 
 [data-theme^="course-"] .score-cell button {
-  height: 56px !important;
-  min-height: 56px !important;
   margin: 0 !important;
   padding: 0 !important;
-  border-radius: 4px !important;
+  border-radius: 10px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -168,4 +167,48 @@
 
 [data-theme^="course-"] .score-cell button>div>span:last-child {
   margin-bottom: -8px !important;
+}
+
+/* 활성화된 홀 (다음 입력 대상) - 테마색 테두리만 유지 (그림자 제거) */
+.is-next-hole {
+  border-color: var(--theme-color) !important;
+  opacity: 1 !important;
+}
+
+/* D코스용 활성화 홀 가시성 개선 - 테마색이 너무 연하므로 짙은 회색 적용 */
+[data-theme="course-d"] .is-next-hole {
+  border-color: #333333 !important;
+}
+
+/* 현재 선택된 홀 - 오렌지색 테두리 및 강한 글로우 보존 */
+.is-editing-cell {
+  border-color: #ff9800 !important;
+  box-shadow: 0 0 12px rgba(255, 152, 0, 0.7) !important;
+  z-index: 10;
+  transform: scale(1.02);
+}
+
+/* 저장 시 하이라이트 애니메이션 - 오팔색(회백색의 화려한 광택) 스타일 */
+@keyframes save-highlight {
+  0% {
+    background-color: #fff;
+    transform: scale(1);
+  }
+
+  30% {
+    background-color: #e0f2f1;
+    /* 연한 민트/오팔 느낌 */
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.8), 0 0 15px rgba(179, 229, 252, 0.5);
+    transform: scale(1.05);
+    filter: brightness(1.1);
+  }
+
+  100% {
+    background-color: #fff;
+    transform: scale(1);
+  }
+}
+
+.save-anim {
+  animation: save-highlight 0.6s ease-out forwards;
 }

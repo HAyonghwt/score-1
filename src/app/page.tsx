@@ -6,12 +6,13 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { PlusCircle, History, Trash2, Edit, Pencil, BarChart2, GripVertical, Trophy } from 'lucide-react';
+import { PlusCircle, History, Trash2, Edit, Pencil, BarChart2, GripVertical, Trophy, Settings, X } from 'lucide-react';
 import type { Course } from '@/lib/types';
 import { Dialog, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogTrigger, DialogDescription } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
+import { Switch } from '@/components/ui/switch';
 
 // DND Kit imports
 import {
@@ -38,20 +39,22 @@ const GolfFlagIcon = (props: React.SVGProps<SVGSVGElement>) => (
     xmlns="http://www.w3.org/2000/svg"
     width="24"
     height="24"
-    viewBox="0 0 100 150"
+    viewBox="0 0 100 100"
     {...props}
   >
-    <line x1="20" y1="10" x2="20" y2="140" stroke="black" strokeWidth="4" />
-    <rect x="20" y="20" width="60" height="40" fill="red" stroke="black" strokeWidth="1" />
+    <line x1="20" y1="15" x2="20" y2="90" stroke="black" strokeWidth="4" />
+    <rect x="20" y="20" width="60" height="35" fill="red" stroke="black" strokeWidth="1" />
   </svg>
 );
 
 export default function HomePage() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [isClient, setIsClient] = useState(false);
-  const [userName, setUserName] = useState('나');
-  const [isNameDialogOpen, setIsNameDialogOpen] = useState(false);
+  const [userName, setUserName] = useState('사용자');
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [tempUserName, setTempUserName] = useState('');
+  const [showCompetitions, setShowCompetitions] = useState(true);
+  const [notificationsEnabled, setNotificationsEnabled] = useState(true);
   const router = useRouter();
 
   const sensors = useSensors(
@@ -81,18 +84,45 @@ export default function HomePage() {
     if (savedName) {
       setUserName(savedName);
     }
+    const savedShowComp = localStorage.getItem('show_competitions');
+    if (savedShowComp !== null) {
+      setShowCompetitions(savedShowComp === 'true');
+    }
+    const savedNotif = localStorage.getItem('notifications_enabled');
+    if (savedNotif !== null) {
+      setNotificationsEnabled(savedNotif === 'true');
+    }
+
+    // [Session Restoration] Check for interrupted session
+    const lastActiveId = localStorage.getItem('lastActiveCourseId');
+    const lastActiveTime = localStorage.getItem('lastActiveTime');
+
+    if (lastActiveId && lastActiveTime) {
+      const timeDiff = Date.now() - parseInt(lastActiveTime, 10);
+      // Valid if less than 24 hours (86400000ms)
+      if (timeDiff < 86400000) {
+        // Double check if the game state actually exists
+        const gameState = localStorage.getItem(`gameState_${lastActiveId}`);
+        if (gameState) {
+          // Redirect immediately
+          router.replace(`/play/${lastActiveId}`);
+        }
+      }
+    }
   }, []);
 
   useEffect(() => {
     if (isClient) {
       localStorage.setItem('golfCoursesList', JSON.stringify(courses));
-      if (userName && userName !== '나') {
+      if (userName && userName !== '사용자') {
         localStorage.setItem('parkGolfUserName', userName);
       } else {
         localStorage.removeItem('parkGolfUserName');
       }
+      localStorage.setItem('show_competitions', showCompetitions.toString());
+      localStorage.setItem('notifications_enabled', notificationsEnabled.toString());
     }
-  }, [courses, userName, isClient]);
+  }, [courses, userName, isClient, showCompetitions, notificationsEnabled]);
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
@@ -201,14 +231,14 @@ export default function HomePage() {
     setEditDialogOpen(false);
   };
 
-  const handleNameSave = () => {
+  const handleSettingsSave = () => {
     const newName = tempUserName.trim();
     if (newName) {
       setUserName(newName);
     } else {
-      setUserName('나');
+      setUserName('사용자');
     }
-    setIsNameDialogOpen(false);
+    setIsSettingsOpen(false);
   };
 
   if (!isClient) {
@@ -222,54 +252,169 @@ export default function HomePage() {
   return (
     <div className="container mx-auto p-4 max-w-lg min-h-screen bg-background">
       <header className="text-center mt-8 mb-4">
-        <div className="flex items-center justify-center gap-1.5">
-          <GolfFlagIcon className="w-8 h-8" />
-          <h1 className="text-2xl font-bold whitespace-nowrap select-none cursor-default">
+        {/* 모바일: 그리드 레이아웃 (깃발 왼쪽, 제목 중앙, 톱니 오른쪽) */}
+        <div className="grid sm:hidden grid-cols-[auto_1fr_auto] items-center gap-2">
+          <GolfFlagIcon className="w-7 h-7" />
+          <h1 className="text-2xl font-bold whitespace-nowrap select-none cursor-default text-center">
             {userName}의 파크골프
           </h1>
-          <Dialog open={isNameDialogOpen} onOpenChange={setIsNameDialogOpen}>
+          <Dialog open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
             <DialogTrigger asChild>
-              <Button variant="ghost" size="icon" className="w-8 h-8" onClick={() => setTempUserName(userName === '나' ? '' : userName)}>
-                <Pencil className="w-4 h-4 text-muted-foreground" />
+              <Button variant="ghost" size="icon" className="w-9 h-9" onClick={() => setTempUserName(userName === '사용자' ? '' : userName)}>
+                <Settings className="w-5 h-5 text-muted-foreground" />
               </Button>
             </DialogTrigger>
-            <DialogContent>
+            <DialogContent className="max-w-[350px] rounded-2xl">
               <DialogHeader>
-                <DialogTitle>사용자 이름 변경</DialogTitle>
+                <DialogTitle>앱 설정</DialogTitle>
+                <DialogDescription>
+                  사용자 정보 및 앱 표시 설정을 관리합니다.
+                </DialogDescription>
               </DialogHeader>
-              <div className="space-y-2">
-                <Label htmlFor="username">이름</Label>
-                <Input
-                  id="username"
-                  value={tempUserName}
-                  onChange={e => setTempUserName(e.target.value)}
-                  placeholder="사용자 이름을 입력하세요"
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      e.preventDefault();
-                      handleNameSave();
-                    }
-                  }}
-                />
+              <div className="space-y-6 py-4">
+                <div className="space-y-2">
+                  <Label htmlFor="username">사용자 이름</Label>
+                  <Input
+                    id="username"
+                    value={tempUserName}
+                    onChange={e => setTempUserName(e.target.value)}
+                    placeholder="이름을 입력하세요"
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        handleSettingsSave();
+                      }
+                    }}
+                  />
+                </div>
+
+                <div className="flex items-center justify-between space-x-2 border-t pt-4">
+                  <div className="flex flex-col space-y-0.5">
+                    <Label className="text-base">대회 소식 표시</Label>
+                    <span className="text-sm text-muted-foreground">메인 화면의 대회 안내 버튼</span>
+                  </div>
+                  <Switch
+                    checked={showCompetitions}
+                    onCheckedChange={setShowCompetitions}
+                  />
+                </div>
+
+                <div className="flex items-center justify-between space-x-2">
+                  <div className="flex flex-col space-y-0.5">
+                    <Label className="text-base">대회 알림 받기</Label>
+                    <span className="text-sm text-muted-foreground">새로운 소식 발생 시 푸시 알림</span>
+                  </div>
+                  <Switch
+                    checked={notificationsEnabled}
+                    onCheckedChange={setNotificationsEnabled}
+                  />
+                </div>
               </div>
-              <DialogFooter>
-                <Button type="button" variant="secondary" onClick={() => setIsNameDialogOpen(false)}>취소</Button>
-                <Button type="submit" onClick={handleNameSave}>저장</Button>
+              <DialogFooter className="sm:justify-start">
+                <Button type="button" variant="secondary" onClick={() => setIsSettingsOpen(false)} className="flex-1">취소</Button>
+                <Button type="submit" onClick={handleSettingsSave} className="flex-1">저장</Button>
               </DialogFooter>
             </DialogContent>
           </Dialog>
         </div>
-        <Link href="/competitions">
-          <Button
-            className="w-full h-12 text-lg font-bold shadow-sm border-none mt-4 hover:opacity-90 transition-opacity"
-            style={{ backgroundColor: '#e0f3fa', color: '#0277bd' }}
-          >
-            <Trophy className="mr-2 w-5 h-5" />
-            파크골프 대회 소식
-            <Badge className="ml-2 text-white border-none animate-pulse text-xs" style={{ backgroundColor: '#0288d1' }}>New</Badge>
-          </Button>
-        </Link>
+
+        {/* 데스크톱: 기존 flex 레이아웃 */}
+        <div className="hidden sm:flex items-center justify-center gap-2 relative">
+          <GolfFlagIcon className="w-7 h-7" />
+          <h1 className="text-2xl font-bold whitespace-nowrap select-none cursor-default">
+            {userName}의 파크골프
+          </h1>
+          <div className="absolute right-0 top-0 bottom-0 flex items-center">
+            <Dialog open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
+              <DialogTrigger asChild>
+                <Button variant="ghost" size="icon" className="w-9 h-9" onClick={() => setTempUserName(userName === '사용자' ? '' : userName)}>
+                  <Settings className="w-5 h-5 text-muted-foreground" />
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-[350px] rounded-2xl">
+                <DialogHeader>
+                  <DialogTitle>앱 설정</DialogTitle>
+                  <DialogDescription>
+                    사용자 정보 및 앱 표시 설정을 관리합니다.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="space-y-6 py-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="username-desktop">사용자 이름</Label>
+                    <Input
+                      id="username-desktop"
+                      value={tempUserName}
+                      onChange={e => setTempUserName(e.target.value)}
+                      placeholder="이름을 입력하세요"
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          handleSettingsSave();
+                        }
+                      }}
+                    />
+                  </div>
+
+                  <div className="flex items-center justify-between space-x-2 border-t pt-4">
+                    <div className="flex flex-col space-y-0.5">
+                      <Label className="text-base">대회 소식 표시</Label>
+                      <span className="text-sm text-muted-foreground">메인 화면의 대회 안내 버튼</span>
+                    </div>
+                    <Switch
+                      checked={showCompetitions}
+                      onCheckedChange={setShowCompetitions}
+                    />
+                  </div>
+
+                  <div className="flex items-center justify-between space-x-2">
+                    <div className="flex flex-col space-y-0.5">
+                      <Label className="text-base">대회 알림 받기</Label>
+                      <span className="text-sm text-muted-foreground">새로운 소식 발생 시 푸시 알림</span>
+                    </div>
+                    <Switch
+                      checked={notificationsEnabled}
+                      onCheckedChange={setNotificationsEnabled}
+                    />
+                  </div>
+                </div>
+                <DialogFooter className="sm:justify-start">
+                  <Button type="button" variant="secondary" onClick={() => setIsSettingsOpen(false)} className="flex-1">취소</Button>
+                  <Button type="submit" onClick={handleSettingsSave} className="flex-1">저장</Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+          </div>
+        </div>
       </header>
+
+      {
+        showCompetitions && (
+          <div className="relative mt-4 group">
+            <Link href="/competitions">
+              <Button
+                className="w-full h-12 text-lg font-bold shadow-sm border-none hover:opacity-90 transition-opacity"
+                style={{ backgroundColor: '#e0f3fa', color: '#0277bd' }}
+              >
+                <Trophy className="mr-2 w-5 h-5" />
+                파크골프 대회 소식
+                <Badge className="ml-2 text-white border-none animate-pulse text-xs" style={{ backgroundColor: '#0288d1' }}>New</Badge>
+              </Button>
+            </Link>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute -right-2 -top-2 w-6 h-6 rounded-full bg-white shadow-md border opacity-0 group-hover:opacity-100 transition-opacity z-10"
+              onClick={(e) => {
+                e.preventDefault();
+                setShowCompetitions(false);
+              }}
+            >
+              <X className="w-3 h-3 text-gray-400" />
+            </Button>
+          </div>
+        )
+      }
+
 
       <main className="space-y-4">
 
@@ -390,8 +535,14 @@ export default function HomePage() {
             </Button>
           </Link>
         </div>
+
+        <div className="mt-6 text-right">
+          <a href="sms:01025089199" className="text-[10px] text-muted-foreground/60 select-none hover:underline cursor-pointer">
+            Made by 하용휘
+          </a>
+        </div>
       </footer>
-    </div>
+    </div >
   );
 }
 
@@ -432,30 +583,30 @@ function SortableCourseItem({
       onClick={onClick}
     >
       <CardHeader className="p-3 flex flex-row items-center justify-between gap-2">
-        <div className="flex items-center gap-3 flex-grow overflow-hidden">
+        <div className="flex items-center gap-0.5 flex-grow overflow-hidden">
           {/* 수정 아이콘 */}
           <Button
             variant="ghost"
             size="icon"
             onClick={(e) => onEdit(e, course.id)}
-            className="w-8 h-8 flex-shrink-0"
+            className="w-6 h-6 flex-shrink-0"
           >
-            <Edit className="w-5 h-5 text-muted-foreground" />
+            <Edit className="w-4 h-4 text-muted-foreground" />
           </Button>
           {/* 삭제 아이콘 - 첫 번째 터치 시 배경색 변경 */}
           <Button
             variant="ghost"
             size="icon"
             onClick={(e) => onDelete(e, course.id)}
-            className={`w-8 h-8 flex-shrink-0 transition-colors ${isPendingDelete ? 'bg-red-100 hover:bg-red-200' : ''
+            className={`w-6 h-6 flex-shrink-0 transition-colors ${isPendingDelete ? 'bg-red-100 hover:bg-red-200' : ''
               }`}
           >
-            <Trash2 className={`w-5 h-5 ${isPendingDelete ? 'text-red-600' : 'text-destructive'}`} />
+            <Trash2 className={`w-4 h-4 ${isPendingDelete ? 'text-red-600' : 'text-destructive'}`} />
           </Button>
           {/* 구장명 */}
-          <div className="flex-grow overflow-hidden">
+          <div className="flex-grow overflow-hidden min-w-0 ml-3">
             <CardTitle className="text-lg font-semibold truncate stadium-name select-none">{course.name}</CardTitle>
-            <CardDescription className="truncate text-base">{course.courses.length}개 코스 ({course.courses.map(c => c.name).join(', ')}코스)</CardDescription>
+            <CardDescription className="truncate text-base">{course.courses.length}개 코스 ({course.courses.map(c => c.name).join(', ')})</CardDescription>
           </div>
         </div>
         {/* 이동 표시 아이콘 - 우측으로 이동 */}

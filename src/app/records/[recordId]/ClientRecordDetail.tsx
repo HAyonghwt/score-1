@@ -11,14 +11,14 @@ import { cn } from '@/lib/utils';
 import { exportScoreTableToImage } from './ClientRecordDetail.exportImage';
 import { useToast } from '@/hooks/use-toast';
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 
 const HOLE_COUNT = 9;
@@ -74,10 +74,10 @@ export default function ClientRecordDetail() {
             </div>
         );
     }
-    
+
     const handleDeleteRecord = () => {
         if (!record) return;
-        
+
         setIsDeleting(true);
         try {
             const savedRecords = localStorage.getItem('golfGameRecords');
@@ -85,12 +85,12 @@ export default function ClientRecordDetail() {
                 const records: GameRecord[] = JSON.parse(savedRecords);
                 const updatedRecords = records.filter(r => r.id !== record.id);
                 localStorage.setItem('golfGameRecords', JSON.stringify(updatedRecords));
-                
+
                 toast({
                     title: "기록 삭제 완료",
                     description: "선택한 기록이 삭제되었습니다.",
                 });
-                
+
                 router.push('/records');
                 router.refresh();
             }
@@ -110,9 +110,9 @@ export default function ClientRecordDetail() {
     if (!record) {
         return (
             <div className="container mx-auto p-4 max-w-lg min-h-screen bg-background">
-                 <header className="flex items-center justify-between my-6">
+                <header className="flex items-center justify-between my-6">
                     <Button variant="ghost" size="icon" onClick={() => router.push('/records')}>
-                        <ArrowLeft className="w-6 h-6"/>
+                        <ArrowLeft className="w-6 h-6" />
                     </Button>
                     <h1 className="text-2xl font-bold text-center truncate">기록 없음</h1>
                     <div className="w-10"></div>
@@ -132,12 +132,12 @@ export default function ClientRecordDetail() {
         <div className="container mx-auto p-4 max-w-lg min-h-screen bg-background" data-theme={`course-${courseKey}`}>
             <header className="flex items-center justify-between my-6">
                 <Button variant="ghost" size="icon" onClick={() => router.push('/records')}>
-                    <ArrowLeft className="w-6 h-6"/>
+                    <ArrowLeft className="w-6 h-6" />
                 </Button>
                 <h1 className="text-2xl font-bold text-center truncate">경기 상세 기록</h1>
-                <Button 
-                    variant="ghost" 
-                    size="icon" 
+                <Button
+                    variant="ghost"
+                    size="icon"
                     onClick={() => setIsConfirmingDelete(true)}
                     className="text-destructive hover:text-destructive/80"
                     disabled={isDeleting}
@@ -176,8 +176,62 @@ export default function ClientRecordDetail() {
                                     <CardTitle className="text-xl">{subCourse.name} 코스</CardTitle>
                                 </CardHeader>
                                 <div className="flex justify-end px-2 pt-3">
-                                    <Button size="sm" variant="outline" onClick={() => exportScoreTableToImage(`score-table-capture-${index}`)}>
-                                        이미지로 내보내기
+                                    <Button size="sm" variant="outline" onClick={async () => {
+                                        toast({ title: "이미지 생성 중...", description: "스코어카드 이미지를 만들고 있습니다. 잠시만 기다려주세요.", duration: 2000 });
+                                        try {
+                                            const dataUrl = await exportScoreTableToImage(`score-table-capture-${index}`);
+                                            if (dataUrl) {
+                                                const fileName = `golf_score_${index + 1}.png`;
+                                                const blob = await (await fetch(dataUrl)).blob();
+                                                const file = new File([blob], fileName, { type: 'image/png' });
+
+                                                // 1. 모바일 기기 등 공유 API 지원 시 (파일명 보존에 가장 확실함)
+                                                if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+                                                    try {
+                                                        await navigator.share({
+                                                            files: [file],
+                                                            title: '파크골프 스코어카드',
+                                                            text: `${record.courseName} - ${subCourse.name} 코스 결과입니다.`
+                                                        });
+                                                        toast({ title: "공유창 열기 성공", description: "갤러리에 저장하거나 카카오톡으로 공유해보세요.", duration: 3000 });
+                                                        return;
+                                                    } catch (shareError) {
+                                                        if (shareError instanceof Error && shareError.name !== 'AbortError') {
+                                                            console.error('Share error:', shareError);
+                                                        } else {
+                                                            return; // 사용자가 취소한 경우
+                                                        }
+                                                    }
+                                                }
+
+                                                // 2. 데스크톱 및 공유 미지원 환경 (개선된 다운로드 로직)
+                                                const fileUrl = window.URL.createObjectURL(file);
+                                                const link = document.createElement('a');
+                                                link.href = fileUrl;
+                                                link.download = fileName;
+                                                link.style.display = 'none';
+
+                                                document.body.appendChild(link);
+                                                link.click();
+
+                                                // 브라우저 처리를 위해 잠시 후 삭제
+                                                setTimeout(() => {
+                                                    if (document.body.contains(link)) {
+                                                        document.body.removeChild(link);
+                                                    }
+                                                    window.URL.revokeObjectURL(fileUrl);
+                                                }, 1000);
+
+                                                toast({ title: "이미지 저장 완료", description: "브라우저 다운로드 폴더를 확인해주세요.", duration: 3000 });
+                                            } else {
+                                                toast({ title: "저장 실패", description: "이미지 생성 중 오류가 발생했습니다.", variant: "destructive", duration: 2000 });
+                                            }
+                                        } catch (e) {
+                                            console.error('Download error:', e);
+                                            toast({ title: "저장 실패", description: "이미지 저장 중 오류가 발생했습니다.", variant: "destructive", duration: 2000 });
+                                        }
+                                    }}>
+                                        이미지로 저장하기
                                     </Button>
                                 </div>
                                 <div className="overflow-x-auto">
@@ -186,66 +240,76 @@ export default function ClientRecordDetail() {
                                         className="score-table-capture-export p-2 sm:p-4 bg-white rounded-lg shadow-md"
                                         style={{ minWidth: '100%', maxWidth: '100%', margin: '0 auto' }}
                                     >
-                                    <div className="flex flex-col items-center mb-2">
-                                        <span className="font-bold text-lg">{record.courseName} - {subCourse.name} 코스</span>
-                                        <span className="text-sm text-muted-foreground">
-                                            {recordDate.toLocaleString('ko-KR', { dateStyle: 'long', timeStyle: 'short' })}
-                                        </span>
-                                    </div>
-                                    <Table className="min-w-full border-separate border-spacing-x-0 table-fixed">
-                                        <TableHeader>
-                                           <TableRow>
-                                                <TableHead className="bg-primary text-primary-foreground py-3 text-center text-sm font-normal w-[10%] rounded-tl-lg">홀</TableHead>
-                                                <TableHead className="bg-primary text-primary-foreground py-3 text-center text-sm font-normal w-[10%]">Par</TableHead>
-                                                {record.playerNames.map((name, index) => (
-                                                    <TableHead
-                                                        key={index}
-                                                        className={cn("bg-primary text-primary-foreground px-1 py-3 text-center text-xs font-normal w-[20%] whitespace-nowrap", {
-                                                            "rounded-tr-lg": index === 3
-                                                        })}
-                                                    >
-                                                        {name}
-                                                    </TableHead>
-                                                ))}
-                                            </TableRow>
-                                        </TableHeader>
-                                        <TableBody>
-                                            {Array.from({ length: HOLE_COUNT }).map((_, holeIndex) => {
-                                                const par = subCourse.pars[holeIndex];
-                                                return (
-                                                <TableRow key={holeIndex} className="border-b-0">
-                                                    <TableCell className={cn("bg-primary text-primary-foreground text-center text-lg sm:text-xl p-0 font-normal w-8 sm:w-10", holeIndex === HOLE_COUNT - 1 && "rounded-bl-lg")}>{holeIndex + 1}</TableCell>
-                                                    <TableCell className="text-center text-lg sm:text-xl p-0 font-normal w-8 sm:w-10">{par}</TableCell>
-                                                    {Array.from({ length: 4 }).map((_, playerIndex) => {
-                                                        const score = courseScores[holeIndex]?.[playerIndex];
-                                                        const diff = score && !isNaN(parseInt(score)) ? parseInt(score) - Number(par) : null;
-                                                        return (
-                                                            <TableCell key={playerIndex} className="p-0.5 text-center w-16 sm:w-20">
-                                                                <div className='w-full h-12 sm:h-14 text-center rounded-md border-2 border-border bg-primary/5 flex flex-col items-center justify-center p-0'>
-                                                                    <span className="text-xl sm:text-3xl font-bold leading-none">{score || ''}</span>
-                                                                    {diff !== null && (<span className={cn('text-sm sm:text-lg font-bold leading-none', { 'text-destructive': diff > 0, 'text-primary': diff < 0, 'text-muted-foreground': diff === 0 })}>{diff === 0 ? 'E' : diff > 0 ? `+${diff}` : `${diff}`}</span>)}
-                                                                </div>
-                                                            </TableCell>
-                                                        );
-                                                    })}
+                                        <div className="flex flex-col items-center mb-2">
+                                            <span className="font-bold text-lg">{record.courseName} - {subCourse.name} 코스</span>
+                                            <span className="text-sm text-muted-foreground">
+                                                {recordDate.toLocaleString('ko-KR', { dateStyle: 'long', timeStyle: 'short' })}
+                                            </span>
+                                        </div>
+                                        <Table className="min-w-full border-separate border-spacing-x-0 table-fixed">
+                                            <TableHeader>
+                                                <TableRow className="border-none">
+                                                    <TableHead className="bg-primary text-primary-foreground py-2 text-center text-sm font-bold w-[34px] min-w-[34px] max-w-[34px] rounded-tl-lg">홀</TableHead>
+                                                    <TableHead className="bg-primary text-primary-foreground py-2 text-center text-sm font-bold w-[34px] min-w-[34px] max-w-[34px]">Par</TableHead>
+                                                    {record.playerNames.map((name, pIdx) => (
+                                                        <TableHead
+                                                            key={pIdx}
+                                                            className={cn("bg-primary text-primary-foreground px-1 py-2 text-center text-xs font-bold whitespace-nowrap overflow-hidden text-ellipsis", {
+                                                                "rounded-tr-lg": pIdx === 3
+                                                            })}
+                                                            style={{ width: 'calc((100% - 68px) / 4)' }}
+                                                        >
+                                                            {name}
+                                                        </TableHead>
+                                                    ))}
                                                 </TableRow>
-                                            )})}
-                                            <TableRow className="bg-muted hover:bg-muted">
-                                                <TableCell colSpan={2} className="text-center font-bold text-base sm:text-lg p-1">합계</TableCell>
-                                                {totalScores.map((total, index) => (
-                                                    <TableCell key={index} className="text-center font-bold text-xl sm:text-2xl p-1">{total || ''}</TableCell>
-                                                ))}
-                                            </TableRow>
-                                            <TableRow className="bg-muted hover:bg-muted">
-                                                <TableCell colSpan={2} className="text-center font-bold text-base sm:text-lg p-1">서명</TableCell>
-                                                {(courseSignatures || []).map((sig, index) => (
-                                                    <TableCell key={index} className="text-center h-10 sm:h-12 p-1">
-                                                        {sig ? <img src={sig} alt="signature" className="mx-auto h-full object-contain" /> : null}
-                                                    </TableCell>
-                                                ))}
-                                            </TableRow>
-                                        </TableBody>
-                                    </Table>
+                                            </TableHeader>
+                                            <TableBody>
+                                                {Array.from({ length: HOLE_COUNT }).map((_, holeIndex) => {
+                                                    const par = subCourse.pars[holeIndex];
+                                                    return (
+                                                        <TableRow key={holeIndex} className="border-none hover:bg-transparent">
+                                                            <TableCell className={cn("bg-primary text-primary-foreground text-center p-0 font-bold w-[34px] min-w-[34px] max-w-[34px]", holeIndex === HOLE_COUNT - 1 && "rounded-bl-lg")} style={{ fontSize: '1.1rem' }}>{holeIndex + 1}</TableCell>
+                                                            <TableCell className="text-center p-0 font-normal w-[34px] min-w-[34px] max-w-[34px]" style={{ fontSize: '1.2rem' }}>{par}</TableCell>
+                                                            {Array.from({ length: 4 }).map((_, playerIndex) => {
+                                                                const score = courseScores[holeIndex]?.[playerIndex];
+                                                                const diff = score && !isNaN(parseInt(score)) ? parseInt(score) - Number(par) : null;
+                                                                return (
+                                                                    <TableCell key={playerIndex} className="p-0.5 text-center align-middle" style={{ width: 'calc((100% - 68px) / 4)' }}>
+                                                                        <div className='w-full h-11 text-center rounded-lg border-2 border-border bg-white flex flex-col items-center justify-center p-0'>
+                                                                            <span className="text-xl font-bold leading-none" style={{ marginTop: diff !== null ? '-2px' : '0' }}>{score || ''}</span>
+                                                                            {diff !== null && (
+                                                                                <span className={cn('text-[11px] font-extrabold leading-none mt-0.5', {
+                                                                                    'text-destructive': diff > 0,
+                                                                                    'text-primary': diff < 0,
+                                                                                    'text-muted-foreground': diff === 0
+                                                                                })}>
+                                                                                    {diff === 0 ? 'E' : diff > 0 ? `+${diff}` : `${diff}`}
+                                                                                </span>
+                                                                            )}
+                                                                        </div>
+                                                                    </TableCell>
+                                                                );
+                                                            })}
+                                                        </TableRow>
+                                                    )
+                                                })}
+                                                <TableRow className="bg-muted hover:bg-muted" style={{ height: '60px' }}>
+                                                    <TableCell colSpan={2} className="text-center font-bold text-lg p-1">합계</TableCell>
+                                                    {totalScores.map((total, index) => (
+                                                        <TableCell key={index} className="text-center font-bold text-2xl p-1" style={{ color: '#222' }}>{total || ''}</TableCell>
+                                                    ))}
+                                                </TableRow>
+                                                <TableRow className="bg-muted hover:bg-muted" style={{ height: '60px' }}>
+                                                    <TableCell colSpan={2} className="text-center font-bold text-lg p-1">서명</TableCell>
+                                                    {(courseSignatures || []).map((sig, index) => (
+                                                        <TableCell key={index} className="text-center p-1" style={{ height: '60px' }}>
+                                                            {sig ? <img src={sig} alt="signature" className="mx-auto h-full object-contain" style={{ maxHeight: '50px' }} /> : null}
+                                                        </TableCell>
+                                                    ))}
+                                                </TableRow>
+                                            </TableBody>
+                                        </Table>
                                     </div>
                                 </div>
                             </Card>
@@ -253,7 +317,7 @@ export default function ClientRecordDetail() {
                     );
                 })}
             </main>
-            
+
             {/* 삭제 확인 모달 */}
             <AlertDialog open={isConfirmingDelete} onOpenChange={setIsConfirmingDelete}>
                 <AlertDialogContent>
@@ -262,7 +326,7 @@ export default function ClientRecordDetail() {
                     </AlertDialogHeader>
                     <AlertDialogFooter>
                         <AlertDialogCancel disabled={isDeleting}>취소</AlertDialogCancel>
-                        <AlertDialogAction 
+                        <AlertDialogAction
                             onClick={handleDeleteRecord}
                             className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
                             disabled={isDeleting}

@@ -28,7 +28,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import html2canvas from 'html2canvas';
+// import html2canvas from 'html2canvas';
 import { useParams } from 'next/navigation';
 
 const DEFAULT_NAMES = ['이름1', '이름2', '이름3', '이름4'];
@@ -59,14 +59,14 @@ if (typeof window !== 'undefined') {
         background: transparent;
         border-radius: 12px 12px 0 0;
         box-shadow: none;
-        padding: 0 0 12px 0;
-        margin-bottom: 0.5rem;
+        padding: 0 0 6px 0;
+        margin-bottom: 0.25rem;
       }
-      [data-theme^="course-"] .flex.w-full.mb-2.gap-1, [data-theme^="course-"] .flex.w-full.mb-2 {
+      [data-theme^="course-"] .flex.w-full.mb-1.gap-1, [data-theme^="course-"] .flex.w-full.mb-1 {
         background: #f3f4f8;
         border-radius: 8px;
         padding: 4px 4px 0 4px;
-        margin-bottom: 18px;
+        margin-bottom: 4px;
         box-shadow: 0 2px 8px 0 rgba(30,41,59,0.04);
       }
       [data-theme^="course-"] button[aria-current], [data-theme^="course-"] .tab-active {
@@ -80,12 +80,12 @@ if (typeof window !== 'undefined') {
       /* 강조 스타일 고정 */
       [data-theme^="course-"] .table-fixed td button.w-full.h-14.is-next-hole {
         background-color: #ffffff !important;
-        border: 2px solid #cfd8dc !important;
-        box-shadow: 0 0 6px rgba(0,0,0,0.08) !important;
+        border: 2.5px solid #cfd6d9 !important;
+        box-shadow: 0 0 7px rgba(0,0,0,0.12) !important;
         opacity: 1 !important;
         z-index: 5;
         position: relative;
-        border-radius: 4px !important;
+        border-radius: 10px !important;
       }
 
       /* 탭 및 기타 UI 스타일 복원 */
@@ -106,16 +106,18 @@ if (typeof window !== 'undefined') {
       [data-theme^="course-"] .table-fixed th:last-child { border-top-right-radius: 8px !important; }
       
       [data-theme^="course-"] .table-fixed td.hole-cell {
-        background: var(--theme-color, #2563eb) !important;
+        background: var(--theme-color, #e53935) !important;
         color: #fff !important;
         font-weight: 700;
         text-align: center;
         border-radius: 0 !important;
         vertical-align: middle !important;
-        line-height: 1.2;
-        height: 48px;
+        line-height: normal;
+        height: auto; /* 고정 높이 제거하여 비례 조정 */
         min-width: 36px;
         display: table-cell;
+        padding: 0 !important;
+        border: none !important;
       }
       [data-theme^="course-"] .table-fixed th,
       [data-theme^="course-"] .table-fixed td {
@@ -124,10 +126,16 @@ if (typeof window !== 'undefined') {
         border: none !important;
       }
       [data-theme^="course-"] .table-fixed th {
-        background: var(--theme-color, #2563eb) !important;
+        background: var(--theme-color, #e53935) !important;
         color: #fff !important;
         font-weight: 700;
         border-radius: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+      }
+      [data-theme^="course-"] .table-fixed tr {
+        border: none !important;
+        box-shadow: none !important;
       }
       [data-theme="course-c"] .table-fixed th {
         background: var(--theme-color, #fbc02d) !important;
@@ -145,8 +153,9 @@ if (typeof window !== 'undefined') {
         background: #e9ecef !important;
         color: #222 !important;
       }
-      [data-theme^="course-"] .table-fixed td {
-        background: #f7f8fa !important;
+      [data-theme^="course-"] .table-fixed td.score-cell,
+      [data-theme^="course-"] .table-fixed td.par-cell {
+        background: var(--theme-bg, #f7f8fa) !important;
       }
       [data-theme^="course-"] .bg-card {
         background-color: #f7f8fa !important;
@@ -156,7 +165,7 @@ if (typeof window !== 'undefined') {
       [data-theme^="course-"] .table-fixed td button.w-full.h-14 {
         background: #fff;
         border: 2px solid #e5e7eb !important;
-        border-radius: 4px !important;
+        border-radius: 10px !important;
         font-size: 1.8rem;
         font-weight: 700;
         color: #222;
@@ -165,6 +174,11 @@ if (typeof window !== 'undefined') {
         justify-content: center;
         margin: 0.1em auto;
         transition: border 0.2s, box-shadow 0.2s;
+      }
+      /* 합계/서명 테두리 강제 적용 */
+      [data-theme^="course-"] .table-fixed td.force-border {
+        border: 1px solid #e5e7eb !important; /* user requested 1px */
+        border-radius: 4px !important;
       }
     `;
     document.head.appendChild(style);
@@ -200,9 +214,23 @@ export default function ClientPlayDetail() {
 
   const [activeCourseIndex, setActiveCourseIndex] = useState(0);
 
+  // [Session Restoration] Track last active session
+  useEffect(() => {
+    if (isClient && courseId) {
+      localStorage.setItem('lastActiveCourseId', courseId);
+      localStorage.setItem('lastActiveTime', Date.now().toString());
+    }
+  }, [isClient, courseId]);
+
+  const handleBackClick = () => {
+    // Explicit exit: clear the session tracking so we don't auto-redirect back here
+    localStorage.removeItem('lastActiveCourseId');
+    router.push('/');
+  };
+
   // Modals and UI states
   const [isNumberPadOpen, setIsNumberPadOpen] = useState(false);
-  const [selectedCell, setSelectedCell] = useState<{ holeIndex: number; playerIndex: number } | null>(null);
+  const [selectedCell, setSelectedCell] = useState<{ holeIndex: number; playerIndex: number; courseIndex: number } | null>(null);
   const [tempScore, setTempScore] = useState('');
   const [isConfirmingNameReset, setIsConfirmingNameReset] = useState(false);
 
@@ -212,15 +240,7 @@ export default function ClientPlayDetail() {
   const [tempPar, setTempPar] = useState('');
 
   // 코스 전환 시 입력폼 및 진행 상태 완전 초기화
-  useEffect(() => {
-    setSelectedCell(null);
-    setTempScore('');
-    setIsNumberPadOpen(false);
-    setIsEditing(false);
-    setPlayerStartHole([null, null, null, null]);
-    setPlayerInputOrder([[], [], [], []]);
-    setPlayerCurrentStep([0, 0, 0, 0]);
-  }, [activeCourseIndex]);
+  // [Refactor] activeCourseIndex 변경 감지 useEffect 삭제 -> handleTabSwitch에서 직접 처리 (복구 로직 보호 위해)
 
   // 점수 리셋/전체 리셋 시에도 상태 동기화(useEffect에서 이미 보장됨)
 
@@ -235,21 +255,32 @@ export default function ClientPlayDetail() {
   const [isConfirmingSaveAndDelete, setIsConfirmingSaveAndDelete] = useState(false);
   const [isConfirmingCourseReset, setIsConfirmingCourseReset] = useState(false);
   const [isConfirmingAllReset, setIsConfirmingAllReset] = useState(false);
+  const [savingHoleIndex, setSavingHoleIndex] = useState<number | null>(null); // 저장 애니메이션 대상 홀
 
-  // [플레이어별 시작홀/진행상태 state 배열로 관리]
-  const [playerStartHole, setPlayerStartHole] = useState<(number | null)[]>([null, null, null, null]); // 각 플레이어별 시작홀
-  const [playerInputOrder, setPlayerInputOrder] = useState<{ hole: number, player: number }[][]>([[], [], [], []]); // 각 플레이어별 입력 순서
-  const [playerCurrentStep, setPlayerCurrentStep] = useState<number[]>([0, 0, 0, 0]); // 각 플레이어별 현재 입력 인덱스
+  // [코스별 + 플레이어별 시작홀/진행상태 state 2차원 배열로 관리]
+  const [playerStartHole, setPlayerStartHole] = useState<(number | null)[][]>([]); // [코스][플레이어]
+  const [playerInputOrder, setPlayerInputOrder] = useState<{ hole: number, player: number }[][][]>([]); // [코스][플레이어]
+  const [playerCurrentStep, setPlayerCurrentStep] = useState<number[][]>([]); // [코스][플레이어]
 
-  // [상태 동기화: playerStartHole이 바뀔 때 필요한 경우만 order 생성]
+  // [상태 동기화: playerStartHole이 바뀔 때 필요한 경우만 order 생성 - 2차원 배열 버전]
   useEffect(() => {
-    setPlayerInputOrder(prev => prev.map((order, idx) => {
-      if (playerStartHole[idx] !== null && (order.length === 0 || (order[0]?.hole !== playerStartHole[idx]))) {
-        return makePlayerInputOrder(playerStartHole[idx] as number, idx);
+    setPlayerInputOrder(prev => {
+      const newOrder = [...prev];
+      // 각 코스에 대해 처리
+      for (let courseIdx = 0; courseIdx < playerStartHole.length; courseIdx++) {
+        if (!playerStartHole[courseIdx]) continue;
+        if (!newOrder[courseIdx]) newOrder[courseIdx] = [[], [], [], []];
+
+        // 각 플레이어에 대해 처리
+        for (let playerIdx = 0; playerIdx < 4; playerIdx++) {
+          const startHole = playerStartHole[courseIdx][playerIdx];
+          if (startHole !== null && (newOrder[courseIdx][playerIdx].length === 0 || newOrder[courseIdx][playerIdx][0]?.hole !== startHole)) {
+            newOrder[courseIdx][playerIdx] = makePlayerInputOrder(startHole, playerIdx);
+          }
+        }
       }
-      return order;
-    }));
-    // 여기서 step을 0으로 강제 초기화하는 로직이 handleSaveScore와 충돌하여 삭제/수정함
+      return newOrder;
+    });
   }, [playerStartHole]);
 
   // 수정 모드 state 추가
@@ -275,10 +306,42 @@ export default function ClientPlayDetail() {
           setPlayerNames(gameState.playerNames || DEFAULT_NAMES);
           setAllScores(gameState.allScores || Array.from({ length: currentCourse.courses.length }, () => Array.from({ length: HOLE_COUNT }, () => Array(4).fill(''))));
           setSignatures(gameState.signatures || Array.from({ length: currentCourse.courses.length }, () => Array(4).fill(null)));
+
+          // Restore active tab if saved
+          if (typeof gameState.activeCourseIndex === 'number') {
+            setActiveCourseIndex(gameState.activeCourseIndex);
+          }
+
+          // Restore interaction states for seamless resumption (코스별 2차원 배열)
+          if (gameState.playerStartHole) {
+            setPlayerStartHole(gameState.playerStartHole);
+          } else {
+            // 기본값: 각 코스별로 [null, null, null, null] 초기화
+            setPlayerStartHole(Array.from({ length: currentCourse.courses.length }, () => [null, null, null, null]));
+          }
+          if (gameState.playerCurrentStep) {
+            setPlayerCurrentStep(gameState.playerCurrentStep);
+          } else {
+            setPlayerCurrentStep(Array.from({ length: currentCourse.courses.length }, () => [0, 0, 0, 0]));
+          }
+          if (gameState.playerInputOrder) {
+            setPlayerInputOrder(gameState.playerInputOrder);
+          } else {
+            setPlayerInputOrder(Array.from({ length: currentCourse.courses.length }, () => [[], [], [], []]));
+          }
+          if (gameState.selectedCell) setSelectedCell(gameState.selectedCell);
+          if (gameState.isNumberPadOpen) setIsNumberPadOpen(gameState.isNumberPadOpen);
+          if (gameState.tempScore !== undefined) setTempScore(gameState.tempScore);
+          if (gameState.isEditing !== undefined) setIsEditing(gameState.isEditing);
+
         } else {
           const numCourses = currentCourse.courses.length;
           setAllScores(Array.from({ length: numCourses }, () => Array.from({ length: HOLE_COUNT }, () => Array(4).fill(''))));
           setSignatures(Array.from({ length: numCourses }, () => Array(4).fill(null)));
+          // 진행 상태 초기화 (코스별)
+          setPlayerStartHole(Array.from({ length: numCourses }, () => [null, null, null, null]));
+          setPlayerCurrentStep(Array.from({ length: numCourses }, () => [0, 0, 0, 0]));
+          setPlayerInputOrder(Array.from({ length: numCourses }, () => [[], [], [], []]));
         }
       } else {
         toast({ title: "오류", description: "구장 정보를 찾을 수 없습니다.", variant: "destructive", duration: 2000 });
@@ -291,10 +354,23 @@ export default function ClientPlayDetail() {
 
   useEffect(() => {
     if (isClient && course) {
-      const gameState = { playerNames, allScores, signatures };
+      const gameState = {
+        playerNames,
+        allScores,
+        signatures,
+        activeCourseIndex,
+        // Save interaction states
+        playerStartHole,
+        playerCurrentStep,
+        selectedCell,
+        isNumberPadOpen,
+        tempScore,
+        isEditing
+      };
       localStorage.setItem(`gameState_${courseId}`, JSON.stringify(gameState));
     }
-  }, [playerNames, allScores, signatures, isClient, course, courseId]);
+  }, [playerNames, allScores, signatures, activeCourseIndex, isClient, course, courseId,
+    playerStartHole, playerCurrentStep, selectedCell, isNumberPadOpen, tempScore, isEditing]);
 
   const scores = useMemo(() => allScores[activeCourseIndex] || [], [allScores, activeCourseIndex]);
 
@@ -307,10 +383,19 @@ export default function ClientPlayDetail() {
     newSignatures[activeCourseIndex] = Array(4).fill(null);
     setSignatures(newSignatures);
 
-    // 진행 상태도 초기화
-    setPlayerStartHole([null, null, null, null]);
-    setPlayerInputOrder([[], [], [], []]);
-    setPlayerCurrentStep([0, 0, 0, 0]);
+    // 진행 상태도 초기화 (해당 코스만)
+    const newStartHole = [...playerStartHole];
+    newStartHole[activeCourseIndex] = [null, null, null, null];
+    setPlayerStartHole(newStartHole);
+
+    const newInputOrder = [...playerInputOrder];
+    newInputOrder[activeCourseIndex] = [[], [], [], []];
+    setPlayerInputOrder(newInputOrder);
+
+    const newCurrentStep = [...playerCurrentStep];
+    newCurrentStep[activeCourseIndex] = [0, 0, 0, 0];
+    setPlayerCurrentStep(newCurrentStep);
+
     setIsEditing(false);
     setSelectedCell(null);
     setTempScore('');
@@ -325,10 +410,10 @@ export default function ClientPlayDetail() {
     setAllScores(Array.from({ length: numCourses }, () => Array.from({ length: HOLE_COUNT }, () => Array(4).fill(''))));
     setSignatures(Array.from({ length: numCourses }, () => Array(4).fill(null)));
 
-    // 진행 상태도 초기화
-    setPlayerStartHole([null, null, null, null]);
-    setPlayerInputOrder([[], [], [], []]);
-    setPlayerCurrentStep([0, 0, 0, 0]);
+    // 진행 상태도 초기화 (모든 코스)
+    setPlayerStartHole(Array.from({ length: numCourses }, () => [null, null, null, null]));
+    setPlayerInputOrder(Array.from({ length: numCourses }, () => [[], [], [], []]));
+    setPlayerCurrentStep(Array.from({ length: numCourses }, () => [0, 0, 0, 0]));
     setIsEditing(false);
     setSelectedCell(null);
     setTempScore('');
@@ -365,14 +450,14 @@ export default function ClientPlayDetail() {
     return order;
   }
 
-  // [셀 상태 계산 함수: 플레이어별로]
+  // [셀 상태 계산 함수: 코스별 + 플레이어별로]
   function getCellStatus(holeIdx: number, playerIdx: number) {
-    if (playerStartHole[playerIdx] === null) return 'open'; // 아직 시작 전: 모두 열림
-    const order = playerInputOrder[playerIdx];
+    if (!playerStartHole[activeCourseIndex] || playerStartHole[activeCourseIndex][playerIdx] === null) return 'open'; // 아직 시작 전: 모두 열림
+    const order = playerInputOrder[activeCourseIndex]?.[playerIdx] || [];
     const idx = order.findIndex(o => o.hole === holeIdx && o.player === playerIdx);
     if (idx === -1) return 'disabled';
-    if (idx < playerCurrentStep[playerIdx]) return 'locked'; // 이미 입력됨(잠김)
-    if (idx === playerCurrentStep[playerIdx]) return 'open'; // 현재 입력 가능
+    if (idx < (playerCurrentStep[activeCourseIndex]?.[playerIdx] || 0)) return 'locked'; // 이미 입력됨(잠김)
+    if (idx === (playerCurrentStep[activeCourseIndex]?.[playerIdx] || 0)) return 'open'; // 현재 입력 가능
     return 'disabled'; // 아직 입력 순서 아님(비활성화)
   }
 
@@ -384,68 +469,96 @@ export default function ClientPlayDetail() {
     setIsEditing(false);
   }
 
-  // handleCellClick 보완: 깜빡임 제거
+  // handleCellClick: 입력 칸 클릭 시 동작 처리 (코스별/플레이어별 독립성 보장)
   const handleCellClick = (holeIndex: number, playerIndex: number, e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
     const status = getCellStatus(holeIndex, playerIndex);
     const isDouble = e && e.detail === 2;
 
-    if (status === 'open') {
-      setIsEditing(false);
-      // 아직 시작하지 않은 플레이어라면 시작 홀 설정
-      if (playerStartHole[playerIndex] === null) {
-        const newStartHole = [...playerStartHole];
-        newStartHole[playerIndex] = holeIndex;
-        setPlayerStartHole(newStartHole);
-        const newOrder = [...playerInputOrder];
-        newOrder[playerIndex] = makePlayerInputOrder(holeIndex, playerIndex);
-        setPlayerInputOrder(newOrder);
-        const newStep = [...playerCurrentStep];
-        newStep[playerIndex] = 0;
-        setPlayerCurrentStep(newStep);
-      }
-      setSelectedCell({ holeIndex, playerIndex });
+    // 1. 더블 클릭 시: 어느 칸이든 수정 모드 진입 가능
+    if (isDouble) {
+      setIsEditing(true);
+      setSelectedCell({ holeIndex, playerIndex, courseIndex: activeCourseIndex });
       setTempScore(scores[holeIndex]?.[playerIndex] || '');
       setIsNumberPadOpen(true);
-    } else if (status === 'locked') {
-      if (isDouble) {
-        setIsEditing(true); // 수정 모드 진입
-        setSelectedCell({ holeIndex, playerIndex });
-        setTempScore(scores[holeIndex]?.[playerIndex] || '');
-        setIsNumberPadOpen(true);
-      } else {
-        toast({ title: '수정 불가', description: '이미 입력된 칸입니다. 더블터치(더블클릭)로만 수정할 수 있습니다.', duration: 2000 });
+      return;
+    }
+
+    // 2. 현재 입력 가능한 칸 (open)
+    if (status === 'open') {
+      setIsEditing(false);
+
+      // 시작 홀이 지정되지 않은 경우 초기화
+      if (!playerStartHole[activeCourseIndex] || playerStartHole[activeCourseIndex][playerIndex] === null) {
+        const newStartHole = [...playerStartHole];
+        if (!newStartHole[activeCourseIndex]) newStartHole[activeCourseIndex] = [null, null, null, null];
+        newStartHole[activeCourseIndex][playerIndex] = holeIndex;
+        setPlayerStartHole(newStartHole);
       }
-    } else if (status === 'disabled') {
-      if (isDouble) {
-        setIsEditing(true); // 비활성화 칸도 더블클릭 시 수정 모드 진입
-        setSelectedCell({ holeIndex, playerIndex });
-        setTempScore(scores[holeIndex]?.[playerIndex] || '');
-        setIsNumberPadOpen(true);
-      } else {
-        const currentStep = playerCurrentStep[playerIndex];
-        const order = playerInputOrder[playerIndex];
-        const targetStepIdx = order.findIndex(o => o.hole === holeIndex);
 
-        // 현재 차례인 홀의 인덱스 확인
-        const currentHoleOrderIdx = order[currentStep]?.hole;
-        const currentScore = scores[currentHoleOrderIdx]?.[playerIndex];
-        const isCurrentHoleFilled = currentScore && currentScore.trim() !== '';
+      setSelectedCell({ holeIndex, playerIndex, courseIndex: activeCourseIndex });
+      setTempScore(scores[holeIndex]?.[playerIndex] || '');
+      setIsNumberPadOpen(true);
+      return;
+    }
 
-        // 점수가 입력되었는데 아직 저장되지 않은 상태에서 '바로 다음 홀'을 터치한 경우만 특별 안내
-        if (targetStepIdx === currentStep + 1 && isCurrentHoleFilled) {
-          toast({ title: '저장 필요', description: '이전 홀 점수를 먼저 저장하세요.', duration: 2000 });
-        } else {
-          toast({ title: '입력 순서 아님', description: '아직 입력할 차례가 아닙니다. 더블클릭으로 강제 수정이 가능합니다.', duration: 2000 });
+    // 3. 이미 입력이 완료된 칸 (locked)
+    if (status === 'locked') {
+      toast({
+        title: "수정 불가",
+        description: "이미 입력된 칸입니다. 더블터치(더블클릭)로 수정하세요.",
+        duration: 2000
+      });
+      return;
+    }
+
+    // 4. 아직 입력 순서가 아닌 칸 (disabled)
+    if (status === 'disabled') {
+      // 현재 열려 있는(open) 칸에 점수가 있는지 확인 (있다면 저장 필요)
+      let unsavedHoleIdx = -1;
+      for (let i = 0; i < HOLE_COUNT; i++) {
+        if (getCellStatus(i, playerIndex) === 'open') {
+          const score = scores[i]?.[playerIndex];
+          if (score && score.trim() !== '') {
+            unsavedHoleIdx = i;
+            break;
+          }
         }
       }
-    } else {
-      toast({ title: '입력 순서 아님', description: '아직 입력할 차례가 아닙니다.', duration: 2000 });
+
+      if (unsavedHoleIdx !== -1) {
+        // 입력 중인 점수가 있음 -> 저장 안내
+        toast({
+          title: "저장 필요",
+          description: "입력하신 점수를 먼저 저장해주세요.",
+          duration: 3000 // 조금 더 길게 표시
+        });
+      } else {
+        // 그냥 순서가 아님
+        toast({
+          title: "입력 순서 아님",
+          description: "아직 입력할 차례가 아닙니다.",
+          duration: 2000
+        });
+      }
+      return;
     }
   };
 
-  // handleSaveScore 개선: 원자적 업데이트로 깜빡임 방지 및 순서 로직 강화
+  // handleSaveScore 개선: 원자적 업데이트로 깜빡임 방지 및 순서 로직 강화 (코스별 인덱스 추가)
   const handleSaveScore = () => {
     const wasEditingStatus = isEditing; // 기존 수정 모드 여부 저장
+
+    // 저장 애니메이션 트리거
+    if (selectedCell) {
+      setSavingHoleIndex(selectedCell.holeIndex);
+      setTimeout(() => setSavingHoleIndex(null), 800);
+    }
+
     setIsEditing(false);
     resetNumberPadState();
 
@@ -454,28 +567,33 @@ export default function ClientPlayDetail() {
     const newStep = [...playerCurrentStep];
     let updated = false;
 
+    // 현재 활성화된 코스에 대해서만 처리
+    if (!newStartHole[activeCourseIndex]) newStartHole[activeCourseIndex] = [null, null, null, null];
+    if (!newOrder[activeCourseIndex]) newOrder[activeCourseIndex] = [[], [], [], []];
+    if (!newStep[activeCourseIndex]) newStep[activeCourseIndex] = [0, 0, 0, 0];
+
     for (let playerIdx = 0; playerIdx < 4; playerIdx++) {
-      // 1. 시작홀이 지정되지 않은 경우 초기화
-      if (newStartHole[playerIdx] === null) {
+      // 1. 시작홀이 지정되지 않은 경우 초기화 (코스별)
+      if (newStartHole[activeCourseIndex][playerIdx] === null) {
         const inputHoleIdx = scores.findIndex(row => row[playerIdx] && row[playerIdx].trim() !== '');
         if (inputHoleIdx !== -1) {
-          newStartHole[playerIdx] = inputHoleIdx;
-          newOrder[playerIdx] = makePlayerInputOrder(inputHoleIdx, playerIdx);
-          newStep[playerIdx] = 0;
+          newStartHole[activeCourseIndex][playerIdx] = inputHoleIdx;
+          newOrder[activeCourseIndex][playerIdx] = makePlayerInputOrder(inputHoleIdx, playerIdx);
+          newStep[activeCourseIndex][playerIdx] = 0;
           updated = true;
         }
       }
 
       // 2. 이미 시작되었거나 방금 시작된 플레이어의 단계 진행 (빈 칸을 찾을 때까지 전진)
-      if (newStartHole[playerIdx] !== null) {
-        let currentStep = newStep[playerIdx];
-        const currentOrder = newOrder[playerIdx];
+      if (newStartHole[activeCourseIndex][playerIdx] !== null) {
+        let currentStep = newStep[activeCourseIndex][playerIdx];
+        const currentOrder = newOrder[activeCourseIndex][playerIdx];
 
         while (currentOrder.length > 0 && currentStep < currentOrder.length) {
           const { hole } = currentOrder[currentStep];
           if (scores[hole]?.[playerIdx] && scores[hole][playerIdx].trim() !== '') {
             currentStep++;
-            newStep[playerIdx] = currentStep;
+            newStep[activeCourseIndex][playerIdx] = currentStep;
             updated = true;
           } else {
             break;
@@ -529,7 +647,15 @@ export default function ClientPlayDetail() {
 
   const handleTabSwitch = (newTabValue: string) => {
     if (course) {
-      setActiveCourseIndex(course.courses.findIndex(c => c.name === newTabValue));
+      const newIndex = course.courses.findIndex(c => c.name === newTabValue);
+      if (newIndex !== -1 && newIndex !== activeCourseIndex) {
+        setActiveCourseIndex(newIndex);
+        // 코스별로 진행 상태가 관리되므로 탭 전환 시 모달 닫기만 하면 됨
+        setSelectedCell(null);
+        setTempScore('');
+        setIsNumberPadOpen(false);
+        setIsEditing(false);
+      }
     }
   };
 
@@ -543,98 +669,26 @@ export default function ClientPlayDetail() {
 
     if (!course) return;
 
-    setIsCapturing(true); // 캡처 시작
-    await new Promise((r) => setTimeout(r, 100)); // 렌더링 대기
+    setIsCapturing(true);
+    await new Promise((r) => setTimeout(r, 100));
 
-    const filesToShare: File[] = [];
-    const now = new Date();
-    const timestamp = now.toLocaleString('ko-KR', {
-      year: 'numeric', month: '2-digit', day: '2-digit',
-      hour: '2-digit', minute: '2-digit', hour12: false
-    });
+    try {
+      // Dynamic import for performance
+      const { shareGameScore } = await import('@/lib/share-utils');
 
-    for (let i = 0; i < course.courses.length; i++) {
-      const courseScores = allScores[i] || [];
-      const hasScores = courseScores.flat?.().some(s => s !== '');
-
-      if (hasScores) {
-        const elementId = `captureArea-${course.courses[i].name}`;
-        const captureArea = document.getElementById(elementId);
-
-        if (captureArea) {
-          // 헤더 생성
-          const headerEl = document.createElement('div');
-          const formattedDate = now.toLocaleDateString('ko-KR', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            weekday: 'short'
-          });
-          const formattedTime = now.toLocaleTimeString('ko-KR', {
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: false
-          });
-
-          headerEl.innerHTML = `
-            <div style="font-size: 18px; font-weight: bold; color: #1a1a1a; margin-bottom: 4px;">
-              ${course.name} - ${course.courses[i].name} 코스
-            </div>
-            <div style="font-size: 13px; color: #666;">
-              ${formattedDate} ${formattedTime}
-            </div>
-          `;
-          Object.assign(headerEl.style, {
-            position: 'absolute',
-            top: '0',
-            left: '0',
-            right: '0',
-            backgroundColor: '#f8f9fa',
-            padding: '12px 16px',
-            borderBottom: '2px solid #dee2e6',
-            zIndex: '10',
-            textAlign: 'center'
-          });
-
-          captureArea.style.position = 'relative';
-          captureArea.style.paddingTop = '80px'; // 헤더 공간 확보
-          captureArea.insertBefore(headerEl, captureArea.firstChild);
-
-          try {
-            const canvas = await html2canvas(captureArea, { scale: 2, useCORS: true });
-            const dataUrl = canvas.toDataURL('image/png');
-            const blob = await (await fetch(dataUrl)).blob();
-            const file = new File([blob], `${course.name}-${course.courses[i].name}-스코어.png`, { type: 'image/png' });
-            filesToShare.push(file);
-          } catch (error) {
-            console.error('Canvas 생성 오류:', error);
-            toast({ title: "이미지 생성 실패", description: `${course.courses[i].name} 코스 이미지 생성에 실패했습니다.`, variant: "destructive", duration: 2000 });
-          } finally {
-            captureArea.removeChild(headerEl);
-            captureArea.style.position = '';
-            captureArea.style.paddingTop = '';
-          }
-        }
-      }
-    }
-
-    setIsCapturing(false); // 캡처 끝
-
-    if (filesToShare.length > 0) {
-      try {
-        await navigator.share({
-          files: filesToShare,
-          title: `${course.name} 스코어카드`,
-          text: `[${course.name}] 경기 결과를 공유합니다.`,
-        });
-      } catch (error) {
-        if (error instanceof Error && error.name !== 'AbortError') {
+      await shareGameScore(course, allScores, {
+        onSuccess: () => { },
+        onError: (error) => {
           console.error('공유 실패:', error);
           toast({ title: "공유 실패", description: "스코어카드 공유 중 오류가 발생했습니다.", variant: "destructive", duration: 2000 });
-        }
-      }
-    } else {
-      toast({ title: "공유할 내용 없음", description: "점수가 입력된 코스가 없습니다.", duration: 2000 });
+        },
+        onToast: (title, description, variant) => toast({ title, description, variant, duration: 2000 })
+      });
+    } catch (e) {
+      console.error("Share utility load failed", e);
+      toast({ title: "오류", description: "공유 기능을 불러오는데 실패했습니다.", variant: "destructive", duration: 2000 });
+    } finally {
+      setIsCapturing(false);
     }
   };
 
@@ -819,14 +873,15 @@ export default function ClientPlayDetail() {
   const numberPadButtons = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 
   return (
-    <div data-theme={theme} className="container mx-auto p-1 py-2 bg-card rounded-2xl shadow-lg my-4 max-w-[375px] flex flex-col min-h-[95vh]"
+    <div data-theme={theme} className="mx-auto px-0 py-2 bg-card rounded-2xl shadow-lg my-1 w-full max-w-[450px] flex flex-col min-h-[95vh]"
       style={{
         '--theme-color': themeColor,
+        '--theme-bg': isWhiteTheme ? '#f8f9fa' : `${themeColor}0f`,
         '--theme-shadow-color': 'rgba(30,136,229,0.10)',
       } as React.CSSProperties}
     >
-      <header className="flex items-center p-2 mb-2">
-        <Button variant="ghost" size="icon" onClick={() => router.push('/')}> <ArrowLeft /> </Button>
+      <header className="flex items-center p-2 mb-1">
+        <Button variant="ghost" size="icon" onClick={handleBackClick}> <ArrowLeft /> </Button>
         <h1 className="text-xl font-bold mx-auto">{course.name}</h1>
         <div className="flex items-center gap-1">
           <Button
@@ -846,12 +901,12 @@ export default function ClientPlayDetail() {
         </div>
       </header>
 
-      <div className="tab-scroll flex w-full mb-2 gap-1">
+      <div className="tab-scroll flex w-full mb-1 gap-1">
         {course.courses.map((c, idx) => (
           <button
             key={c.name}
             className={`tab-btn${activeCourseIndex === idx ? ' selected' : ''}`}
-            onClick={() => setActiveCourseIndex(idx)}
+            onClick={() => handleTabSwitch(c.name)}
             style={activeCourseIndex === idx ? { background: getThemeColor(c.name), color: (idx === 2 || (isWhiteTheme && idx === 3)) ? '#222' : '#fff' } : {}}
           >
             {c.name} 코스
@@ -865,24 +920,24 @@ export default function ClientPlayDetail() {
           return (
             <div
               key={subCourse.name}
-              className={`mt-0 h-full ${activeCourseIndex !== courseIdx ? "hidden" : ""}`}
+              className={`mt-0 h-full ${(!isCapturing && activeCourseIndex !== courseIdx) ? "hidden" : ""}`}
             >
               <div id={`captureArea-${subCourse.name}`} className={cn(
-                "overflow-x-auto bg-card rounded-lg px-2 pt-2 h-full",
+                "overflow-x-auto bg-card rounded-lg px-0.5 pt-2 h-full",
                 isCapturing ? "pb-8 min-h-[650px]" : "pb-2 min-h-0"
               )}>
-                <Table className="min-w-full border-separate border-spacing-x-0 table-fixed">
+                <Table className="min-w-full border-collapse table-fixed">
                   <TableHeader>
-                    <TableRow>
-                      <TableHead className="hole-header text-center font-normal text-base p-0 w-8 min-w-0 max-w-8">홀</TableHead>
-                      <TableHead className="par-header text-center font-normal text-base p-0 w-8 min-w-0 max-w-8 pr-2">Par</TableHead>
+                    <TableRow className="border-none hover:bg-transparent" style={{ background: 'var(--theme-color)' }}>
+                      <TableHead className="hole-header text-center font-bold text-[13px] p-0 w-[28px] min-w-[28px] max-w-[28px] border-none" style={{ color: '#fff' }}>홀</TableHead>
+                      <TableHead className="par-header text-center font-bold text-[13px] p-0 w-[28px] min-w-[28px] max-w-[28px] border-none" style={{ color: '#fff' }}>파</TableHead>
                       {playerNames.map((name, idx) => (
                         <TableHead
                           key={idx}
-                          className="name-header text-center font-bold text-base p-0 w-auto cursor-pointer hover:text-primary"
+                          className="name-header text-center font-bold text-[13px] p-0 w-auto cursor-pointer hover:text-primary whitespace-nowrap overflow-hidden text-ellipsis"
                           onClick={handleOpenNameModal}
                           title="이름 변경"
-                          style={{ userSelect: 'none' }}
+                          style={{ color: '#fff', userSelect: 'none' }}
                         >
                           {name}
                         </TableHead>
@@ -892,10 +947,10 @@ export default function ClientPlayDetail() {
                   <TableBody>
                     {Array.from({ length: HOLE_COUNT }).map((_, holeIndex) => {
                       return (
-                        <TableRow key={holeIndex} className="border-b-0">
-                          <TableCell className="hole-cell">{holeIndex + 1}</TableCell>
+                        <TableRow key={holeIndex} className="border-none hover:bg-transparent">
+                          <TableCell className="hole-cell p-0 font-bold text-center text-sm w-[28px] min-w-[28px] max-w-[28px] border-none" style={{ background: 'var(--theme-color)', color: '#fff' }}>{holeIndex + 1}</TableCell>
                           <TableCell
-                            className="par-cell text-center text-xl p-0 font-normal cursor-pointer hover:bg-blue-50 transition-colors select-none"
+                            className="par-cell text-center text-base p-0 font-normal cursor-pointer hover:bg-blue-50 transition-colors select-none w-[28px] min-w-[28px] max-w-[28px]"
                             onDoubleClick={() => handleParCellDoubleClick(holeIndex, courseIdx)}
                             onTouchEnd={(e) => {
                               const now = Date.now();
@@ -917,50 +972,58 @@ export default function ClientPlayDetail() {
                             const diff = score && !isNaN(parseInt(score)) ? parseInt(score) - Number(par) : null;
 
                             return (
-                              <TableCell key={playerIndex} className="score-cell p-0 py-0 text-center align-middle">
-                                <button type="button"
-                                  onClick={(e) => handleCellClick(holeIndex, playerIndex, e)}
-                                  onDoubleClick={(e) => handleCellClick(holeIndex, playerIndex, e)}
-                                  className={`w-full text-center rounded-none border border-1 focus:outline-none p-0 m-0 transition-opacity ${getCellStatus(holeIndex, playerIndex) === 'locked' ? 'text-muted-foreground' : ''} ${getCellStatus(holeIndex, playerIndex) === 'open' && playerStartHole[playerIndex] !== null ? 'is-next-hole' : ''}`}
-                                  style={{ margin: 0, padding: 0, borderRadius: 4, borderWidth: 1.5, height: '56px', minHeight: '56px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                                >
-                                  <div style={{
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    height: '100%',
-                                    width: '100%',
-                                    lineHeight: 1,
-                                    position: 'relative',
-                                    gap: '4px',
-                                  }}>
+                              <TableCell key={playerIndex} className="score-cell p-0 text-center align-middle" style={{ background: 'var(--theme-bg)' }}>
+                                <div className="flex flex-col items-center justify-center gap-0 w-full pt-1 pb-0.5">
+                                  <button type="button"
+                                    onClick={(e) => handleCellClick(holeIndex, playerIndex, e)}
+                                    className={cn(
+                                      "w-[96%] h-10 text-center border focus:outline-none p-0 m-0 transition-all",
+                                      getCellStatus(holeIndex, playerIndex) === 'locked' ? 'text-muted-foreground' : '',
+                                      // 다음 입력할 홀 스타일 (테마색 테두리)
+                                      (getCellStatus(holeIndex, playerIndex) === 'open' && playerStartHole[playerIndex] !== null && !(selectedCell?.holeIndex === holeIndex && selectedCell?.playerIndex === playerIndex)) ? 'is-next-hole' : '',
+                                      // 현재 선택되어 입력 중인 홀 스타일 (오렌지색 테두리)
+                                      (isNumberPadOpen && selectedCell?.holeIndex === holeIndex && selectedCell?.playerIndex === playerIndex && selectedCell?.courseIndex === courseIdx) ? 'is-editing-cell' : '',
+                                      // 저장 시 하이라이트 애니메이션
+                                      (savingHoleIndex === holeIndex) ? 'save-anim' : ''
+                                    )}
+                                    style={{
+                                      margin: '0 auto',
+                                      padding: 0,
+                                      borderRadius: 10,
+                                      borderWidth: (isNumberPadOpen && selectedCell?.holeIndex === holeIndex && selectedCell?.playerIndex === playerIndex) ? 2.5 : 1.5,
+                                      height: '40px',
+                                      minHeight: '40px',
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      justifyContent: 'center',
+                                      background: '#fff'
+                                    }}
+                                  >
                                     <span style={{
-                                      fontSize: '1.8rem',
+                                      fontSize: '1.4rem',
                                       fontWeight: 700,
                                       color: '#222',
                                       lineHeight: 1,
-                                      display: 'block',
-                                      marginTop: '-8px',
+                                      marginTop: '-4px',
                                     }}>
-                                      {(isNumberPadOpen && selectedCell && selectedCell.holeIndex === holeIndex && selectedCell.playerIndex === playerIndex)
+                                      {(isNumberPadOpen && selectedCell && selectedCell.holeIndex === holeIndex && selectedCell.playerIndex === playerIndex && selectedCell.courseIndex === courseIdx)
                                         ? tempScore || ''
                                         : score || ''}
                                     </span>
+                                  </button>
+                                  <div className="h-3.5 flex items-center justify-center mt-0.5">
                                     {diff !== null && (
                                       <span style={{
-                                        fontSize: '0.95rem',
-                                        fontWeight: 600,
+                                        fontSize: '0.75rem',
+                                        fontWeight: 800,
                                         color: diff > 0 ? '#e53935' : diff < 0 ? '#2563eb' : '#adb5bd',
-                                        display: 'block',
                                         lineHeight: 1,
-                                        marginBottom: '-8px',
                                       }}>
-                                        {diff === 0 ? 'E' : diff > 0 ? `+${diff}` : `${diff}`}
+                                        ({diff === 0 ? 'E' : diff > 0 ? `+${diff}` : `${diff}`})
                                       </span>
                                     )}
                                   </div>
-                                </button>
+                                </div>
                               </TableCell>
 
                             );
@@ -969,18 +1032,18 @@ export default function ClientPlayDetail() {
                       );
                     })}
                     <TableRow className="bg-muted hover:bg-muted" style={{ height: '64px' }}>
-                      <TableCell colSpan={2} className="text-center font-bold text-lg p-1 rounded-none align-middle" style={{ borderRadius: 0, height: '64px', verticalAlign: 'middle' }} >합계</TableCell>
+                      <TableCell colSpan={2} className="text-center font-bold text-lg p-1 rounded-none align-middle force-border" style={{ borderRadius: 0, height: '64px', verticalAlign: 'middle' }} >합계</TableCell>
                       {totalScoresByCourse(currentScores).map((total, pIdx) => (
-                        <TableCell key={pIdx} className="text-center font-bold p-1 rounded-none align-middle" style={{ borderRadius: 0, height: '64px', verticalAlign: 'middle', fontSize: '1.8rem', color: '#222' }} >{total || ''}</TableCell>
+                        <TableCell key={pIdx} className="text-center font-bold p-1 rounded-none align-middle force-border" style={{ borderRadius: 0, height: '64px', verticalAlign: 'middle', fontSize: '1.5rem', color: '#222' }} >{total || ''}</TableCell>
                       ))}
                     </TableRow>
                     {!isCapturing && (
                       <TableRow className="bg-muted hover:bg-muted">
-                        <TableCell colSpan={2} className="text-center font-bold text-lg p-1 rounded-none" style={{ borderRadius: 0 }} >서명</TableCell>
+                        <TableCell colSpan={2} className="text-center font-bold text-lg p-1 rounded-none force-border" style={{ borderRadius: 0 }} >서명</TableCell>
                         {Array.from({ length: 4 }).map((_, index) => {
                           const currentSignatures = signatures[courseIdx] || [];
                           return (
-                            <TableCell key={index} className="text-center h-12 p-1 cursor-pointer hover:bg-primary/5 rounded-none" style={{ borderRadius: 0 }} onClick={() => handleOpenSignatureModal(index)}>
+                            <TableCell key={index} className="text-center h-12 p-1 cursor-pointer hover:bg-primary/5 rounded-none force-border" style={{ borderRadius: 0 }} onClick={() => handleOpenSignatureModal(index)}>
                               {currentSignatures[index] ? <img src={currentSignatures[index]} alt="signature" className="mx-auto h-full object-contain" /> : <span className="text-muted-foreground">싸인</span>}
                             </TableCell>
                           )
@@ -1017,191 +1080,199 @@ export default function ClientPlayDetail() {
         </div>
       </div>
 
-      {isNumberPadOpen && selectedCell && (
-        <div
-          className={cn(
-            'fixed left-0 right-0 z-[9999] p-1 bg-[#212529] transition-transform duration-300 flex flex-col items-center',
-            {
-              'bottom-0 rounded-t-2xl': selectedCell.holeIndex < 7,
-              'top-0 rounded-b-2xl': selectedCell.holeIndex >= 7,
-            }
-          )}
-          style={{ maxWidth: '100vw', width: '100%', left: 0, transform: 'none', margin: 0 }}
-        >
-          <div className="grid grid-cols-5 gap-1 w-full max-w-xs mx-auto">
-            {numberPadButtons.slice(0, 5).map(num => (
-              <Button key={num} onClick={() => handleNumberPadInput(num)} className="h-10 text-base bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-xl select-none" style={{ fontSize: '1.1rem', WebkitTextSizeAdjust: 'none', MozTextSizeAdjust: 'none', textSizeAdjust: 'none', padding: 0 }}>{num}</Button>
-            ))}
-            {numberPadButtons.slice(5).map(num => (
-              <Button key={num} onClick={() => handleNumberPadInput(num)} className="h-10 text-base bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-xl select-none" style={{ fontSize: '1.1rem', WebkitTextSizeAdjust: 'none', MozTextSizeAdjust: 'none', textSizeAdjust: 'none', padding: 0 }}>{num}</Button>
-            ))}
-            <div className="col-span-5 flex w-full gap-1">
-              <Button
-                onClick={() => handleNumberPadInput('')}
-                className="h-10 text-base bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl flex-1"
-                style={{
-                  flex: '1 0 25%',
-                  maxWidth: '25%',
-                  fontSize: '1.1rem',
-                  WebkitTextSizeAdjust: 'none',
-                  MozTextSizeAdjust: 'none',
-                  textSizeAdjust: 'none',
-                  padding: 0
-                }}
-              >
-                삭제
-              </Button>
-              <Button
-                onClick={handleCancelNumberPad}
-                className="h-10 text-base bg-gray-500 hover:bg-gray-400 text-white font-semibold rounded-xl flex-1"
-                style={{
-                  flex: '1 0 25%',
-                  maxWidth: '25%',
-                  fontSize: '1.1rem',
-                  WebkitTextSizeAdjust: 'none',
-                  MozTextSizeAdjust: 'none',
-                  textSizeAdjust: 'none',
-                  padding: 0
-                }}
-              >
-                취소
-              </Button>
-              <Button
-                onClick={handleSaveScore}
-                className="h-10 text-base bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl flex-1"
-                style={{
-                  flex: '2 0 50%',
-                  maxWidth: '50%',
-                  fontSize: '1.1rem',
-                  WebkitTextSizeAdjust: 'none',
-                  MozTextSizeAdjust: 'none',
-                  textSizeAdjust: 'none',
-                  padding: 0
-                }}
-              >
-                저장
-              </Button>
+      {
+        isNumberPadOpen && selectedCell && (
+          <div
+            className={cn(
+              'fixed left-0 right-0 z-[9999] p-1 bg-[#212529] transition-transform duration-300 flex flex-col items-center',
+              {
+                'bottom-0 rounded-t-2xl': (selectedCell?.holeIndex ?? 0) < 7,
+                'top-0 rounded-b-2xl': (selectedCell?.holeIndex ?? 0) >= 7,
+              }
+            )}
+            style={{ maxWidth: '100vw', width: '100%', left: 0, transform: 'none', margin: 0 }}
+          >
+            <div className="grid grid-cols-5 gap-1 w-full max-w-xs mx-auto">
+              {numberPadButtons.slice(0, 5).map(num => (
+                <Button key={num} onClick={() => handleNumberPadInput(num)} className="h-10 text-base bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-xl select-none" style={{ fontSize: '1.1rem', WebkitTextSizeAdjust: 'none', MozTextSizeAdjust: 'none', textSizeAdjust: 'none', padding: 0 }}>{num}</Button>
+              ))}
+              {numberPadButtons.slice(5).map(num => (
+                <Button key={num} onClick={() => handleNumberPadInput(num)} className="h-10 text-base bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-xl select-none" style={{ fontSize: '1.1rem', WebkitTextSizeAdjust: 'none', MozTextSizeAdjust: 'none', textSizeAdjust: 'none', padding: 0 }}>{num}</Button>
+              ))}
+              <div className="col-span-5 flex w-full gap-1">
+                <Button
+                  onClick={() => handleNumberPadInput('')}
+                  className="h-10 text-base bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl flex-1"
+                  style={{
+                    flex: '1 0 25%',
+                    maxWidth: '25%',
+                    fontSize: '1.1rem',
+                    WebkitTextSizeAdjust: 'none',
+                    MozTextSizeAdjust: 'none',
+                    textSizeAdjust: 'none',
+                    padding: 0
+                  }}
+                >
+                  삭제
+                </Button>
+                <Button
+                  onClick={handleCancelNumberPad}
+                  className="h-10 text-base bg-gray-500 hover:bg-gray-400 text-white font-semibold rounded-xl flex-1"
+                  style={{
+                    flex: '1 0 25%',
+                    maxWidth: '25%',
+                    fontSize: '1.1rem',
+                    WebkitTextSizeAdjust: 'none',
+                    MozTextSizeAdjust: 'none',
+                    textSizeAdjust: 'none',
+                    padding: 0
+                  }}
+                >
+                  취소
+                </Button>
+                <Button
+                  onClick={handleSaveScore}
+                  className="h-10 text-base bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl flex-1"
+                  style={{
+                    flex: '2 0 50%',
+                    maxWidth: '50%',
+                    fontSize: '1.1rem',
+                    WebkitTextSizeAdjust: 'none',
+                    MozTextSizeAdjust: 'none',
+                    textSizeAdjust: 'none',
+                    padding: 0
+                  }}
+                >
+                  저장
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )
+      }
 
       {/* PAR 수정 모달 */}
-      {isParEditOpen && selectedParCell && (
-        <div
-          className="fixed left-0 right-0 bottom-0 z-[9999] p-1 bg-[#212529] rounded-t-2xl transition-transform duration-300 flex flex-col items-center"
-          style={{ maxWidth: '100vw', width: '100%', left: 0, transform: 'none', margin: 0 }}
-        >
-          <div className="text-white text-lg font-bold mb-2 mt-2">
-            {selectedParCell.holeIndex + 1}번 홀 PAR 수정
-          </div>
-          <div className="text-white text-3xl font-bold mb-3">
-            {tempPar || '?'}
-          </div>
-          <div className="w-full max-w-xs mx-auto">
-            <div className="grid grid-cols-3 gap-1 mb-3">
-              {['3', '4', '5'].map(num => (
+      {
+        isParEditOpen && selectedParCell && (
+          <div
+            className="fixed left-0 right-0 bottom-0 z-[9999] p-1 bg-[#212529] rounded-t-2xl transition-transform duration-300 flex flex-col items-center"
+            style={{ maxWidth: '100vw', width: '100%', left: 0, transform: 'none', margin: 0 }}
+          >
+            <div className="text-white text-lg font-bold mb-2 mt-2">
+              {selectedParCell.holeIndex + 1}번 홀 PAR 수정
+            </div>
+            <div className="text-white text-3xl font-bold mb-3">
+              {tempPar || '?'}
+            </div>
+            <div className="w-full max-w-xs mx-auto">
+              <div className="grid grid-cols-3 gap-1 mb-3">
+                {['3', '4', '5'].map(num => (
+                  <Button
+                    key={num}
+                    onClick={() => handleParInput(num)}
+                    className="h-10 text-base bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-xl select-none"
+                    style={{ fontSize: '1.1rem', padding: 0 }}
+                  >
+                    {num}
+                  </Button>
+                ))}
+              </div>
+              <div className="flex w-full gap-1">
                 <Button
-                  key={num}
-                  onClick={() => handleParInput(num)}
-                  className="h-10 text-base bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-xl select-none"
-                  style={{ fontSize: '1.1rem', padding: 0 }}
+                  onClick={() => handleParInput('')}
+                  className="h-10 text-base bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl flex-1"
+                  style={{ flex: '1 0 25%', maxWidth: '25%', fontSize: '1.1rem', padding: 0 }}
                 >
-                  {num}
+                  삭제
                 </Button>
-              ))}
-            </div>
-            <div className="flex w-full gap-1">
-              <Button
-                onClick={() => handleParInput('')}
-                className="h-10 text-base bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl flex-1"
-                style={{ flex: '1 0 25%', maxWidth: '25%', fontSize: '1.1rem', padding: 0 }}
-              >
-                삭제
-              </Button>
-              <Button
-                onClick={handleCancelParEdit}
-                className="h-10 text-base bg-gray-500 hover:bg-gray-400 text-white font-semibold rounded-xl flex-1"
-                style={{ flex: '1 0 25%', maxWidth: '25%', fontSize: '1.1rem', padding: 0 }}
-              >
-                취소
-              </Button>
-              <Button
-                onClick={handleSavePar}
-                className="h-10 text-base bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl flex-1"
-                style={{ flex: '2 0 50%', maxWidth: '50%', fontSize: '1.1rem', padding: 0 }}
-              >
-                저장
-              </Button>
+                <Button
+                  onClick={handleCancelParEdit}
+                  className="h-10 text-base bg-gray-500 hover:bg-gray-400 text-white font-semibold rounded-xl flex-1"
+                  style={{ flex: '1 0 25%', maxWidth: '25%', fontSize: '1.1rem', padding: 0 }}
+                >
+                  취소
+                </Button>
+                <Button
+                  onClick={handleSavePar}
+                  className="h-10 text-base bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl flex-1"
+                  style={{ flex: '2 0 50%', maxWidth: '50%', fontSize: '1.1rem', padding: 0 }}
+                >
+                  저장
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )
+      }
 
-      {isNameModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-          <div className="bg-card text-card-foreground rounded-2xl p-6 w-full max-w-[340px] mx-4 shadow-xl">
-            <div className="flex flex-col gap-4">
-              {tempPlayerNames.map((name, index) => (<div key={index}><Label htmlFor={`player-name-${index}`} className="font-semibold text-lg mb-1.5 block">이름 {index + 1}</Label>
-                <div className="flex items-center gap-2">
-                  <Input id={`player-name-${index}`} type="text" value={name === DEFAULT_NAMES[index] ? '' : name} onChange={(e) => { const newNames = [...tempPlayerNames]; newNames[index] = e.target.value; setTempPlayerNames(newNames) }} placeholder={index === 0 ? '본인을 여기에!' : '이름을 입력하세요'} className="h-14 text-lg" />
-                  <Button variant="ghost" size="icon" className="h-14 w-14 text-muted-foreground" onClick={() => { const newNames = [...tempPlayerNames]; newNames[index] = ''; setTempPlayerNames(newNames) }}><X className="h-6 w-6" /></Button>
-                </div></div>
-              ))}
-            </div>
-            <div className="grid grid-cols-3 gap-3 mt-6">
-              <Button onClick={() => setTempPlayerNames(Array(4).fill(''))} className="h-12 text-base bg-red-500 text-white hover:bg-red-600">초기화</Button>
-              <Button onClick={handleSaveNames} className="h-12 text-base bg-blue-700 text-white hover:bg-blue-800">저장</Button>
-              <button
-                onClick={() => setIsNameModalOpen(false)}
-                style={{
-                  backgroundColor: '#61666c',
-                  color: '#fff',
-                  height: '3rem',
-                  fontSize: '1rem',
-                  border: 'none',
-                  borderRadius: '0.75rem',
-                  boxShadow: 'none',
-                  width: '100%'
-                }}
-              >
-                닫기
-              </button>
+      {
+        isNameModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+            <div className="bg-card text-card-foreground rounded-2xl p-6 w-full max-w-[340px] mx-4 shadow-xl">
+              <div className="flex flex-col gap-4">
+                {tempPlayerNames.map((name, index) => (<div key={index}><Label htmlFor={`player-name-${index}`} className="font-semibold text-lg mb-1.5 block">이름 {index + 1}</Label>
+                  <div className="flex items-center gap-2">
+                    <Input id={`player-name-${index}`} type="text" value={name === DEFAULT_NAMES[index] ? '' : name} onChange={(e) => { const newNames = [...tempPlayerNames]; newNames[index] = e.target.value; setTempPlayerNames(newNames) }} placeholder={index === 0 ? '본인을 여기에!' : '이름을 입력하세요'} className="h-14 text-lg" />
+                    <Button variant="ghost" size="icon" className="h-14 w-14 text-muted-foreground" onClick={() => { const newNames = [...tempPlayerNames]; newNames[index] = ''; setTempPlayerNames(newNames) }}><X className="h-6 w-6" /></Button>
+                  </div></div>
+                ))}
+              </div>
+              <div className="grid grid-cols-3 gap-3 mt-6">
+                <Button onClick={() => setTempPlayerNames(Array(4).fill(''))} className="h-12 text-base bg-red-500 text-white hover:bg-red-600">초기화</Button>
+                <Button onClick={handleSaveNames} className="h-12 text-base bg-blue-700 text-white hover:bg-blue-800">저장</Button>
+                <button
+                  onClick={() => setIsNameModalOpen(false)}
+                  style={{
+                    backgroundColor: '#61666c',
+                    color: '#fff',
+                    height: '3rem',
+                    fontSize: '1rem',
+                    border: 'none',
+                    borderRadius: '0.75rem',
+                    boxShadow: 'none',
+                    width: '100%'
+                  }}
+                >
+                  닫기
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )
+      }
 
-      {isSignatureModalOpen && signingPlayerIndex !== null && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" onTouchMove={e => e.preventDefault()}>
-          <div className="bg-card text-card-foreground rounded-2xl p-6 w-full max-w-[340px] mx-4 shadow-xl flex flex-col gap-4">
-            <div className="text-center">
-              <h2 className="text-3xl font-bold">{playerNames[signingPlayerIndex]}</h2>
-              <p className="text-4xl text-primary font-bold mt-1">Score: {totalScoresByCourse(scores)[signingPlayerIndex]}</p>
-            </div>
-            <canvas ref={canvasRef} onMouseDown={startDrawing} onMouseUp={finishDrawing} onMouseMove={draw} onMouseLeave={finishDrawing} onTouchStart={startDrawing} onTouchEnd={finishDrawing} onTouchMove={draw} className="bg-gray-100 rounded-lg w-full h-[200px] border-2 border-border cursor-crosshair touch-none" />
-            <div className="grid grid-cols-3 gap-3">
-              <button
-                onClick={handleCloseSignatureModal}
-                style={{
-                  backgroundColor: '#61666c',
-                  color: '#fff',
-                  height: '3rem',
-                  fontSize: '1rem',
-                  border: 'none',
-                  borderRadius: '0.75rem',
-                  boxShadow: 'none',
-                  width: '100%'
-                }}
-              >
-                닫기
-              </button>
-              <Button onClick={clearCanvas} className="h-12 text-base bg-red-500 text-white hover:bg-red-600">다시하기</Button>
-              <Button onClick={handleSaveSignature} className="h-12 text-base bg-blue-700 text-white hover:bg-blue-800">저장</Button>
+      {
+        isSignatureModalOpen && signingPlayerIndex !== null && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" onTouchMove={e => e.preventDefault()}>
+            <div className="bg-card text-card-foreground rounded-2xl p-6 w-full max-w-[340px] mx-4 shadow-xl flex flex-col gap-4">
+              <div className="text-center">
+                <h2 className="text-3xl font-bold">{playerNames[signingPlayerIndex!]}</h2>
+                <p className="text-4xl text-primary font-bold mt-1">Score: {totalScoresByCourse(scores)[signingPlayerIndex!]}</p>
+              </div>
+              <canvas ref={canvasRef} onMouseDown={startDrawing} onMouseUp={finishDrawing} onMouseMove={draw} onMouseLeave={finishDrawing} onTouchStart={startDrawing} onTouchEnd={finishDrawing} onTouchMove={draw} className="bg-gray-100 rounded-lg w-full h-[200px] border-2 border-border cursor-crosshair touch-none" />
+              <div className="grid grid-cols-3 gap-3">
+                <button
+                  onClick={handleCloseSignatureModal}
+                  style={{
+                    backgroundColor: '#61666c',
+                    color: '#fff',
+                    height: '3rem',
+                    fontSize: '1rem',
+                    border: 'none',
+                    borderRadius: '0.75rem',
+                    boxShadow: 'none',
+                    width: '100%'
+                  }}
+                >
+                  닫기
+                </button>
+                <Button onClick={clearCanvas} className="h-12 text-base bg-red-500 text-white hover:bg-red-600">다시하기</Button>
+                <Button onClick={handleSaveSignature} className="h-12 text-base bg-blue-700 text-white hover:bg-blue-800">저장</Button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )
+      }
 
       <AlertDialog open={isConfirmingNameReset} onOpenChange={setIsConfirmingNameReset}>
         <AlertDialogContent>
@@ -1240,7 +1311,7 @@ export default function ClientPlayDetail() {
       <AlertDialog open={isConfirmingCourseReset} onOpenChange={setIsConfirmingCourseReset}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>{course.courses[activeCourseIndex]?.name} 코스를 초기화하시겠습니까?</AlertDialogTitle>
+            <AlertDialogTitle>{course?.courses[activeCourseIndex]?.name} 코스를 초기화하시겠습니까?</AlertDialogTitle>
             <AlertDialogDescription>
               현재 코스의 모든 점수와 서명이 삭제됩니다.
             </AlertDialogDescription>
@@ -1253,18 +1324,55 @@ export default function ClientPlayDetail() {
       </AlertDialog>
 
       <AlertDialog open={isConfirmingAllReset} onOpenChange={setIsConfirmingAllReset}>
-        <AlertDialogContent>
+        <AlertDialogContent className="bg-card text-card-foreground rounded-2xl p-6 w-[95%] max-w-[340px] mx-auto shadow-xl border-none">
           <AlertDialogHeader>
-            <AlertDialogTitle>모든 코스를 초기화하시겠습니까?</AlertDialogTitle>
+            <AlertDialogTitle className="text-xl font-bold text-center">
+              코스점수 혹은 전체 코스 점수를 초기화 합니다
+            </AlertDialogTitle>
           </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>취소</AlertDialogCancel>
-            <AlertDialogAction className="bg-red-500 hover:bg-red-600" onClick={handleResetAll}>
+          <div className="flex flex-col gap-3 mt-4">
+            <Button
+              className="h-12 text-base bg-red-500 hover:bg-red-600 text-white font-bold rounded-xl"
+              onClick={handleResetAll}
+            >
               전체 초기화
-            </AlertDialogAction>
-          </AlertDialogFooter>
+            </Button>
+            <Button
+              className="h-12 text-base font-bold rounded-xl"
+              style={{
+                backgroundColor: (() => {
+                  const courseName = course?.courses[activeCourseIndex]?.name?.toLowerCase();
+                  if (courseName?.includes('a')) return '#FEEBF2'; // Theme background for A
+                  if (courseName?.includes('b')) return '#1e88e5';
+                  if (courseName?.includes('c')) return '#fbc02d';
+                  if (courseName?.includes('d')) return '#e9ecef';
+                  return getThemeColor(course?.courses[activeCourseIndex]?.name || '');
+                })(),
+                color: (() => {
+                  const name = course?.courses[activeCourseIndex]?.name?.toLowerCase();
+                  return (name?.includes('c') || name?.includes('d') || name?.includes('a')) ? '#222' : '#fff';
+                })()
+              }}
+              onClick={handleResetCourse}
+            >
+              {course?.courses[activeCourseIndex]?.name}코스 점수만 초기화
+            </Button>
+            <button
+              onClick={() => setIsConfirmingAllReset(false)}
+              className="h-12 text-base font-bold rounded-xl"
+              style={{
+                backgroundColor: '#61666c',
+                color: '#fff',
+                border: 'none',
+                boxShadow: 'none',
+                width: '100%'
+              }}
+            >
+              닫기
+            </button>
+          </div>
         </AlertDialogContent>
       </AlertDialog>
-    </div>
+    </div >
   );
 }

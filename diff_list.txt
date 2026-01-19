@@ -1,0 +1,899 @@
+
+	  			E:\score-1\diff_list.txt
+	  			E:\score-1\new_src_files.txt
+	  			E:\score-1\old_src_files.txt
+	  			E:\score-1\src_neweasy.txt
+	  			E:\score-1\src_score1.txt
+	  			E:\neweasyscore-one\.gitattributes
+	  			E:\neweasyscore-one\.gitignore
+	  			E:\neweasyscore-one\.modified
+	  			E:\neweasyscore-one\.windsurfrules
+	  			E:\neweasyscore-one\11.html
+	  			E:\neweasyscore-one\add_course_diff.txt
+	  			E:\neweasyscore-one\apphosting.yaml
+	  			E:\neweasyscore-one\build_error.log
+	  			E:\neweasyscore-one\debug_record_structure.json
+	  			E:\neweasyscore-one\diff_output.txt
+	  			E:\neweasyscore-one\file_list_new.txt
+	  			E:\neweasyscore-one\file_list_old.txt
+	  			E:\neweasyscore-one\full_diff_status.txt
+	  			E:\neweasyscore-one\globals_diff.txt
+	  			E:\neweasyscore-one\netlify.toml
+	  			E:\neweasyscore-one\next-env.d.ts
+	  			E:\neweasyscore-one\next.config.js
+	  			E:\neweasyscore-one\next.config.ts
+	  			E:\neweasyscore-one\old_ClientPlayDetail.tsx
+	  			E:\neweasyscore-one\package-lock.json
+	  			E:\neweasyscore-one\package.json
+	  			E:\neweasyscore-one\package_diff.txt
+	  			E:\neweasyscore-one\page_tsx_diff.txt
+	  			E:\neweasyscore-one\postcss.config.mjs
+	  			E:\neweasyscore-one\README.md
+	  			E:\neweasyscore-one\robocopy_src.log
+	  			E:\neweasyscore-one\sample.html
+	  			E:\neweasyscore-one\tsconfig.tsbuildinfo
+	  			E:\neweasyscore-one\.git - 복사본\COMMIT_EDITMSG
+	  			E:\neweasyscore-one\.git - 복사본\config
+	  			E:\neweasyscore-one\.git - 복사본\description
+	  			E:\neweasyscore-one\.git - 복사본\FETCH_HEAD
+	  			E:\neweasyscore-one\.git - 복사본\HEAD
+	  			E:\neweasyscore-one\.git - 복사본\index
+	  			E:\neweasyscore-one\.git - 복사본\packed-refs
+	  			E:\neweasyscore-one\.git - 복사본\hooks\applypatch-msg.sample
+	  			E:\neweasyscore-one\.git - 복사본\hooks\commit-msg.sample
+	  			E:\neweasyscore-one\.git - 복사본\hooks\fsmonitor-watchman.sample
+	  			E:\neweasyscore-one\.git - 복사본\hooks\post-update.sample
+	  			E:\neweasyscore-one\.git - 복사본\hooks\pre-applypatch.sample
+	  			E:\neweasyscore-one\.git - 복사본\hooks\pre-commit.sample
+	  			E:\neweasyscore-one\.git - 복사본\hooks\pre-merge-commit.sample
+	  			E:\neweasyscore-one\.git - 복사본\hooks\pre-push.sample
+	  			E:\neweasyscore-one\.git - 복사본\hooks\pre-rebase.sample
+	  			E:\neweasyscore-one\.git - 복사본\hooks\pre-receive.sample
+	  			E:\neweasyscore-one\.git - 복사본\hooks\prepare-commit-msg.sample
+	  			E:\neweasyscore-one\.git - 복사본\hooks\push-to-checkout.sample
+	  			E:\neweasyscore-one\.git - 복사본\hooks\sendemail-validate.sample
+	  			E:\neweasyscore-one\.git - 복사본\hooks\update.sample
+	  			E:\neweasyscore-one\.git - 복사본\info\exclude
+	  			E:\neweasyscore-one\.git - 복사본\logs\HEAD
+	  			E:\neweasyscore-one\.git - 복사본\logs\refs\heads\main
+	  			E:\neweasyscore-one\.git - 복사본\logs\refs\remotes\origin\HEAD
+	  			E:\neweasyscore-one\.git - 복사본\logs\refs\remotes\origin\main
+	  			E:\neweasyscore-one\.git - 복사본\objects\00\b303e00a0bf2c92cb07c18d3239280ef181ae5
+	  			E:\neweasyscore-one\.git - 복사본\objects\02\97327842dfa194b316aec9730bb3c7349b7282
+	  			E:\neweasyscore-one\.git - 복사본\objects\03\6d09bc5fd523323794379703c4a111d1e28a04
+	  			E:\neweasyscore-one\.git - 복사본\objects\04\3df802a29f1f386a23cba600c84be8eee2a0c6
+	  			E:\neweasyscore-one\.git - 복사본\objects\06\c05ec8b4615603a5d778fb9499f3f591c80271
+	  			E:\neweasyscore-one\.git - 복사본\objects\09\a5e590e02b0112cf63a5d2568c4c9670123200
+	  			E:\neweasyscore-one\.git - 복사본\objects\0b\7c13773820fff6bf65698ef1c010884319aa03
+	  			E:\neweasyscore-one\.git - 복사본\objects\12\3f110ab2de2a4ca75d6e3d43ed07693e5827e0
+	  			E:\neweasyscore-one\.git - 복사본\objects\14\c6c8fe39fcd51a0414866ad28cbe8ff3acb060
+	  			E:\neweasyscore-one\.git - 복사본\objects\16\63a4baafe27f58a8cc9c7218d8d35a53ce1f20
+	  			E:\neweasyscore-one\.git - 복사본\objects\16\660f1d80a1f5cde389ecce783051eb8f68223d
+	  			E:\neweasyscore-one\.git - 복사본\objects\17\fc09cb4e957ffcad4b3bd39bb11f8ea769a8a1
+	  			E:\neweasyscore-one\.git - 복사본\objects\19\442fbd781ea4f06c01f7b223ad1b988bd99004
+	  			E:\neweasyscore-one\.git - 복사본\objects\20\3588b96b0fd967276896a4a0f41acde25ce4b6
+	  			E:\neweasyscore-one\.git - 복사본\objects\21\27973b2d318df7085734d236d0ec649a2b0292
+	  			E:\neweasyscore-one\.git - 복사본\objects\24\4ca2506dbe0fd8f6a05520ac7d1a629ea81438
+	  			E:\neweasyscore-one\.git - 복사본\objects\24\640ecfb026be3c9f6e492af3e1ccf553694af9
+	  			E:\neweasyscore-one\.git - 복사본\objects\24\c87fb336329e30748fc563273db4bfa187cc5d
+	  			E:\neweasyscore-one\.git - 복사본\objects\26\d33521af10bcc7fd8cea344038eaaeb78d0ef5
+	  			E:\neweasyscore-one\.git - 복사본\objects\28\c519496d2012d22e32936cb17016cf8a57dc57
+	  			E:\neweasyscore-one\.git - 복사본\objects\28\def9a5ecf5455678545d70e1a84e70ab6f5d12
+	  			E:\neweasyscore-one\.git - 복사본\objects\29\60cbb6104b915c84760f889deed9bff2b3e17a
+	  			E:\neweasyscore-one\.git - 복사본\objects\2a\93e3b1015a140f6e5305dcacec8954be27311e
+	  			E:\neweasyscore-one\.git - 복사본\objects\2c\50fe10a6844b0099deb3f65afd87b1e8e5722a
+	  			E:\neweasyscore-one\.git - 복사본\objects\2c\8e4083f67110c1eebf64291d6774481e1e5806
+	  			E:\neweasyscore-one\.git - 복사본\objects\2e\87c52f83c298527b1d1c747d496227dc0c6e71
+	  			E:\neweasyscore-one\.git - 복사본\objects\2e\b1d6bf518455df89b668cfa0a2fca34c545207
+	  			E:\neweasyscore-one\.git - 복사본\objects\2e\d9d39c1d5c26e2caca93e468b53c0a38c56265
+	  			E:\neweasyscore-one\.git - 복사본\objects\2f\991ebd3b352009d8f89ddf1c64badb0382d561
+	  			E:\neweasyscore-one\.git - 복사본\objects\30\821a0d591281a32c5b0c3e8ca8c12e76b2c71e
+	  			E:\neweasyscore-one\.git - 복사본\objects\30\ba461866407d56444687bc4f64bf2ffbf9d90a
+	  			E:\neweasyscore-one\.git - 복사본\objects\33\d72c0441d55644b42af8e6854b1702a5ea60ad
+	  			E:\neweasyscore-one\.git - 복사본\objects\34\0e7df83159f7aff8cd2541a2f0657cb8b6e733
+	  			E:\neweasyscore-one\.git - 복사본\objects\35\639b22b931cc540e9e35817615faac2697f5ff
+	  			E:\neweasyscore-one\.git - 복사본\objects\35\eb1ddfbbc029bcab630581847471d7f238ec53
+	  			E:\neweasyscore-one\.git - 복사본\objects\38\73d0f9a6acc8e3fb3e295f97405b64cde965e6
+	  			E:\neweasyscore-one\.git - 복사본\objects\38\aea6f40d05629df61106c8c7981749a5a11c19
+	  			E:\neweasyscore-one\.git - 복사본\objects\3a\aae04df258b6d914f988f9aa2a57643624e16c
+	  			E:\neweasyscore-one\.git - 복사본\objects\3b\4431d7724bd82d1aeb2ce59e7a0504b8869f81
+	  			E:\neweasyscore-one\.git - 복사본\objects\3d\f12cf0a3b7a863495aab5e7048f39f5473e78e
+	  			E:\neweasyscore-one\.git - 복사본\objects\44\f255101a20ba1e9d070837e13936254df719fd
+	  			E:\neweasyscore-one\.git - 복사본\objects\46\de6e255a95abb68a915d7cb45776d890768922
+	  			E:\neweasyscore-one\.git - 복사본\objects\48\354a3dfc4ad41c5c7af1451315d335cda7d611
+	  			E:\neweasyscore-one\.git - 복사본\objects\4a\53bee8cb948a6e677a1a320d0ecfbe26d4062e
+	  			E:\neweasyscore-one\.git - 복사본\objects\4c\420f1b3e1bb0581208ed74161d7137667d26fd
+	  			E:\neweasyscore-one\.git - 복사본\objects\4d\1e077104cd61e6a4c3707e87363b523077245a
+	  			E:\neweasyscore-one\.git - 복사본\objects\4d\4a35de3e570e89316e6b6f89b1501df7234769
+	  			E:\neweasyscore-one\.git - 복사본\objects\4d\96fbe551efd93d58128780d285618cf258d548
+	  			E:\neweasyscore-one\.git - 복사본\objects\4d\a28952809258056450f2bd568f6ff8127bf023
+	  			E:\neweasyscore-one\.git - 복사본\objects\50\462a41b317a513c999077d0bc9116dd39c2c48
+	  			E:\neweasyscore-one\.git - 복사본\objects\54\5700ea780f5367012fb5d836f35181d3456f66
+	  			E:\neweasyscore-one\.git - 복사본\objects\55\4cbdf7fe9c7e79c8b2e7b59b447982aa106270
+	  			E:\neweasyscore-one\.git - 복사본\objects\55\64dceaf3d0b8cfcdd9fd60a997af5b39b97470
+	  			E:\neweasyscore-one\.git - 복사본\objects\56\4a82ff954aec267492467c0169a270c4e8fea9
+	  			E:\neweasyscore-one\.git - 복사본\objects\59\7dbf8d1e44cd7269ba45560a62c56e87768076
+	  			E:\neweasyscore-one\.git - 복사본\objects\5b\fb49232fc704364c06411377cb5654007358c4
+	  			E:\neweasyscore-one\.git - 복사본\objects\5c\108cef489f4bc91bf5fa293153cffc6502353f
+	  			E:\neweasyscore-one\.git - 복사본\objects\5c\4f20040de2ca73512fd12e02392e19e2f1eb38
+	  			E:\neweasyscore-one\.git - 복사본\objects\5f\6d68bc95461c03144818879f32f4f049c11471
+	  			E:\neweasyscore-one\.git - 복사본\objects\60\2bdf4f2112ad81fdf97f4847b0284a9fa3a723
+	  			E:\neweasyscore-one\.git - 복사본\objects\61\291e6a88e0d9f541d3080dc361a6f4f38baea0
+	  			E:\neweasyscore-one\.git - 복사본\objects\61\4d1e84154c48dff729bf9ab6105b4dca7e0524
+	  			E:\neweasyscore-one\.git - 복사본\objects\63\9900d13c6182e452e33a3bd638e70a0146c785
+	  			E:\neweasyscore-one\.git - 복사본\objects\66\a0a840980c5f152150f2d55e72d9c5d6a35e4c
+	  			E:\neweasyscore-one\.git - 복사본\objects\67\d169f273d184cf9fb97018e0461eec2f5d4957
+	  			E:\neweasyscore-one\.git - 복사본\objects\69\29071268eb03ee0f088142b6523566b78550e2
+	  			E:\neweasyscore-one\.git - 복사본\objects\6a\4b74ec73e979cff2abf2d0f9b47e6b814919ae
+	  			E:\neweasyscore-one\.git - 복사본\objects\6c\4dea7eb1a6659e8c6947166c3468052b44c845
+	  			E:\neweasyscore-one\.git - 복사본\objects\6c\672dfea712d4f88080a6d48c3f0e8e7384296e
+	  			E:\neweasyscore-one\.git - 복사본\objects\6c\df97c1196d48e9833487ff6de7c4cfc4e1232d
+	  			E:\neweasyscore-one\.git - 복사본\objects\6f\758685d2aac6acd8e2c33e5f7e2fcf62c5784f
+	  			E:\neweasyscore-one\.git - 복사본\objects\71\1df955ba831d67030de447207bdbbf31209b21
+	  			E:\neweasyscore-one\.git - 복사본\objects\72\17858a795454f3a625b0f4755a0918799fc6c7
+	  			E:\neweasyscore-one\.git - 복사본\objects\72\905b854cb4d39e8717090424302e370239a08e
+	  			E:\neweasyscore-one\.git - 복사본\objects\73\8cb2cafa95bf757425964e1a2f4eb0ec7e70a4
+	  			E:\neweasyscore-one\.git - 복사본\objects\74\47c75e495416ed7ae0ded1edcf2cbc036e1731
+	  			E:\neweasyscore-one\.git - 복사본\objects\74\dd639e4ea4800753c1dbdb333093410e843492
+	  			E:\neweasyscore-one\.git - 복사본\objects\74\faaa583c8221c27a8cb822c3fbe218bafa3299
+	  			E:\neweasyscore-one\.git - 복사본\objects\75\33cbd64e29e5eb2458a92ade1887f9eddea6d2
+	  			E:\neweasyscore-one\.git - 복사본\objects\76\7d932db1483bb3b96f19552766e13f320ac341
+	  			E:\neweasyscore-one\.git - 복사본\objects\78\9b03adc02c9c02048d901b00507a9fc5f0a443
+	  			E:\neweasyscore-one\.git - 복사본\objects\7b\c2e98a1ab1dad79582d43e695184241a1ffb5a
+	  			E:\neweasyscore-one\.git - 복사본\objects\7e\26fc0d868e05236ea7e16e8c3969fda8d5b3df
+	  			E:\neweasyscore-one\.git - 복사본\objects\7e\7b5ddeda87c5499d55c96accce98b8961ca97f
+	  			E:\neweasyscore-one\.git - 복사본\objects\80\7725501bdd92e94e51e7b2b0006f69e0083a0b
+	  			E:\neweasyscore-one\.git - 복사본\objects\81\21be7a86a6228783717041fbab1c5d96264292
+	  			E:\neweasyscore-one\.git - 복사본\objects\81\59af6839ccd797713c13cc54b53fb9d1f80e5e
+	  			E:\neweasyscore-one\.git - 복사본\objects\84\8f2817fcbac9207b16f2df28dc5b7be5f08bb0
+	  			E:\neweasyscore-one\.git - 복사본\objects\84\91feff20016ac912c556f374dec0217d838176
+	  			E:\neweasyscore-one\.git - 복사본\objects\85\3db043d8a21a3f2429bb521e373e8b1d39cacd
+	  			E:\neweasyscore-one\.git - 복사본\objects\86\0778e5a241eb56f46f0dffa81fad786d7ca719
+	  			E:\neweasyscore-one\.git - 복사본\objects\86\13baeecfa4104423a4a3a698bf933eeeafe3e1
+	  			E:\neweasyscore-one\.git - 복사본\objects\86\2f3ade2e7aa1672ec697c8af2922e9133f5bf3
+	  			E:\neweasyscore-one\.git - 복사본\objects\8d\b684fab76217e07103c4aa4772953d2745bdc0
+	  			E:\neweasyscore-one\.git - 복사본\objects\8e\3093a86fffb4d02383785a46189822142d5607
+	  			E:\neweasyscore-one\.git - 복사본\objects\8e\d0605c27c764f865674ab0b14c859a1ba29ce6
+	  			E:\neweasyscore-one\.git - 복사본\objects\8f\701fcc1ee9146fdff48ce91cf2dabda5301387
+	  			E:\neweasyscore-one\.git - 복사본\objects\90\4a06a3a353b5a56da7b35eb39cd8de6c8af6f1
+	  			E:\neweasyscore-one\.git - 복사본\objects\90\f958096f81d050d55c085b7c3bad49456f9673
+	  			E:\neweasyscore-one\.git - 복사본\objects\92\c1c79c7cb6a399402ddc5d7e89a7c84ec53f6b
+	  			E:\neweasyscore-one\.git - 복사본\objects\93\8b030995b5893aaa6f6333515c1e554bd229d0
+	  			E:\neweasyscore-one\.git - 복사본\objects\95\02e47a2c575c50c925b987f397bc5244c57b90
+	  			E:\neweasyscore-one\.git - 복사본\objects\96\e2760f9971279641872213ef8ae3c198b43ea7
+	  			E:\neweasyscore-one\.git - 복사본\objects\98\0aa590311169dfc2ebce2fb7f6b3303b05d547
+	  			E:\neweasyscore-one\.git - 복사본\objects\9a\5fa872e75f3ac9cb82951943ec4ce0ba50005e
+	  			E:\neweasyscore-one\.git - 복사본\objects\9a\7480be35ecce0bb2a4aa8fdfdcab66d4cef8fc
+	  			E:\neweasyscore-one\.git - 복사본\objects\9a\aec77f9215ade05abb20e72e3fcd9d77ba5af0
+	  			E:\neweasyscore-one\.git - 복사본\objects\9d\21a21834d5195c278ba17baec3115b2aaab06e
+	  			E:\neweasyscore-one\.git - 복사본\objects\9f\c7a1007c0c0660f17ce074498f6a44586bd377
+	  			E:\neweasyscore-one\.git - 복사본\objects\a0\b4799bfa75f46d0d3ade4eb9f43bd7b415361e
+	  			E:\neweasyscore-one\.git - 복사본\objects\a1\5b891550adb46325be9c466d3f0fa8bc0d2759
+	  			E:\neweasyscore-one\.git - 복사본\objects\a3\89550828f5a1cd73c032aca81a1df09d263486
+	  			E:\neweasyscore-one\.git - 복사본\objects\a4\0d73e9c68ea638c28c7b13e4bcd1e179a3a102
+	  			E:\neweasyscore-one\.git - 복사본\objects\a4\66d9b60bd54e2f20db7fb1344161a23e0bfc04
+	  			E:\neweasyscore-one\.git - 복사본\objects\a4\b76b9530d66f5e68d973ea569d8e19de379189
+	  			E:\neweasyscore-one\.git - 복사본\objects\a6\99c79fe76a45f2692cfcdc54bbff5d9c93c0c0
+	  			E:\neweasyscore-one\.git - 복사본\objects\a8\1e304b16714fc744b4dd7d839798ae42375876
+	  			E:\neweasyscore-one\.git - 복사본\objects\a8\ab340717fc478f08491ee1f03f6f589d46e9bb
+	  			E:\neweasyscore-one\.git - 복사본\objects\aa\56a6423aed713d6354549688b5fd14aac78584
+	  			E:\neweasyscore-one\.git - 복사본\objects\ac\a9aa089c896968298c606604c272b3b3528f8f
+	  			E:\neweasyscore-one\.git - 복사본\objects\b2\68ef36cd2de3a14ddddf25aa9f5d4e95731e18
+	  			E:\neweasyscore-one\.git - 복사본\objects\b2\c751a35c77d4f7b713fe3bfc2cfb693e4d984f
+	  			E:\neweasyscore-one\.git - 복사본\objects\b4\41f37d6a2a58cfdda841fbc8148a474a4ece3f
+	  			E:\neweasyscore-one\.git - 복사본\objects\b4\752d66e9326eb96d8965e91e0ef07775bf671c
+	  			E:\neweasyscore-one\.git - 복사본\objects\b4\d850422cf7fb02382177685a43d6d35b87300d
+	  			E:\neweasyscore-one\.git - 복사본\objects\b5\ad1387011da0894cc1d91f44f3bd77f5403f5d
+	  			E:\neweasyscore-one\.git - 복사본\objects\b8\6273d9424b73937ca6ad7933f6b7eeb60f4a3d
+	  			E:\neweasyscore-one\.git - 복사본\objects\ba\5fb63d8b2e33bf269bfeac1ef790925e7d4d7a
+	  			E:\neweasyscore-one\.git - 복사본\objects\ba\a3d385fe13c45b570d878de26061b32f0e200a
+	  			E:\neweasyscore-one\.git - 복사본\objects\ba\fd75211af50412108b844ac31437865b48c6e1
+	  			E:\neweasyscore-one\.git - 복사본\objects\bb\1823cb42e9711367057e289d92559c34897ddb
+	  			E:\neweasyscore-one\.git - 복사본\objects\bb\ba4c38bf8ea30d1ce81c6bfa45bebac63755a5
+	  			E:\neweasyscore-one\.git - 복사본\objects\bb\fb44fad11c913927ea1a9851a85b82bbd9814a
+	  			E:\neweasyscore-one\.git - 복사본\objects\bd\0c4d80d0473953333d5adb0d38ac713d0d648b
+	  			E:\neweasyscore-one\.git - 복사본\objects\be\874e54a4a64059503427dbefeabcee2989549d
+	  			E:\neweasyscore-one\.git - 복사본\objects\bf\abe6871a17a5e95b78fb30d49b7d2b4d2fe4c0
+	  			E:\neweasyscore-one\.git - 복사본\objects\c0\23e50595074292c7361183a64de08cf9686c9c
+	  			E:\neweasyscore-one\.git - 복사본\objects\c1\d5e0185987c556421e0c62058c16ab636e7940
+	  			E:\neweasyscore-one\.git - 복사본\objects\c4\846c68ba4d4fe69baa9b09b9bf14178a789a59
+	  			E:\neweasyscore-one\.git - 복사본\objects\c5\4bc22772a75d8c10a96e6a3fba37058a0e2f39
+	  			E:\neweasyscore-one\.git - 복사본\objects\c5\7c63eccccd5c1055333a3e4edbce419a857d04
+	  			E:\neweasyscore-one\.git - 복사본\objects\c5\d5899fdf0a1b144bf341b29e0c66ba50bbcedd
+	  			E:\neweasyscore-one\.git - 복사본\objects\c7\0c4e019356c28be8d30216e0465e3d9c6d2d80
+	  			E:\neweasyscore-one\.git - 복사본\objects\c7\bd21dbd86990cde81fea8abd3bf904b4546749
+	  			E:\neweasyscore-one\.git - 복사본\objects\c8\c38158b80d60f3826277eb783f8831e811cf5d
+	  			E:\neweasyscore-one\.git - 복사본\objects\cc\f8126b39c51676b5b254ebb746debcf14e95a6
+	  			E:\neweasyscore-one\.git - 복사본\objects\ce\019fe528d46d6c2986f06c1734f9ec5a6741f6
+	  			E:\neweasyscore-one\.git - 복사본\objects\d2\8a1fc14161c181eebc44907c45a9e1e231948a
+	  			E:\neweasyscore-one\.git - 복사본\objects\d2\ea9abed395c5fb38369a54896c51c8e8bdff72
+	  			E:\neweasyscore-one\.git - 복사본\objects\d5\3a1e29bc6b3adeb8d1e4657e3c40341c677ea9
+	  			E:\neweasyscore-one\.git - 복사본\objects\d5\fccc538c179838bfdce779c26eebb4fa0b5ce9
+	  			E:\neweasyscore-one\.git - 복사본\objects\d6\80d0c6e919bb7bb66ed9c42f34645f7a3a9c5a
+	  			E:\neweasyscore-one\.git - 복사본\objects\d6\ebd4805981b8400db3e3291c74a743fef9a824
+	  			E:\neweasyscore-one\.git - 복사본\objects\d9\f7fe86103e092d4e7132c0b828dcf5e3823c8b
+	  			E:\neweasyscore-one\.git - 복사본\objects\dd\6dd1ce478dfdd0aafcf77d7595cb3f36439ca2
+	  			E:\neweasyscore-one\.git - 복사본\objects\df\0f15880bee46332dfc6622583215194f948b0f
+	  			E:\neweasyscore-one\.git - 복사본\objects\e3\1573b4fc93e60d171f4046c0220e1463075d9e
+	  			E:\neweasyscore-one\.git - 복사본\objects\e3\45ac8eef840a7d5cc78fe7e8da1f10459ba94c
+	  			E:\neweasyscore-one\.git - 복사본\objects\e4\093ef679ec048939066c23263f60c8bcf8efea
+	  			E:\neweasyscore-one\.git - 복사본\objects\e4\777c1ccfd0b0ea1c7ca1784e8cca9ac3af59bc
+	  			E:\neweasyscore-one\.git - 복사본\objects\e9\44f4ad4e1ca1c8cf9a87b366acc01c4e5c1616
+	  			E:\neweasyscore-one\.git - 복사본\objects\ea\6030fac7063ecef8f7f357dd9f0da080fc7cd7
+	  			E:\neweasyscore-one\.git - 복사본\objects\eb\8024797966191973c88f89ff33be74d441414d
+	  			E:\neweasyscore-one\.git - 복사본\objects\eb\ef54d5667acab46e87ae423baaf43959e2aa1d
+	  			E:\neweasyscore-one\.git - 복사본\objects\ef\40538aaaf65ea94736602c938cfe62349570e5
+	  			E:\neweasyscore-one\.git - 복사본\objects\ef\dbcfdd44713c940bdbe4f98e4ce8b95306dc80
+	  			E:\neweasyscore-one\.git - 복사본\objects\f1\65e68832717c1bba006dbaa388ea73f0d433c2
+	  			E:\neweasyscore-one\.git - 복사본\objects\f1\b3b0e51e8d4b72a1be15ba722507fe70929732
+	  			E:\neweasyscore-one\.git - 복사본\objects\f1\b424510da51fd82143bc74a0a801ae5a1e2fcd
+	  			E:\neweasyscore-one\.git - 복사본\objects\f2\c2217efa5a746f23ea722450a40fe0ca3db099
+	  			E:\neweasyscore-one\.git - 복사본\objects\f5\453dbe102eab6a4aeb61ef0030518b295c2d7c
+	  			E:\neweasyscore-one\.git - 복사본\objects\f5\feea6d6b116baaca5a2642d4d9fa1f47d574a7
+	  			E:\neweasyscore-one\.git - 복사본\objects\f7\60aa541a772047a026ba562ed21e17cb0e7ccc
+	  			E:\neweasyscore-one\.git - 복사본\objects\f7\a64923ea1a0565d25fa139c176d6bf42184e48
+	  			E:\neweasyscore-one\.git - 복사본\objects\f8\051a6f973e69a86e6f07f1a1c87f17a31c7235
+	  			E:\neweasyscore-one\.git - 복사본\objects\fc\8c2052b2dc3a1c3b3c72491eff8b28b482f829
+	  			E:\neweasyscore-one\.git - 복사본\objects\fd\79907d568b291d72b51200c0968df61c343d6f
+	  			E:\neweasyscore-one\.git - 복사본\objects\fd\91446b920abd3eabe90d91b2a59ee71418239a
+	  			E:\neweasyscore-one\.git - 복사본\objects\fd\d7dc0b7c9747758be2463e71b3ebdabfe4a44d
+	  			E:\neweasyscore-one\.git - 복사본\objects\pack\pack-a457223fd7a22462ee0de2a530fbcdb02b30b90f.idx
+	  			E:\neweasyscore-one\.git - 복사본\objects\pack\pack-a457223fd7a22462ee0de2a530fbcdb02b30b90f.pack
+	  			E:\neweasyscore-one\.git - 복사본\objects\pack\pack-a457223fd7a22462ee0de2a530fbcdb02b30b90f.rev
+	  			E:\neweasyscore-one\.git - 복사본\refs\heads\main
+	  			E:\neweasyscore-one\.git - 복사본\refs\remotes\origin\HEAD
+	  			E:\neweasyscore-one\.git - 복사본\refs\remotes\origin\main
+	  			E:\neweasyscore-one\android\.gitignore
+	  			E:\neweasyscore-one\android\build.gradle
+	  			E:\neweasyscore-one\android\capacitor.settings.gradle
+	  			E:\neweasyscore-one\android\gradle.properties
+	  			E:\neweasyscore-one\android\gradlew
+	  			E:\neweasyscore-one\android\gradlew.bat
+	  			E:\neweasyscore-one\android\local.properties
+	  			E:\neweasyscore-one\android\settings.gradle
+	  			E:\neweasyscore-one\android\variables.gradle
+	  			E:\neweasyscore-one\android\.gradle\config.properties
+	  			E:\neweasyscore-one\android\.gradle\file-system.probe
+	  			E:\neweasyscore-one\android\.gradle\8.11.1\gc.properties
+	  			E:\neweasyscore-one\android\.gradle\8.11.1\checksums\checksums.lock
+	  			E:\neweasyscore-one\android\.gradle\8.11.1\checksums\md5-checksums.bin
+	  			E:\neweasyscore-one\android\.gradle\8.11.1\checksums\sha1-checksums.bin
+	  			E:\neweasyscore-one\android\.gradle\8.11.1\executionHistory\executionHistory.bin
+	  			E:\neweasyscore-one\android\.gradle\8.11.1\executionHistory\executionHistory.lock
+	  			E:\neweasyscore-one\android\.gradle\8.11.1\fileChanges\last-build.bin
+	  			E:\neweasyscore-one\android\.gradle\8.11.1\fileHashes\fileHashes.bin
+	  			E:\neweasyscore-one\android\.gradle\8.11.1\fileHashes\fileHashes.lock
+	  			E:\neweasyscore-one\android\.gradle\8.11.1\fileHashes\resourceHashesCache.bin
+	  			E:\neweasyscore-one\android\.gradle\buildOutputCleanup\buildOutputCleanup.lock
+	  			E:\neweasyscore-one\android\.gradle\buildOutputCleanup\cache.properties
+	  			E:\neweasyscore-one\android\.gradle\buildOutputCleanup\outputFiles.bin
+	  			E:\neweasyscore-one\android\.gradle\vcs-1\gc.properties
+	  			E:\neweasyscore-one\android\app\.gitignore
+	  			E:\neweasyscore-one\android\app\Alias키이름.txt
+	  			E:\neweasyscore-one\android\app\build.gradle
+	  			E:\neweasyscore-one\android\app\capacitor.build.gradle
+	  			E:\neweasyscore-one\android\app\easykeystore
+	  			E:\neweasyscore-one\android\app\proguard-rules.pro
+	  			E:\neweasyscore-one\android\app\build\generated\res\pngs\release\drawable-anydpi-v24\ic_launcher_foreground.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\annotation_processor_list\release\javaPreCompileRelease\annotationProcessors.json
+	  			E:\neweasyscore-one\android\app\build\intermediates\app_metadata\release\writeReleaseAppMetadata\app-metadata.properties
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\capacitor.config.json
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\capacitor.plugins.json
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\native-bridge.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\cordova.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\cordova_plugins.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\fallback-R9U2AWjj29Kn4vGyp0wnl.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\manifest.json
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\offline.html
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\screenshot-desktop.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\screenshot-mobile.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\sw.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\workbox-58cdce56.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\icons\icon-192x192.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\icons\icon-512x512.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\images\share-icon.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\204-c2ce301723fefc99.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\239-091a1556f9c7766c.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\341.056900400c7cb71c.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\472.a3826d29d6854395.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\4bd1b696-ff960e89dabc287c.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\511-a5499f9fa1884b4c.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\54-35e888e2eeef6d76.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\579-b52d8e35a7c9335f.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\60-0a43c3272b4e1c7b.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\611-0e8b308f71a312d5.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\684-66a42bf5f125ab1b.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\717-53afb801bef7ce3e.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\825-8f4851b996b20935.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\849-63792482e2518743.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\874-5853b36c417a5f43.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\ad2866b8-0a1947d40eb8a8b5.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\bc9e92e6-4ddbd04aee1f5a31.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\ca377847-c75e1de76d37ab3c.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\framework-6d868e9bc95e10d8.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\main-app-f84c5a3ec7d59be3.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\main-de761027844f4a05.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\polyfills-42372ed130431b0a.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\webpack-fd3d50bc7677d33c.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\app\layout-9cf6a4d63ffd76aa.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\app\page-d4774ebe7611f326.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\app\add-course\page-59d712a82bef0e50.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\app\competitions\page-73f1e5619669e6c3.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\app\competitions\[id]\page-2b81688fc6afd255.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\app\play\[courseId]\page-d44fea70d434baf1.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\app\privacy\page-b1eedc7c98d28750.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\app\records\page-5a0e6752e5a61bde.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\app\records\[recordId]\page-96ca9e3d5ec395b5.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\app\stats\page-58b27de771597e88.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\app\_not-found\page-7b137d85f9de4771.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\pages\_app-f49b2a5977e4bd4f.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\chunks\pages\_error-c67e5ae945ee3c40.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\css\6db2ad53cd6a2f20.css
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\css\ca1abe08d264d8cf.css
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\R9U2AWjj29Kn4vGyp0wnl\_buildManifest.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\assets\release\mergeReleaseAssets\public\_next\static\R9U2AWjj29Kn4vGyp0wnl\_ssgManifest.js
+	  			E:\neweasyscore-one\android\app\build\intermediates\binary_art_profile\release\compileReleaseArtProfile\baseline.prof
+	  			E:\neweasyscore-one\android\app\build\intermediates\binary_art_profile_metadata\release\compileReleaseArtProfile\baseline.profm
+	  			E:\neweasyscore-one\android\app\build\intermediates\bundle_dependency_report\release\configureReleaseDependencies\dependencies.pb
+	  			E:\neweasyscore-one\android\app\build\intermediates\bundle_ide_model\release\produceReleaseBundleIdeListingFile\output-metadata.json
+	  			E:\neweasyscore-one\android\app\build\intermediates\bundle_ide_redirect_file\release\createReleaseBundleListingFileRedirect\redirect.txt
+	  			E:\neweasyscore-one\android\app\build\intermediates\bundle_manifest\release\processApplicationManifestReleaseForBundle\AndroidManifest.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\combined_art_profile\release\compileReleaseArtProfile\baseline-prof.txt
+	  			E:\neweasyscore-one\android\app\build\intermediates\compatible_screen_manifest\release\createReleaseCompatibleScreenManifests\output-metadata.json
+	  			E:\neweasyscore-one\android\app\build\intermediates\compile_and_runtime_not_namespaced_r_class_jar\release\processReleaseResources\R.jar
+	  			E:\neweasyscore-one\android\app\build\intermediates\dex\release\mergeDexRelease\classes.dex
+	  			E:\neweasyscore-one\android\app\build\intermediates\dex_archive_input_jar_hashes\release\dexBuilderRelease\out
+	  			E:\neweasyscore-one\android\app\build\intermediates\dex_metadata_directory\release\compileReleaseArtProfile\dex-metadata-map.properties
+	  			E:\neweasyscore-one\android\app\build\intermediates\dex_metadata_directory\release\compileReleaseArtProfile\0\.dm
+	  			E:\neweasyscore-one\android\app\build\intermediates\dex_metadata_directory\release\compileReleaseArtProfile\1\.dm
+	  			E:\neweasyscore-one\android\app\build\intermediates\dex_number_of_buckets_file\release\dexBuilderRelease\out
+	  			E:\neweasyscore-one\android\app\build\intermediates\external_libs_dex\release\mergeExtDexRelease\classes.dex
+	  			E:\neweasyscore-one\android\app\build\intermediates\global_synthetics_dex\release\mergeReleaseGlobalSynthetics\classes.dex
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\mergeReleaseAssets\merger.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\mergeReleaseJniLibFolders\merger.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\mergeReleaseShaders\merger.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\compile-file-map.properties
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merger.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values\values.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-af\values-af.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-am\values-am.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-ar\values-ar.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-as\values-as.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-az\values-az.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-b+sr+Latn\values-b+sr+Latn.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-be\values-be.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-bg\values-bg.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-bn\values-bn.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-bs\values-bs.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-ca\values-ca.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-cs\values-cs.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-da\values-da.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-de\values-de.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-el\values-el.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-en-rAU\values-en-rAU.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-en-rCA\values-en-rCA.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-en-rGB\values-en-rGB.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-en-rIN\values-en-rIN.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-en-rXC\values-en-rXC.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-es\values-es.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-es-rUS\values-es-rUS.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-et\values-et.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-eu\values-eu.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-fa\values-fa.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-fi\values-fi.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-fr\values-fr.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-fr-rCA\values-fr-rCA.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-gl\values-gl.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-gu\values-gu.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-h720dp-v13\values-h720dp-v13.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-hdpi-v4\values-hdpi-v4.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-hi\values-hi.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-hr\values-hr.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-hu\values-hu.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-hy\values-hy.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-in\values-in.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-is\values-is.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-it\values-it.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-iw\values-iw.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-ja\values-ja.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-ka\values-ka.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-kk\values-kk.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-km\values-km.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-kn\values-kn.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-ko\values-ko.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-ky\values-ky.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-land\values-land.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-large-v4\values-large-v4.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-ldltr-v21\values-ldltr-v21.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-lo\values-lo.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-lt\values-lt.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-lv\values-lv.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-mk\values-mk.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-ml\values-ml.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-mn\values-mn.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-mr\values-mr.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-ms\values-ms.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-my\values-my.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-nb\values-nb.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-ne\values-ne.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-night-v8\values-night-v8.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-nl\values-nl.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-or\values-or.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-pa\values-pa.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-pl\values-pl.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-port\values-port.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-pt\values-pt.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-pt-rBR\values-pt-rBR.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-pt-rPT\values-pt-rPT.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-ro\values-ro.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-ru\values-ru.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-si\values-si.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-sk\values-sk.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-sl\values-sl.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-sq\values-sq.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-sr\values-sr.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-sv\values-sv.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-sw\values-sw.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-sw600dp-v13\values-sw600dp-v13.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-ta\values-ta.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-te\values-te.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-th\values-th.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-tl\values-tl.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-tr\values-tr.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-uk\values-uk.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-ur\values-ur.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-uz\values-uz.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-v16\values-v16.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-v17\values-v17.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-v18\values-v18.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-v21\values-v21.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-v22\values-v22.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-v23\values-v23.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-v24\values-v24.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-v25\values-v25.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-v26\values-v26.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-v27\values-v27.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-v28\values-v28.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-v29\values-v29.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-v31\values-v31.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-vi\values-vi.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-watch-v20\values-watch-v20.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-watch-v21\values-watch-v21.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-xlarge-v4\values-xlarge-v4.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-zh-rCN\values-zh-rCN.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-zh-rHK\values-zh-rHK.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-zh-rTW\values-zh-rTW.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-zu\values-zu.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\packageReleaseResources\compile-file-map.properties
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\packageReleaseResources\merger.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release\packageReleaseResources\merged.dir\values\values.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\merge-state
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\61wTpphs1cGE4VQeU6bQ4HTGMBM=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\6PVj9A3V6tQX8447u_WEP57yD0Q=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\6xvEoU0XRFu0oksNcuShddcJUqc=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\70WcjndgdgCb7lyQP7Wp2VrP4Ts=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\71OU50h4cWBYMvILPQNhVIG0pgw=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\8DIWuuLVKz+iKvojK2DvUlZke+Y=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\8es92Md2aH0q89aESNf7AbmKk88=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\a3vKFHzfRqYfge3OJnbDX7x+VnE=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\aImGHcO7phQc8vF9g96za34UKb4=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\B9vQzPef2KimgpFp0iaC9W4z42Y=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\cg0QhGbop8A5iDa2V5bYjlHnGMo=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\ChEQ6i65sfAyiU8kpqqVWWfXjPI=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\DnFkPtY+pQAc_KODrGW4VRcz4vQ=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\Fjnty6XLYUT1QKXsKUd3kwLe3Vk=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\FSWoHhU5R_Btu1bcx2FGkWLUJ_Y=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\FT0LB+7af9X2gyIFWLbza+YyVWY=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\g0KJNqzwHJw52Xnvam19DJYLKS0=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\GiftxgnxAe3gNJtrAQeUaDfrewg=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\GzKKIgsOBnOFuU871CKcKETr3D8=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\h1AvF1iq6lRk_BkgHwWLpNSowiY=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\i5EFeY0RvBUet_KHrM8HFDGL9ic=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\IJt77AsZbGcImPlx3xEPo5I+Jy0=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\iqEm2AWuB9zWR5ybmKnhqglvuLU=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\j3vRLAOi2+eP1E6DiOqw07SuCnk=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\JrwxxAfe5V+Tkdnt+0esIth4rTc=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\LEMTyCigYCvDC6x_xMskNK3FJt0=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\lGQ7Je4R5dXid_DRWtFRbrcpz6U=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\mqCSx_Di+wbsLdNdZZn57cjyv4A=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\N4RUZx06kd4J4I0CIK_FzenovnQ=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\Nnh_kS314EhjNJqEfF6K4cEEHCg=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\NpkxfNPLtGuaSVkBgBG2o7zfD7E=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\ogKBfSSs9yFNu6GL0cNqTIZk_v8=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\OnDqm3uAJTMECdJixg+Qsq3ccUo=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\PzcmNzXE5lMitT+sleE09jV2kp0=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\QOHP+hDLaqV49ho9hTc1YOlgobg=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\Rk4As8Q2SQTQEJP53ZQqVFfJgxE=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\RumfdNKt2nO9wl05ku7n5JniHcg=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\stxxvkVZUCmbPKWGpW90rg4dW0U=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\tOn3cE57cJ1efS8VMYQpL0GZyTg=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\uCflx6FSq1pYQz50Ku0j8lcRJn4=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\UwSxhfv+gWyOPYgsE1XcFc3fugI=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\vrIJNQNjX7I__VaaFHSHPtMUs8I=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\wwpN_6bdknbo8nlmKMBU8nsBNMo=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\wZl6L423oXkXWif+rKXWumF8C7M=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\X8v2NIJhKkgAErXfn08PsSS8VSQ=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\xVmAmsw2HUMOka1Hsjxtn7GikPQ=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\yjymD50Zu5ReNoySKt8jPdJZTDU=
+	  			E:\neweasyscore-one\android\app\build\intermediates\incremental\release-mergeJavaRes\zip-cache\yPjsmZMpsf1Lxd587ioMD2sr_70=
+	  			E:\neweasyscore-one\android\app\build\intermediates\intermediary_bundle\release\packageReleaseBundle\intermediary-bundle.aab
+	  			E:\neweasyscore-one\android\app\build\intermediates\javac\release\compileReleaseJavaWithJavac\classes\app\netlify\easyscore\MainActivity.class
+	  			E:\neweasyscore-one\android\app\build\intermediates\linked_resources_binary_format\release\processReleaseResources\linked-resources-binary-format-release.ap_
+	  			E:\neweasyscore-one\android\app\build\intermediates\linked_resources_binary_format\release\processReleaseResources\output-metadata.json
+	  			E:\neweasyscore-one\android\app\build\intermediates\linked_resources_for_bundle_proto_format\release\bundleReleaseResources\linked-resources-proto-format.ap_
+	  			E:\neweasyscore-one\android\app\build\intermediates\local_only_symbol_list\release\parseReleaseLocalResources\R-def.txt
+	  			E:\neweasyscore-one\android\app\build\intermediates\manifest_merge_blame_file\release\processReleaseMainManifest\manifest-merger-blame-release-report.txt
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_art_profile\release\mergeReleaseArtProfile\baseline-prof.txt
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_java_res\release\mergeReleaseJavaResource\base.jar
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_manifest\release\processReleaseMainManifest\AndroidManifest.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_manifests\release\processReleaseManifest\AndroidManifest.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_manifests\release\processReleaseManifest\output-metadata.json
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\drawable-anydpi-v24_ic_launcher_foreground.xml.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\drawable-land-hdpi_splash.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\drawable-land-mdpi_splash.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\drawable-land-xhdpi_splash.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\drawable-land-xxhdpi_splash.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\drawable-land-xxxhdpi_splash.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\drawable-port-hdpi_splash.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\drawable-port-mdpi_splash.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\drawable-port-xhdpi_splash.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\drawable-port-xxhdpi_splash.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\drawable-port-xxxhdpi_splash.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\drawable_ic_launcher_background.xml.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\drawable_splash.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\layout_activity_main.xml.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\mipmap-anydpi-v26_ic_launcher.xml.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\mipmap-anydpi-v26_ic_launcher_round.xml.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\mipmap-hdpi_ic_launcher.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\mipmap-hdpi_ic_launcher_adaptive_back.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\mipmap-hdpi_ic_launcher_adaptive_fore.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\mipmap-hdpi_ic_launcher_foreground.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\mipmap-hdpi_ic_launcher_round.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\mipmap-mdpi_ic_launcher.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\mipmap-mdpi_ic_launcher_adaptive_back.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\mipmap-mdpi_ic_launcher_adaptive_fore.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\mipmap-mdpi_ic_launcher_foreground.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\mipmap-mdpi_ic_launcher_round.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\mipmap-xhdpi_ic_launcher.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\mipmap-xhdpi_ic_launcher_adaptive_back.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\mipmap-xhdpi_ic_launcher_adaptive_fore.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\mipmap-xhdpi_ic_launcher_foreground.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\mipmap-xhdpi_ic_launcher_round.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\mipmap-xxhdpi_ic_launcher.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\mipmap-xxhdpi_ic_launcher_adaptive_back.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\mipmap-xxhdpi_ic_launcher_adaptive_fore.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\mipmap-xxhdpi_ic_launcher_foreground.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\mipmap-xxhdpi_ic_launcher_round.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\mipmap-xxxhdpi_ic_launcher.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\mipmap-xxxhdpi_ic_launcher_adaptive_back.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\mipmap-xxxhdpi_ic_launcher_adaptive_fore.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\mipmap-xxxhdpi_ic_launcher_foreground.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\mipmap-xxxhdpi_ic_launcher_round.png.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-af_values-af.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-am_values-am.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-ar_values-ar.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-as_values-as.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-az_values-az.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-b+sr+Latn_values-b+sr+Latn.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-be_values-be.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-bg_values-bg.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-bn_values-bn.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-bs_values-bs.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-ca_values-ca.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-cs_values-cs.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-da_values-da.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-de_values-de.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-el_values-el.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-en-rAU_values-en-rAU.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-en-rCA_values-en-rCA.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-en-rGB_values-en-rGB.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-en-rIN_values-en-rIN.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-en-rXC_values-en-rXC.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-es-rUS_values-es-rUS.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-es_values-es.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-et_values-et.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-eu_values-eu.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-fa_values-fa.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-fi_values-fi.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-fr-rCA_values-fr-rCA.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-fr_values-fr.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-gl_values-gl.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-gu_values-gu.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-h720dp-v13_values-h720dp-v13.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-hdpi-v4_values-hdpi-v4.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-hi_values-hi.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-hr_values-hr.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-hu_values-hu.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-hy_values-hy.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-in_values-in.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-is_values-is.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-it_values-it.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-iw_values-iw.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-ja_values-ja.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-ka_values-ka.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-kk_values-kk.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-km_values-km.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-kn_values-kn.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-ko_values-ko.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-ky_values-ky.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-land_values-land.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-large-v4_values-large-v4.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-ldltr-v21_values-ldltr-v21.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-lo_values-lo.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-lt_values-lt.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-lv_values-lv.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-mk_values-mk.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-ml_values-ml.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-mn_values-mn.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-mr_values-mr.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-ms_values-ms.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-my_values-my.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-nb_values-nb.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-ne_values-ne.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-night-v8_values-night-v8.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-nl_values-nl.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-or_values-or.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-pa_values-pa.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-pl_values-pl.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-port_values-port.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-pt-rBR_values-pt-rBR.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-pt-rPT_values-pt-rPT.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-pt_values-pt.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-ro_values-ro.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-ru_values-ru.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-si_values-si.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-sk_values-sk.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-sl_values-sl.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-sq_values-sq.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-sr_values-sr.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-sv_values-sv.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-sw600dp-v13_values-sw600dp-v13.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-sw_values-sw.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-ta_values-ta.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-te_values-te.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-th_values-th.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-tl_values-tl.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-tr_values-tr.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-uk_values-uk.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-ur_values-ur.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-uz_values-uz.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-v16_values-v16.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-v17_values-v17.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-v18_values-v18.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-v21_values-v21.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-v22_values-v22.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-v23_values-v23.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-v24_values-v24.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-v25_values-v25.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-v26_values-v26.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-v27_values-v27.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-v28_values-v28.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-v29_values-v29.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-v31_values-v31.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-vi_values-vi.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-watch-v20_values-watch-v20.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-watch-v21_values-watch-v21.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-xlarge-v4_values-xlarge-v4.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-zh-rCN_values-zh-rCN.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-zh-rHK_values-zh-rHK.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-zh-rTW_values-zh-rTW.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values-zu_values-zu.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\values_values.arsc.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\xml_config.xml.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\merged_res\release\mergeReleaseResources\xml_file_paths.xml.flat
+	  			E:\neweasyscore-one\android\app\build\intermediates\metadata_library_dependencies_report\release\collectReleaseDependencies\dependencies.pb
+	  			E:\neweasyscore-one\android\app\build\intermediates\module_bundle\release\buildReleasePreBundle\base.zip
+	  			E:\neweasyscore-one\android\app\build\intermediates\navigation_json\release\extractDeepLinksRelease\navigation.json
+	  			E:\neweasyscore-one\android\app\build\intermediates\nested_resources_validation_report\release\generateReleaseResources\nestedResourcesValidationReport.txt
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_manifests\release\processReleaseManifestForPackage\AndroidManifest.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_manifests\release\processReleaseManifestForPackage\output-metadata.json
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\drawable\ic_launcher_background.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\drawable\splash.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\drawable-land-hdpi-v4\splash.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\drawable-land-mdpi-v4\splash.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\drawable-land-xhdpi-v4\splash.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\drawable-land-xxhdpi-v4\splash.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\drawable-land-xxxhdpi-v4\splash.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\drawable-port-hdpi-v4\splash.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\drawable-port-mdpi-v4\splash.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\drawable-port-xhdpi-v4\splash.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\drawable-port-xxhdpi-v4\splash.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\drawable-port-xxxhdpi-v4\splash.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\drawable-v24\ic_launcher_foreground.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\layout\activity_main.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\mipmap-anydpi-v26\ic_launcher.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\mipmap-anydpi-v26\ic_launcher_round.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\mipmap-hdpi-v4\ic_launcher.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\mipmap-hdpi-v4\ic_launcher_adaptive_back.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\mipmap-hdpi-v4\ic_launcher_adaptive_fore.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\mipmap-hdpi-v4\ic_launcher_foreground.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\mipmap-hdpi-v4\ic_launcher_round.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\mipmap-mdpi-v4\ic_launcher.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\mipmap-mdpi-v4\ic_launcher_adaptive_back.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\mipmap-mdpi-v4\ic_launcher_adaptive_fore.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\mipmap-mdpi-v4\ic_launcher_foreground.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\mipmap-mdpi-v4\ic_launcher_round.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\mipmap-xhdpi-v4\ic_launcher.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\mipmap-xhdpi-v4\ic_launcher_adaptive_back.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\mipmap-xhdpi-v4\ic_launcher_adaptive_fore.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\mipmap-xhdpi-v4\ic_launcher_foreground.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\mipmap-xhdpi-v4\ic_launcher_round.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\mipmap-xxhdpi-v4\ic_launcher.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\mipmap-xxhdpi-v4\ic_launcher_adaptive_back.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\mipmap-xxhdpi-v4\ic_launcher_adaptive_fore.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\mipmap-xxhdpi-v4\ic_launcher_foreground.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\mipmap-xxhdpi-v4\ic_launcher_round.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\mipmap-xxxhdpi-v4\ic_launcher.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\mipmap-xxxhdpi-v4\ic_launcher_adaptive_back.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\mipmap-xxxhdpi-v4\ic_launcher_adaptive_fore.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\mipmap-xxxhdpi-v4\ic_launcher_foreground.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\mipmap-xxxhdpi-v4\ic_launcher_round.png
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\values\values.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\xml\config.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\packaged_res\release\packageReleaseResources\xml\file_paths.xml
+	  			E:\neweasyscore-one\android\app\build\intermediates\runtime_symbol_list\release\processReleaseResources\R.txt
+	  			E:\neweasyscore-one\android\app\build\intermediates\source_set_path_map\release\mapReleaseSourceSetPaths\file-map.txt
+	  			E:\neweasyscore-one\android\app\build\intermediates\stable_resource_ids_file\release\processReleaseResources\stableIds.txt
+	  			E:\neweasyscore-one\android\app\build\intermediates\symbol_list_with_package_name\release\processReleaseResources\package-aware-r.txt
+	  			E:\neweasyscore-one\android\app\build\intermediates\version_control_info_file\release\extractReleaseVersionControlInfo\version-control-info.textproto
+	  			E:\neweasyscore-one\android\app\build\outputs\logs\manifest-merger-release-report.txt
+	  			E:\neweasyscore-one\android\app\build\tmp\compileReleaseJavaWithJavac\previous-compilation-data.bin
+	  			E:\neweasyscore-one\android\app\debug\app-debug.apk
+	  			E:\neweasyscore-one\android\app\debug\output-metadata.json
+	  			E:\neweasyscore-one\android\app\release\app-release.aab
+	  			E:\neweasyscore-one\android\app\release\app-release.apk
+	  			E:\neweasyscore-one\android\app\release\output-metadata.json
+	  			E:\neweasyscore-one\android\app\release\baselineProfiles\0\app-release.dm
+	  			E:\neweasyscore-one\android\app\release\baselineProfiles\1\app-release.dm
+	  			E:\neweasyscore-one\android\app\src\androidTest\java\com\getcapacitor\myapp\ExampleInstrumentedTest.java
+	  			E:\neweasyscore-one\android\app\src\main\AndroidManifest.xml
+	  			E:\neweasyscore-one\android\app\src\main\assets\capacitor.config.json
+	  			E:\neweasyscore-one\android\app\src\main\assets\capacitor.plugins.json
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\cordova.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\cordova_plugins.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\fallback-R9U2AWjj29Kn4vGyp0wnl.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\manifest.json
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\offline.html
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\screenshot-desktop.png
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\screenshot-mobile.png
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\sw.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\workbox-58cdce56.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\icons\icon-192x192.png
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\icons\icon-512x512.png
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\images\share-icon.png
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\204-c2ce301723fefc99.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\239-091a1556f9c7766c.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\341.056900400c7cb71c.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\472.a3826d29d6854395.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\4bd1b696-ff960e89dabc287c.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\511-a5499f9fa1884b4c.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\54-35e888e2eeef6d76.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\579-b52d8e35a7c9335f.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\60-0a43c3272b4e1c7b.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\611-0e8b308f71a312d5.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\684-66a42bf5f125ab1b.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\717-53afb801bef7ce3e.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\825-8f4851b996b20935.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\849-63792482e2518743.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\874-5853b36c417a5f43.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\ad2866b8-0a1947d40eb8a8b5.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\bc9e92e6-4ddbd04aee1f5a31.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\ca377847-c75e1de76d37ab3c.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\framework-6d868e9bc95e10d8.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\main-app-f84c5a3ec7d59be3.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\main-de761027844f4a05.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\polyfills-42372ed130431b0a.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\webpack-fd3d50bc7677d33c.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\app\layout-9cf6a4d63ffd76aa.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\app\page-d4774ebe7611f326.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\app\add-course\page-59d712a82bef0e50.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\app\competitions\page-73f1e5619669e6c3.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\app\competitions\[id]\page-2b81688fc6afd255.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\app\play\[courseId]\page-d44fea70d434baf1.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\app\privacy\page-b1eedc7c98d28750.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\app\records\page-5a0e6752e5a61bde.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\app\records\[recordId]\page-96ca9e3d5ec395b5.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\app\stats\page-58b27de771597e88.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\app\_not-found\page-7b137d85f9de4771.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\pages\_app-f49b2a5977e4bd4f.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\chunks\pages\_error-c67e5ae945ee3c40.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\css\6db2ad53cd6a2f20.css
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\css\ca1abe08d264d8cf.css
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\R9U2AWjj29Kn4vGyp0wnl\_buildManifest.js
+	  			E:\neweasyscore-one\android\app\src\main\assets\public\_next\static\R9U2AWjj29Kn4vGyp0wnl\_ssgManifest.js
+	  			E:\neweasyscore-one\android\app\src\main\java\app\netlify\easyscore\MainActivity.java
+	  			E:\neweasyscore-one\android\app\src\main\res\drawable\ic_launcher_background.xml
+	  			E:\neweasyscore-one\android\app\src\main\res\drawable\splash.png
+	  			E:\neweasyscore-one\android\app\src\main\res\drawable-land-hdpi\splash.png
+	  			E:\neweasyscore-one\android\app\src\main\res\drawable-land-mdpi\splash.png
+	  			E:\neweasyscore-one\android\app\src\main\res\drawable-land-xhdpi\splash.png
+	  			E:\neweasyscore-one\android\app\src\main\res\drawable-land-xxhdpi\splash.png
+	  			E:\neweasyscore-one\android\app\src\main\res\drawable-land-xxxhdpi\splash.png
+	  			E:\neweasyscore-one\android\app\src\main\res\drawable-port-hdpi\splash.png
+	  			E:\neweasyscore-one\android\app\src\main\res\drawable-port-mdpi\splash.png
+	  			E:\neweasyscore-one\android\app\src\main\res\drawable-port-xhdpi\splash.png
+	  			E:\neweasyscore-one\android\app\src\main\res\drawable-port-xxhdpi\splash.png
+	  			E:\neweasyscore-one\android\app\src\main\res\drawable-port-xxxhdpi\splash.png
+	  			E:\neweasyscore-one\android\app\src\main\res\drawable-v24\ic_launcher_foreground.xml
+	  			E:\neweasyscore-one\android\app\src\main\res\layout\activity_main.xml
+	  			E:\neweasyscore-one\android\app\src\main\res\mipmap-anydpi-v26\ic_launcher.xml
+	  			E:\neweasyscore-one\android\app\src\main\res\mipmap-anydpi-v26\ic_launcher_round.xml
+	  			E:\neweasyscore-one\android\app\src\main\res\mipmap-hdpi\ic_launcher.png
+	  			E:\neweasyscore-one\android\app\src\main\res\mipmap-hdpi\ic_launcher_adaptive_back.png
+	  			E:\neweasyscore-one\android\app\src\main\res\mipmap-hdpi\ic_launcher_adaptive_fore.png
+	  			E:\neweasyscore-one\android\app\src\main\res\mipmap-hdpi\ic_launcher_foreground.png
+	  			E:\neweasyscore-one\android\app\src\main\res\mipmap-hdpi\ic_launcher_round.png
+	  			E:\neweasyscore-one\android\app\src\main\res\mipmap-mdpi\ic_launcher.png
+	  			E:\neweasyscore-one\android\app\src\main\res\mipmap-mdpi\ic_launcher_adaptive_back.png
+	  			E:\neweasyscore-one\android\app\src\main\res\mipmap-mdpi\ic_launcher_adaptive_fore.png
+	  			E:\neweasyscore-one\android\app\src\main\res\mipmap-mdpi\ic_launcher_foreground.png
+	  			E:\neweasyscore-one\android\app\src\main\res\mipmap-mdpi\ic_launcher_round.png
+	  			E:\neweasyscore-one\android\app\src\main\res\mipmap-xhdpi\ic_launcher.png
+	  			E:\neweasyscore-one\android\app\src\main\res\mipmap-xhdpi\ic_launcher_adaptive_back.png
+	  			E:\neweasyscore-one\android\app\src\main\res\mipmap-xhdpi\ic_launcher_adaptive_fore.png
+	  			E:\neweasyscore-one\android\app\src\main\res\mipmap-xhdpi\ic_launcher_foreground.png
+	  			E:\neweasyscore-one\android\app\src\main\res\mipmap-xhdpi\ic_launcher_round.png
+	  			E:\neweasyscore-one\android\app\src\main\res\mipmap-xxhdpi\ic_launcher.png
+	  			E:\neweasyscore-one\android\app\src\main\res\mipmap-xxhdpi\ic_launcher_adaptive_back.png
+	  			E:\neweasyscore-one\android\app\src\main\res\mipmap-xxhdpi\ic_launcher_adaptive_fore.png
+	  			E:\neweasyscore-one\android\app\src\main\res\mipmap-xxhdpi\ic_launcher_foreground.png
+	  			E:\neweasyscore-one\android\app\src\main\res\mipmap-xxhdpi\ic_launcher_round.png
+	  			E:\neweasyscore-one\android\app\src\main\res\mipmap-xxxhdpi\ic_launcher.png
+	  			E:\neweasyscore-one\android\app\src\main\res\mipmap-xxxhdpi\ic_launcher_adaptive_back.png
+	  			E:\neweasyscore-one\android\app\src\main\res\mipmap-xxxhdpi\ic_launcher_adaptive_fore.png
+	  			E:\neweasyscore-one\android\app\src\main\res\mipmap-xxxhdpi\ic_launcher_foreground.png
+	  			E:\neweasyscore-one\android\app\src\main\res\mipmap-xxxhdpi\ic_launcher_round.png
+	  			E:\neweasyscore-one\android\app\src\main\res\values\ic_launcher_background.xml
+	  			E:\neweasyscore-one\android\app\src\main\res\values\strings.xml
+	  			E:\neweasyscore-one\android\app\src\main\res\values\styles.xml
+	  			E:\neweasyscore-one\android\app\src\main\res\xml\config.xml
+	  			E:\neweasyscore-one\android\app\src\main\res\xml\file_paths.xml
+	  			E:\neweasyscore-one\android\app\src\test\java\com\getcapacitor\myapp\ExampleUnitTest.java
+	  			E:\neweasyscore-one\android\build\reports\problems\problems-report.html
+	  			E:\neweasyscore-one\android\capacitor-cordova-android-plugins\build.gradle
+	  			E:\neweasyscore-one\android\capacitor-cordova-android-plugins\cordova.variables.gradle
+	  			E:\neweasyscore-one\android\capacitor-cordova-android-plugins\build\.transforms\73396012f1a7a26377324281cb309b39\results.bin
+	  			E:\neweasyscore-one\android\capacitor-cordova-android-plugins\build\intermediates\aapt_friendly_merged_manifests\release\processReleaseManifest\aapt\AndroidManifest.xml
+	  			E:\neweasyscore-one\android\capacitor-cordova-android-plugins\build\intermediates\aapt_friendly_merged_manifests\release\processReleaseManifest\aapt\output-metadata.json
+	  			E:\neweasyscore-one\android\capacitor-cordova-android-plugins\build\intermediates\aar_metadata\release\writeReleaseAarMetadata\aar-metadata.properties
+	  			E:\neweasyscore-one\android\capacitor-cordova-android-plugins\build\intermediates\annotation_processor_list\release\javaPreCompileRelease\annotationProcessors.json
+	  			E:\neweasyscore-one\android\capacitor-cordova-android-plugins\build\intermediates\compile_library_classes_jar\release\bundleLibCompileToJarRelease\classes.jar
+	  			E:\neweasyscore-one\android\capacitor-cordova-android-plugins\build\intermediates\compile_r_class_jar\release\generateReleaseRFile\R.jar
+	  			E:\neweasyscore-one\android\capacitor-cordova-android-plugins\build\intermediates\compile_symbol_list\release\generateReleaseRFile\R.txt
+	  			E:\neweasyscore-one\android\capacitor-cordova-android-plugins\build\intermediates\incremental\mergeReleaseJniLibFolders\merger.xml
+	  			E:\neweasyscore-one\android\capacitor-cordova-android-plugins\build\intermediates\incremental\mergeReleaseShaders\merger.xml
+	  			E:\neweasyscore-one\android\capacitor-cordova-android-plugins\build\intermediates\incremental\packageReleaseAssets\merger.xml
+	  			E:\neweasyscore-one\android\capacitor-cordova-android-plugins\build\intermediates\incremental\release\packageReleaseResources\compile-file-map.properties
+	  			E:\neweasyscore-one\android\capacitor-cordova-android-plugins\build\intermediates\incremental\release\packageReleaseResources\merger.xml
+	  			E:\neweasyscore-one\android\capacitor-cordova-android-plugins\build\intermediates\local_only_symbol_list\release\parseReleaseLocalResources\R-def.txt
+	  			E:\neweasyscore-one\android\capacitor-cordova-android-plugins\build\intermediates\manifest_merge_blame_file\release\processReleaseManifest\manifest-merger-blame-release-report.txt
+	  			E:\neweasyscore-one\android\capacitor-cordova-android-plugins\build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml
+	  			E:\neweasyscore-one\android\capacitor-cordova-android-plugins\build\intermediates\navigation_json\release\extractDeepLinksRelease\navigation.json
+	  			E:\neweasyscore-one\android\capacitor-cordova-android-plugins\build\intermediates\nested_resources_validation_report\release\generateReleaseResources\nestedResourcesValidationReport.txt
+	  			E:\neweasyscore-one\android\capacitor-cordova-android-plugins\build\intermediates\runtime_library_classes_jar\release\bundleLibRuntimeToJarRelease\classes.jar
+	  			E:\neweasyscore-one\android\capacitor-cordova-android-plugins\build\intermediates\symbol_list_with_package_name\release\generateReleaseRFile\package-aware-r.txt
+	  			E:\neweasyscore-one\android\capacitor-cordova-android-plugins\build\outputs\logs\manifest-merger-release-report.txt
+	  			E:\neweasyscore-one\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml
+	  			E:\neweasyscore-one\android\capacitor-cordova-android-plugins\src\main\java\.gitkeep
+	  			E:\neweasyscore-one\android\capacitor-cordova-android-plugins\src\main\res\.gitkeep
+	  			E:\neweasyscore-one\android\gradle\wrapper\gradle-wrapper.jar
+	  			E:\neweasyscore-one\android\gradle\wrapper\gradle-wrapper.properties
+	  			E:\neweasyscore-one\docs\blueprint.md
+	  			E:\score-1\public\fallback-bmAMLDXnBdnvCGCImLWMV.js
+	  			E:\score-1\public\firebase-messaging-sw.js
+	  			E:\neweasyscore-one\public\fallback-Hf76Kb8CEzWN1uGXwO65c.js
+	  			E:\neweasyscore-one\public\sw.js
+	  			E:\neweasyscore-one\public\workbox-58cdce56.js
+	  			E:\neweasyscore-one\src\app\page.tsx
+	  			E:\neweasyscore-one\src\app\competitions\[id]\ClientCompetitionDetail.tsx
+	  			E:\neweasyscore-one\src\app\competitions\[id]\page.tsx
+	  			E:\neweasyscore-one\src\app\play\[courseId]\ClientPlayDetail.tsx
+	  			E:\neweasyscore-one\src\app\play\[courseId]\page.tsx
+	  			E:\neweasyscore-one\src\app\privacy\page.tsx
+	  			E:\neweasyscore-one\src\app\records\[recordId]\ClientRecordDetail.exportImage.tsx
+	  			E:\neweasyscore-one\src\app\records\[recordId]\ClientRecordDetail.tsx
+	  			E:\neweasyscore-one\src\app\records\[recordId]\page.tsx
+	  			E:\neweasyscore-one\src\lib\courses-data.ts
+	  			E:\neweasyscore-one\src\lib\share-utils.ts
+	  			E:\neweasyscore-one\src\lib\types.ts
+	  			E:\neweasyscore-one\types\next-pwa.d.ts
